@@ -42,7 +42,7 @@
  *                 example: Development Board
  *               importType:
  *                 type: string
- *                 enum: [trello]
+ *                 enum: [trello, plankaJson]
  *                 description: Type of import
  *                 example: trello
  *               importFile:
@@ -101,6 +101,7 @@
  *                   enum:
  *                     - No import file was uploaded
  *                     - Invalid import file
+ *                     - Unsupported import file format
  *                   description: Specific error message
  *                   example: No import file was uploaded
  */
@@ -116,6 +117,9 @@ const Errors = {
   },
   INVALID_IMPORT_FILE: {
     invalidImportFile: 'Invalid import file',
+  },
+  UNSUPPORTED_IMPORT_FILE_FORMAT: {
+    unsupportedImportFileFormat: 'Unsupported import file format',
   },
 };
 
@@ -154,6 +158,9 @@ module.exports = {
       responseType: 'unprocessableEntity',
     },
     invalidImportFile: {
+      responseType: 'unprocessableEntity',
+    },
+    unsupportedImportFileFormat: {
       responseType: 'unprocessableEntity',
     },
     uploadError: {
@@ -199,6 +206,17 @@ module.exports = {
         boardImport = {
           type: inputs.importType,
           board: trelloBoard,
+        };
+      } else if (inputs.importType === Board.ImportTypes.PLANKA_JSON) {
+        // DTP fork — board exported by this app
+        const plankaBoard = await sails.helpers.boards
+          .processUploadedPlankaJsonImportFile(file)
+          .intercept('invalidFile', () => Errors.INVALID_IMPORT_FILE)
+          .intercept('unsupportedFormat', () => Errors.UNSUPPORTED_IMPORT_FILE_FORMAT);
+
+        boardImport = {
+          type: inputs.importType,
+          board: plankaBoard,
         };
       }
     }

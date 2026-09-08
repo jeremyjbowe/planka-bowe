@@ -14,6 +14,7 @@ import { Input, Popup } from '../../../lib/custom-ui';
 
 import entryActions from '../../../entry-actions';
 import { useForm, useNestedRef, useSteps } from '../../../hooks';
+import { BoardImportTypeIcons } from '../../../constants/Icons';
 import ImportStep from './ImportStep';
 
 import styles from './AddBoardStep.module.scss';
@@ -111,7 +112,7 @@ const AddBoardStep = React.memo(({ onClose }) => {
               onClick={handleImportClick}
             >
               <Icon
-                name={data.import ? data.import.type : 'arrow down'}
+                name={data.import ? BoardImportTypeIcons[data.import.type] : 'arrow down'}
                 className={styles.importButtonIcon}
               />
               {data.import ? data.import.file.name : t('action.import')}

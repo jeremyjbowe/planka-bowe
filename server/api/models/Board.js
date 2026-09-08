@@ -104,6 +104,8 @@ const Views = {
 
 const ImportTypes = {
   TRELLO: 'trello',
+  // DTP fork — a board exported by this app (GET /api/boards/:id/export)
+  PLANKA_JSON: 'plankaJson',
 };
 
 module.exports = {

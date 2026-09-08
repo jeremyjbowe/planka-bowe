@@ -84,8 +84,18 @@ module.exports = {
       },
     );
 
-    if (inputs.import && inputs.import.type === Board.ImportTypes.TRELLO) {
-      await sails.helpers.boards.importFromTrello(board, lists, inputs.import.board);
+    if (inputs.import) {
+      if (inputs.import.type === Board.ImportTypes.TRELLO) {
+        await sails.helpers.boards.importFromTrello(board, lists, inputs.import.board);
+      } else if (inputs.import.type === Board.ImportTypes.PLANKA_JSON) {
+        // DTP fork — board exported by this app
+        await sails.helpers.boards.importFromPlankaJson.with({
+          board,
+          lists,
+          plankaBoard: inputs.import.board,
+          actorUser: inputs.actorUser,
+        });
+      }
     }
 
     scoper.board = board;

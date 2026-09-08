@@ -168,8 +168,9 @@ All eight must-have features shipped, one commit each, acceptance tests
 passed in the browser against PostgreSQL (see the commit messages for the
 exact verification). Goals/OKRs shipped afterwards with the data model
 below. CalDAV/VTODO shipped as read-only iCalendar feeds (section 5.2).
+JSON export/import shipped afterwards (section 5.3).
 High-value items not started: keyboard-first navigation overlay, cover image
-accents, saved views, JSON export/import.
+accents, saved views.
 
 ### 5.1 Goals data model (confirmed 2026-09-08)
 
@@ -217,3 +218,32 @@ Testing notes for future sessions:
 - Deliberately not built: a CalDAV server (two-way sync). If needed later,
   the serializer and visibility helpers are reusable; the missing pieces are
   the DAV method handlers and ETag/CTag bookkeeping.
+
+
+### 5.3 Board JSON export/import (confirmed 2026-09-08)
+
+- `GET /api/boards/:id/export` (`server/api/controllers/boards/export.js`,
+  same permission as `boards/show`) returns
+  `{ format: 'planka-dtp-board', version: 1, exportedAt, board, lists, labels,
+  cards, cardLabels, taskLists, tasks, customFieldGroups, customFields,
+  customFieldValues }` as a `Content-Disposition: attachment` download.
+  Cards cover every list of the board (archive and trash included) and carry
+  the DTP fields (`priority`, `color`, `recurrenceRule`, `parentCardId`,
+  `dueDate`, `isDueCompleted`, `isClosed`, `description`, `position`, `type`,
+  `name`, `stopwatch`). Users, memberships, attachments and comments are out
+  of scope; `creatorUserId` rides along for reference only. Custom fields are
+  flattened onto the group that uses them, so a group derived from a
+  project-level base group stays self-contained.
+- `Board.ImportTypes.PLANKA_JSON` (`'plankaJson'`) feeds the same
+  `POST /api/projects/:projectId/boards` multipart path as the Trello import:
+  `server/api/helpers/boards/process-uploaded-planka-json-import-file.js`
+  validates `format`/`version` (422 otherwise) and
+  `server/api/helpers/boards/import-from-planka-json.js` recreates everything
+  with fresh ids — archive/trash lists are mapped onto the ones
+  `Board.qm.createOne` already made, parent card links are remapped in a
+  second pass, positions are kept, and imported cards are credited to the
+  importing user. A closed recurring card is imported with
+  `recurrenceSpawnedAt` set so it cannot spawn a successor on arrival.
+- Client: `api.downloadBoardExport` (`client/src/api/boards.js`, plain `fetch`
+  with the bearer token, object-URL download), an "Export as JSON" item in the
+  board menu and a second file picker in `AddBoardStep/ImportStep.jsx`.

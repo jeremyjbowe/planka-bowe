@@ -26,6 +26,7 @@ views, structure and polish of modern tools.
 | Speed | **Keyboard-first navigation**: `j`/`k` move between cards, `h`/`l` between lists, `Enter` opens, `n` adds, `/` searches, `1`–`5` switch views, `[`/`]` switch boards, `g h` / `g g` / `g 1-9` jump around, `?` shows the shortcuts overlay. Hover shortcuts from upstream still work and fall back to the keyboard selection. |
 | Look | **Card color accents**: ten soft colors (left bar + tint on the card, stripe on the modal) set from the card's *Color* action; cover images render rounded with a legibility gradient. |
 | Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
+| Portability | **Board export/import as JSON**: the board menu's *Export as JSON* downloads lists, labels, cards (with priority, color, recurrence, parent links, due dates), checklists and custom fields as a versioned document; *Import* on board creation reads it back into any project. |
 
 All views read from the same normalized redux-orm store, so anything that
 changes anywhere (including by another user over the socket) updates live in
@@ -220,7 +221,7 @@ Conventions that keep the codebase predictable:
 - Calendar sync is one-way (export feeds). Feeds are served from
   `/feeds/:token/...` on the API host without a session, so `BASE_URL` must
   be the public address; calendar apps typically refresh every 15–60 min.
-- Not yet built from the high-value list: saved views, JSON export/import.
+- Not yet built from the high-value list: saved views.
 
 ## Upstream documentation
 

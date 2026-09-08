@@ -5,6 +5,7 @@
 
 import {
   BoardContexts,
+  BoardImportTypes,
   BoardMembershipRoles,
   BoardViews,
   CardTypes,
@@ -57,6 +58,11 @@ export const BoardContextIcons = {
   [BoardContexts.BOARD]: 'suitcase',
   [BoardContexts.ARCHIVE]: 'archive',
   [BoardContexts.TRASH]: 'trash alternate',
+};
+
+export const BoardImportTypeIcons = {
+  [BoardImportTypes.TRELLO]: 'trello',
+  [BoardImportTypes.PLANKA_JSON]: 'download',
 };
 
 export const BoardMembershipRoleIcons = {

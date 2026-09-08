@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import PropTypes from 'prop-types';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ import { Popup } from '../../../../lib/custom-ui';
 
 import selectors from '../../../../selectors';
 import entryActions from '../../../../entry-actions';
+import api from '../../../../api';
 import { useSteps } from '../../../../hooks';
 import { BoardContexts, BoardMembershipRoles } from '../../../../constants/Enums';
 import { BoardContextIcons } from '../../../../constants/Icons';
@@ -52,6 +53,7 @@ const ActionsStep = React.memo(({ onClose }) => {
   const dispatch = useDispatch();
   const [t] = useTranslation();
   const [step, openStep, handleBack] = useSteps();
+  const [isExporting, setIsExporting] = useState(false);
 
   const handleToggleSubscriptionClick = useCallback(() => {
     dispatch(
@@ -92,6 +94,21 @@ const ActionsStep = React.memo(({ onClose }) => {
   const handleCalendarFeedClick = useCallback(() => {
     openStep(StepTypes.CALENDAR_FEED);
   }, [openStep]);
+
+  // DTP fork — board export as JSON. The download is a plain request, so it
+  // does not need a saga; it just streams the file to the browser.
+  const handleExportClick = useCallback(async () => {
+    setIsExporting(true);
+
+    try {
+      await api.downloadBoardExport(board.id);
+    } catch (error) {
+      // Nothing useful to show from a popup that is about to close.
+    } finally {
+      setIsExporting(false);
+      onClose();
+    }
+  }, [onClose, board.id]);
 
   if (step) {
     switch (step.type) {
@@ -150,6 +167,12 @@ const ActionsStep = React.memo(({ onClose }) => {
           <Menu.Item className={styles.menuItem} onClick={handleCalendarFeedClick}>
             <Icon name="calendar alternate outline" className={styles.menuItemIcon} />
             {t('common.calendarFeed', {
+              context: 'title',
+            })}
+          </Menu.Item>
+          <Menu.Item disabled={isExporting} className={styles.menuItem} onClick={handleExportClick}>
+            <Icon name="download" className={styles.menuItemIcon} />
+            {t('action.exportAsJson', {
               context: 'title',
             })}
           </Menu.Item>

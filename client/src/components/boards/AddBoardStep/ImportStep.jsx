@@ -9,6 +9,8 @@ import { useTranslation } from 'react-i18next';
 import { Button } from 'semantic-ui-react';
 import { FilePicker, Popup } from '../../../lib/custom-ui';
 
+import { BoardImportTypes } from '../../../constants/Enums';
+
 import styles from './ImportStep.module.scss';
 
 const ImportStep = React.memo(({ onSelect, onBack }) => {
@@ -34,8 +36,23 @@ const ImportStep = React.memo(({ onSelect, onBack }) => {
         })}
       </Popup.Header>
       <Popup.Content>
-        <FilePicker accept=".json" onSelect={(file) => handleFileSelect('trello', file)}>
+        <FilePicker
+          accept=".json"
+          onSelect={(file) => handleFileSelect(BoardImportTypes.TRELLO, file)}
+        >
           <Button fluid content={t('common.fromTrello')} icon="trello" className={styles.button} />
+        </FilePicker>
+        {/* DTP fork — a board exported by this app */}
+        <FilePicker
+          accept=".json"
+          onSelect={(file) => handleFileSelect(BoardImportTypes.PLANKA_JSON, file)}
+        >
+          <Button
+            fluid
+            content={t('common.fromPlankaJson')}
+            icon="download"
+            className={styles.button}
+          />
         </FilePicker>
       </Popup.Content>
     </>

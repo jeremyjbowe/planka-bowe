@@ -23,7 +23,7 @@ commit hash) so the loop never repeats finished work.
 - [x] Keyboard-first navigation (j/k, h/l, shortcuts overlay `?`) — see commit `feat: keyboard-first navigation`
 - [x] Card cover images + soft color accents — see commit `feat: card color accents`
 - [ ] Improved filtering and saved views
-- [ ] Export/import of boards as JSON
+- [x] Export/import of boards as JSON — see commit `feat: board JSON export/import`
 
 ## UI/UX requirements (non-negotiable) — verify, not just build
 

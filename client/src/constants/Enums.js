@@ -70,6 +70,12 @@ export const BoardContexts = {
   TRASH: 'trash',
 };
 
+// DTP fork — `plankaJson` is a board exported by this app
+export const BoardImportTypes = {
+  TRELLO: 'trello',
+  PLANKA_JSON: 'plankaJson',
+};
+
 export const BoardMembershipRoles = {
   EDITOR: 'editor',
   VIEWER: 'viewer',
@@ -118,6 +124,19 @@ export const CARD_PRIORITY_RANK = {
   [CardPriorities.MEDIUM]: 2,
   [CardPriorities.HIGH]: 3,
   [CardPriorities.URGENT]: 4,
+};
+
+// DTP fork — board filters (client-only, per board)
+export const CardDueFilters = {
+  OVERDUE: 'overdue',
+  TODAY: 'today',
+  THIS_WEEK: 'thisWeek',
+  NO_DATE: 'noDate',
+};
+
+export const CardStatusFilters = {
+  OPEN: 'open',
+  DONE: 'done',
 };
 
 // DTP fork — card color accent
