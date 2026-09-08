@@ -96,6 +96,11 @@ module.exports = {
       inputs.request,
     );
 
+    // DTP fork — goals: board totals changed
+    await sails.helpers.goalLinks.broadcastTargetUpdate.with({
+      board: values.board,
+    });
+
     const webhooks = await Webhook.qm.getAll();
 
     sails.helpers.utils.sendWebhooks.with({

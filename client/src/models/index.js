@@ -24,6 +24,8 @@ import Comment from './Comment';
 import Activity from './Activity';
 import Notification from './Notification';
 import NotificationService from './NotificationService';
+import Goal from './Goal';
+import GoalLink from './GoalLink';
 
 export {
   Webhook,
@@ -47,4 +49,6 @@ export {
   Activity,
   Notification,
   NotificationService,
+  Goal,
+  GoalLink,
 };

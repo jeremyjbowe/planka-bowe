@@ -53,6 +53,7 @@ const writeStorage = (key, value) => {
 const Sidebar = React.memo(() => {
   const tree = useSelector(selectors.selectProjectTreeForCurrentUser);
   const { projectId, boardId } = useSelector(selectors.selectPath);
+  const isGoalsPage = useSelector(selectors.selectIsGoalsPage);
   const ancestorProjects = useSelector(selectors.selectAncestorProjectsForCurrentProject);
 
   const canAddProject = useSelector((state) => {
@@ -145,11 +146,22 @@ const Sidebar = React.memo(() => {
       <nav className={styles.nav}>
         <Link
           to={Paths.ROOT}
-          className={classNames(styles.homeLink, projectId === undefined && styles.homeLinkActive)}
+          className={classNames(
+            styles.homeLink,
+            projectId === undefined && !isGoalsPage && styles.homeLinkActive,
+          )}
           title={t('common.home')}
         >
           <Icon fitted name="home" className={styles.homeIcon} />
           {!isCollapsed && <span className={styles.homeLabel}>{t('common.home')}</span>}
+        </Link>
+        <Link
+          to={Paths.GOALS}
+          className={classNames(styles.homeLink, isGoalsPage && styles.homeLinkActive)}
+          title={t('common.goals')}
+        >
+          <Icon fitted name="bullseye" className={styles.homeIcon} />
+          {!isCollapsed && <span className={styles.homeLabel}>{t('common.goals')}</span>}
         </Link>
         {!isCollapsed && (
           <>

@@ -30,6 +30,7 @@ const initializeCore = (
   customFieldValues,
   notifications,
   notificationServices,
+  goalsBundle = {},
 ) => ({
   type: ActionTypes.CORE_INITIALIZE,
   payload: {
@@ -57,6 +58,10 @@ const initializeCore = (
     customFieldValues,
     notifications,
     notificationServices,
+    goals: goalsBundle.goals,
+    goalLinks: goalsBundle.goalLinks,
+    goalCards: goalsBundle.goalCards,
+    goalBoards: goalsBundle.goalBoards,
   },
 });
 

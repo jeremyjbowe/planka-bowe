@@ -46,6 +46,7 @@ export function* handleSocketReconnect() {
   let customFieldValues;
   let notifications;
   let notificationServices;
+  let goalsBundle;
 
   try {
     ({ item: bootstrap } = yield call(request, api.getBootstrap));
@@ -74,6 +75,7 @@ export function* handleSocketReconnect() {
       customFieldValues,
       notifications,
       notificationServices,
+      goalsBundle,
     } = yield call(requests.fetchCore));
   } catch {
     return;
@@ -106,6 +108,7 @@ export function* handleSocketReconnect() {
       customFieldValues,
       notifications,
       notificationServices,
+      goalsBundle,
     ),
   );
 

@@ -17,6 +17,8 @@ import {
   CustomField,
   CustomFieldGroup,
   CustomFieldValue,
+  Goal,
+  GoalLink,
   Label,
   List,
   Notification,
@@ -55,6 +57,8 @@ orm.register(
   Activity,
   Notification,
   NotificationService,
+  Goal,
+  GoalLink,
 );
 
 export default orm;

@@ -1,0 +1,39 @@
+:global(#app) {
+  .chip {
+    align-items: center;
+    background: var(--accent-soft);
+    border: 1px solid transparent;
+    border-radius: 999px;
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: 13px;
+    gap: 6px;
+    line-height: 20px;
+    max-width: 100%;
+    padding: 4px 10px 4px 8px;
+    transition: border-color var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      border-color: var(--accent);
+    }
+  }
+
+  .icon {
+    color: var(--accent);
+    font-size: 11px !important;
+    margin: 0 !important;
+  }
+
+  .name {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .percent {
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+  }
+}

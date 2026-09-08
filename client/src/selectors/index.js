@@ -9,6 +9,7 @@ import core from './core';
 import modals from './modals';
 import positioning from './positioning';
 import webhooks from './webhooks';
+import goals from './goals';
 import users from './users';
 import projects from './projects';
 import projectManagers from './project-managers';
@@ -38,6 +39,7 @@ export default {
   ...modals,
   ...positioning,
   ...webhooks,
+  ...goals,
   ...users,
   ...projects,
   ...projectManagers,

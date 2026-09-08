@@ -125,6 +125,14 @@ module.exports.routes = {
   'PATCH /api/config': 'config/update',
   'POST /api/config/test-smtp': 'config/test-smtp',
 
+  // DTP fork — goals
+  'GET /api/goals': 'goals/index',
+  'POST /api/goals': 'goals/create',
+  'PATCH /api/goals/:id': 'goals/update',
+  'DELETE /api/goals/:id': 'goals/delete',
+  'POST /api/goals/:goalId/goal-links': 'goal-links/create',
+  'DELETE /api/goal-links/:id': 'goal-links/delete',
+
   'GET /api/webhooks': 'webhooks/index',
   'POST /api/webhooks': 'webhooks/create',
   'PATCH /api/webhooks/:id': 'webhooks/update',

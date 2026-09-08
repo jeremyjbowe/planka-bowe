@@ -39,7 +39,17 @@ module.exports = {
 
     await sails.helpers.cards.deleteRelated(inputs.record);
 
+    // DTP fork — goals
+    await sails.helpers.goalLinks.deleteByTarget.with({
+      cardId: inputs.record.id,
+    });
+
     const card = await Card.qm.deleteOne(inputs.record.id);
+
+    // DTP fork — goals: board totals changed
+    await sails.helpers.goalLinks.broadcastTargetUpdate.with({
+      board: inputs.board,
+    });
 
     if (card) {
       sails.sockets.broadcast(

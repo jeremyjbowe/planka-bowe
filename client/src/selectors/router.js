@@ -83,7 +83,14 @@ export const selectPath = createReduxOrmSelector(
   },
 );
 
+// DTP fork — goals page
+export const selectIsGoalsPage = createReselectSelector(
+  selectPathsMatch,
+  (pathsMatch) => !!pathsMatch && pathsMatch.pattern.path === Paths.GOALS,
+);
+
 export default {
+  selectIsGoalsPage,
   selectPathname,
   selectPathsMatch,
   selectPath,

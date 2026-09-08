@@ -18,6 +18,7 @@ import GhostError from '../GhostError';
 import Board from '../../boards/Board';
 import AddBoardStep from '../../boards/AddBoardStep';
 import EmptyState from '../EmptyState';
+import GoalsPage from '../../goals/GoalsPage';
 
 import styles from './Static.module.scss';
 
@@ -25,6 +26,7 @@ const Static = React.memo(() => {
   const { cardId, projectId } = useSelector(selectors.selectPath);
   const board = useSelector(selectors.selectCurrentBoard);
   const isFetching = useSelector(selectors.selectIsContentFetching);
+  const isGoalsPage = useSelector(selectors.selectIsGoalsPage);
   const isFavoritesActive = useSelector(selectors.selectIsFavoritesActiveForCurrentUser);
 
   const canAddBoard = useSelector((state) =>
@@ -44,7 +46,10 @@ const Static = React.memo(() => {
   let wrapperClassNames;
   let contentNode;
 
-  if (isFetching) {
+  if (isGoalsPage) {
+    wrapperClassNames = [isFavoritesActive && styles.wrapperWithFavorites, styles.wrapperVertical];
+    contentNode = <GoalsPage />;
+  } else if (isFetching) {
     wrapperClassNames = [styles.wrapperLoader];
     contentNode = <Loader active size="huge" />;
   } else if (projectId === undefined) {

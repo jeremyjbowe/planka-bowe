@@ -23,6 +23,11 @@ module.exports = {
   },
 
   async fn(inputs) {
+    // DTP fork — goals
+    await sails.helpers.goalLinks.deleteByTarget.with({
+      boardId: inputs.record.id,
+    });
+
     const { boardMemberships } = await sails.helpers.boards.deleteRelated(inputs.record);
 
     const board = await Board.qm.deleteOne(inputs.record.id);

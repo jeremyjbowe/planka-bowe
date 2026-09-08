@@ -61,6 +61,17 @@ const openBoardActivitiesModal = () => ({
   },
 });
 
+// DTP fork — goals
+const openGoalModal = (id) => ({
+  type: EntryActionTypes.MODAL_OPEN,
+  payload: {
+    type: ModalTypes.GOAL,
+    params: {
+      id,
+    },
+  },
+});
+
 const closeModal = () => ({
   type: EntryActionTypes.MODAL_CLOSE,
   payload: {},
@@ -74,5 +85,6 @@ export default {
   openProjectSettingsModal,
   openBoardSettingsModal,
   openBoardActivitiesModal,
+  openGoalModal,
   closeModal,
 };

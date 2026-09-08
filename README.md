@@ -22,6 +22,7 @@ views, structure and polish of modern tools.
 | Fields | **Priority** (low / medium / high / urgent) on cards, with chips, an editor and a Table column. |
 | Look | **Soft dark theme by default, light theme on request or by OS preference.** Design tokens, Inter, refined focus rings, custom scrollbars, hover lifts, drag ghosts, glass modals. |
 | First run | **Empty states everywhere and a 30-second onboarding** that creates a project, a board and template lists in one click. |
+| Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
 
 All views read from the same normalized redux-orm store, so anything that
 changes anywhere (including by another user over the socket) updates live in
@@ -113,6 +114,14 @@ Useful extras:
   same box searches projects, boards and cards.
 - **Theme**: bottom of the sidebar or user menu → *Theme* cycles
   System / Light / Dark.
+- **Goals**: sidebar → *Goals*. Admins and project owners create goals;
+  the owner (or an admin) edits them. Open a goal to set status, target
+  date, parent goal and description, and use *Link to goal* to attach
+  boards (progress = closed cards / cards on the board) or cards (done or
+  not). From a card, the *Goal* action links that card to any goal. Progress
+  is the average over linked cards, linked boards and sub-goals; a goal with
+  nothing linked shows a manual slider instead. Goals marked *Done* count as
+  100%.
 
 ## Customizing the accent color and theme
 
@@ -152,6 +161,12 @@ Conventions that keep the codebase predictable:
   `server/api/controllers/cards/{create,update}.js` → business rules in
   `server/api/helpers/cards/update-one.js` → `client/src/models/Card.js`
   field → UI. `priority` and `recurrenceRule` are complete examples.
+- **Goals** are a global entity: `server/api/{models,controllers,helpers}/goal*`,
+  loaded with the core bootstrap (`sagas/core/requests/core.js` →
+  `goalsBundle`), reduced by `client/src/models/{Goal,GoalLink}.js`, and
+  computed by `client/src/selectors/goals.js#computeProgress`. Socket events:
+  `goalCreate/Update/Delete`, `goalLinkCreate/Update/Delete`; link summaries
+  go through `helpers/goal-links/broadcast-target-update.js` per user.
 - **Self references** (`card.parent_card_id`, `project.parent_project_id`)
   are plain indexed columns, like every reference in Planka (there are no
   DB-level foreign keys; `db/clean-orphaned-records.js` exists for that
@@ -179,9 +194,12 @@ Conventions that keep the codebase predictable:
   re-closing the same card does not spawn again.
 - `~project` in Quick Add creates in the project's first board and fetches
   that board's lists on demand if they are not loaded.
-- Not yet built from the high-value list: Goals/OKRs (needs a schema
-  agreement first), CalDAV, keyboard-first navigation overlay, cover image
-  accents, saved views, JSON export/import.
+- Goal progress for a board that is not loaded in the browser uses the
+  totals the server sent at startup, refreshed whenever a card on that board
+  changes; a loaded board is computed live from the store. Names and totals
+  of linked items are only sent to users who can see that board.
+- Not yet built from the high-value list: CalDAV, keyboard-first navigation
+  overlay, cover image accents, saved views, JSON export/import.
 
 ## Upstream documentation
 

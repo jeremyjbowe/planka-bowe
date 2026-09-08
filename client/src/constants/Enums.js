@@ -98,6 +98,13 @@ export const CardTypes = {
   STORY: 'story',
 };
 
+// DTP fork — goals
+export const GoalStatuses = {
+  ACTIVE: 'active',
+  PAUSED: 'paused',
+  DONE: 'done',
+};
+
 // DTP fork — card priority
 export const CardPriorities = {
   LOW: 'low',

@@ -166,9 +166,30 @@ client and `Board.Views` on the server (no DB constraint exists on
 
 All eight must-have features shipped, one commit each, acceptance tests
 passed in the browser against PostgreSQL (see the commit messages for the
-exact verification). High-value items not started: Goals/OKRs (schema to be
-agreed first), CalDAV/VTODO, keyboard-first navigation overlay, cover image
-accents, saved views, JSON export/import.
+exact verification). Goals/OKRs shipped afterwards with the data model
+below. High-value items not started: CalDAV/VTODO, keyboard-first
+navigation overlay, cover image accents, saved views, JSON export/import.
+
+### 5.1 Goals data model (confirmed 2026-09-08)
+
+```
+goal:      id, owner_user_id, parent_goal_id, name, description,
+           status ('active'|'paused'|'done'), target_date, progress (manual
+           0-100, used only when nothing is linked), position, timestamps
+goal_link: id, goal_id, card_id | board_id (exactly one), timestamps;
+           unique (goal_id, card_id) and (goal_id, board_id)
+```
+
+- Global (not per project). Read by every user; created by admins and
+  project owners; edited/deleted by the owner or an admin; links need editor
+  rights on the target board (or project management).
+- Progress = average over units: each linked card (0/1 by `isClosed`), each
+  linked board (closed / total cards in active+closed lists), each sub-goal
+  (its own progress). Computed client-side in `selectors/goals.js` from the
+  ORM, preferring live cards/boards and falling back to server snapshots
+  carried on `GoalLink`. `status = done` is always 100%.
+- Live: `goalLinkUpdate` is broadcast per user (project scoper) when a
+  linked card closes/reopens/renames/moves or a board's card count changes.
 
 Testing notes for future sessions:
 

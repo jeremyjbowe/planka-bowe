@@ -412,6 +412,25 @@ module.exports = {
       });
     }
 
+    // DTP fork — goals: keep linked goal progress live for everyone who may see the board
+    if (
+      !_.isUndefined(values.isClosed) ||
+      !_.isUndefined(values.name) ||
+      values.board ||
+      values.list
+    ) {
+      await sails.helpers.goalLinks.broadcastTargetUpdate.with({
+        board,
+        cardIds: [card.id],
+      });
+
+      if (values.board) {
+        await sails.helpers.goalLinks.broadcastTargetUpdate.with({
+          board: inputs.board,
+        });
+      }
+    }
+
     // DTP fork — recurring cards: spawn the next occurrence as soon as this one closes.
     // The helper's atomic claim makes this safe alongside the interval job.
     if (card.isClosed && card.recurrenceRule && !card.recurrenceSpawnedAt) {

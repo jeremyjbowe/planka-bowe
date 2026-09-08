@@ -22,6 +22,8 @@ import NameField from './NameField';
 import TaskLists from './TaskLists';
 import Subtasks, { ParentCrumb } from './Subtasks';
 import SelectCardStep from '../SelectCardStep';
+import GoalsStep from '../../goals/GoalsStep';
+import GoalChip from '../../goals/GoalProgressBar/GoalChip';
 import CustomFieldGroups from './CustomFieldGroups';
 import Communication from './Communication';
 import CreationDetailsStep from './CreationDetailsStep';
@@ -318,6 +320,8 @@ const ProjectContent = React.memo(() => {
 
   const CreationDetailsPopup = usePopupInClosableContext(CreationDetailsStep);
   const SelectParentCardPopup = usePopupInClosableContext(SelectCardStep);
+  const GoalsPopup = usePopupInClosableContext(GoalsStep);
+  const goalIds = useSelector(selectors.selectGoalIdsForCurrentCard, shallowEqual);
   const BoardMembershipsPopup = usePopupInClosableContext(BoardMembershipsStep);
   const LabelsPopup = usePopupInClosableContext(LabelsStep);
   const ListsPopup = usePopupInClosableContext(ListsStep);
@@ -351,6 +355,7 @@ const ProjectContent = React.memo(() => {
       <Grid.Row className={styles.modalPadding}>
         <Grid.Column width={12} className={styles.contentPadding}>
           {(card.dueDate ||
+            goalIds.length > 0 ||
             card.priority ||
             card.recurrenceRule ||
             card.stopwatch ||
@@ -485,6 +490,16 @@ const ProjectContent = React.memo(() => {
                       />
                     )}
                   </span>
+                </div>
+              )}
+              {goalIds.length > 0 && (
+                <div className={styles.attachments}>
+                  <div className={styles.text}>{t('common.goals')}</div>
+                  {goalIds.map((goalId) => (
+                    <span key={goalId} className={styles.attachment}>
+                      <GoalChip id={goalId} />
+                    </span>
+                  ))}
                 </div>
               )}
               {card.priority && (
@@ -722,6 +737,14 @@ const ProjectContent = React.memo(() => {
                       })}
                     </Button>
                   </AddTaskListPopup>
+                )}
+                {canEditParentCard && (
+                  <GoalsPopup cardId={card.id}>
+                    <Button fluid className={classNames(styles.actionButton, styles.hidable)}>
+                      <Icon name="bullseye" className={styles.actionIcon} />
+                      {t('common.goal')}
+                    </Button>
+                  </GoalsPopup>
                 )}
                 {canEditParentCard && (
                   <SelectParentCardPopup

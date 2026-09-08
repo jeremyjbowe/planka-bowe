@@ -123,6 +123,10 @@ const CommandPalette = React.memo(() => {
         .slice(0, needle ? MAX_PER_GROUP : 4)
         .forEach((item) => result.push({ type, key: `${type}:${item.id}`, item }));
 
+    if (!needle || 'goals'.includes(needle) || matches(t('common.goals'), needle)) {
+      result.push({ type: 'goals', key: 'goals' });
+    }
+
     pick(index.boards, 'board');
     pick(index.projects, 'project');
 
@@ -131,7 +135,7 @@ const CommandPalette = React.memo(() => {
     }
 
     return result;
-  }, [parsed.name, query, index]);
+  }, [parsed.name, query, index, t]);
 
   useEffect(() => {
     setActiveIndex(0);
@@ -180,6 +184,9 @@ const CommandPalette = React.memo(() => {
 
           break;
         }
+        case 'goals':
+          dispatch(push(Paths.GOALS));
+          break;
         case 'board':
           dispatch(push(Paths.BOARDS.replace(':id', item.item.id)));
           break;
@@ -296,6 +303,14 @@ const CommandPalette = React.memo(() => {
     switch (item.type) {
       case 'create':
         return renderCreateItem();
+      case 'goals':
+        return (
+          <div className={styles.row}>
+            <Icon name="bullseye" className={styles.rowIcon} />
+            <span className={styles.rowName}>{t('common.goals')}</span>
+            <span className={styles.rowMeta}>{t('common.page')}</span>
+          </div>
+        );
       case 'board':
         return (
           <div className={styles.row}>

@@ -85,6 +85,12 @@ export function* fetchCore() {
     /* empty */
   }
 
+  // DTP fork — goals are global and always loaded, like projects
+  const {
+    items: goals,
+    included: { goalLinks, cards: goalCards, boards: goalBoards, users: users5 },
+  } = yield call(request, api.getGoals);
+
   const body = yield call(request, api.getNotifications);
 
   let { items: notifications } = body;
@@ -126,12 +132,18 @@ export function* fetchCore() {
     customFieldGroups,
     customFieldValues,
     notifications,
-    users: mergeRecords(users1, users2, users3, users4),
+    users: mergeRecords(users1, users2, users3, users4, users5),
     projects: mergeRecords(projects1, projects2),
     boardMemberships: mergeRecords(boardMemberships1, boardMemberships2),
     cards: mergeRecords(card && [card], cards1),
     customFields: mergeRecords(customFields1, customFields2),
     notificationServices: mergeRecords(notificationServices1, notificationServices2),
+    goalsBundle: {
+      goals,
+      goalLinks,
+      goalCards,
+      goalBoards,
+    },
   };
 }
 

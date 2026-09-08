@@ -1,0 +1,52 @@
+:global(#app) {
+  .wrapper {
+    align-items: center;
+    display: flex;
+    gap: var(--space-2);
+    width: 100%;
+  }
+
+  .track {
+    background: var(--bg-active);
+    border-radius: 999px;
+    flex: 1;
+    overflow: hidden;
+  }
+
+  .bar {
+    background: var(--accent);
+    border-radius: 999px;
+    height: 100%;
+    transition: width var(--duration-slow) var(--ease-out), background var(--duration-base) ease;
+  }
+
+  .barComplete {
+    background: var(--success);
+  }
+
+  .label {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+    font-size: var(--text-sm);
+    font-variant-numeric: tabular-nums;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  .size_small .track {
+    height: 4px;
+  }
+
+  .size_medium .track {
+    height: 6px;
+  }
+
+  .size_large .track {
+    height: 10px;
+  }
+
+  .size_large .label {
+    font-size: var(--text-base);
+    font-weight: 600;
+  }
+}

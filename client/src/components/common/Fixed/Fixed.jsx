@@ -18,12 +18,13 @@ import styles from './Fixed.module.scss';
 const Fixed = React.memo(() => {
   const { projectId } = useSelector(selectors.selectPath);
   const board = useSelector(selectors.selectCurrentBoard);
+  const isGoalsPage = useSelector(selectors.selectIsGoalsPage);
 
   return (
     <div className={styles.wrapper}>
       <Header />
       <Favorites />
-      {projectId === undefined && <HomeActions />}
+      {projectId === undefined && !isGoalsPage && <HomeActions />}
       {projectId && <Project />}
       {board && !board.isFetching && <BoardActions />}
     </div>

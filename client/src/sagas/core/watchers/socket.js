@@ -33,6 +33,31 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleConfigUpdate(item));
     };
 
+    // DTP fork — goals
+    const handleGoalCreate = ({ item }) => {
+      emit(entryActions.handleGoalCreate(item));
+    };
+
+    const handleGoalUpdate = ({ item }) => {
+      emit(entryActions.handleGoalUpdate(item));
+    };
+
+    const handleGoalDelete = ({ item }) => {
+      emit(entryActions.handleGoalDelete(item));
+    };
+
+    const handleGoalLinkCreate = ({ item, included }) => {
+      emit(entryActions.handleGoalLinkCreate(item, included));
+    };
+
+    const handleGoalLinkUpdate = ({ item, included }) => {
+      emit(entryActions.handleGoalLinkUpdate(item, included));
+    };
+
+    const handleGoalLinkDelete = ({ item }) => {
+      emit(entryActions.handleGoalLinkDelete(item));
+    };
+
     const handleWebhookCreate = ({ item }) => {
       emit(entryActions.handleWebhookCreate(item));
     };
@@ -302,6 +327,12 @@ const createSocketEventsChannel = () =>
 
     socket.on('configUpdate', handleConfigUpdate);
 
+    socket.on('goalCreate', handleGoalCreate);
+    socket.on('goalUpdate', handleGoalUpdate);
+    socket.on('goalDelete', handleGoalDelete);
+    socket.on('goalLinkCreate', handleGoalLinkCreate);
+    socket.on('goalLinkUpdate', handleGoalLinkUpdate);
+    socket.on('goalLinkDelete', handleGoalLinkDelete);
     socket.on('webhookCreate', handleWebhookCreate);
     socket.on('webhookUpdate', handleWebhookUpdate);
     socket.on('webhookDelete', handleWebhookDelete);
@@ -399,6 +430,12 @@ const createSocketEventsChannel = () =>
 
       socket.off('configUpdate', handleConfigUpdate);
 
+      socket.off('goalCreate', handleGoalCreate);
+      socket.off('goalUpdate', handleGoalUpdate);
+      socket.off('goalDelete', handleGoalDelete);
+      socket.off('goalLinkCreate', handleGoalLinkCreate);
+      socket.off('goalLinkUpdate', handleGoalLinkUpdate);
+      socket.off('goalLinkDelete', handleGoalLinkDelete);
       socket.off('webhookCreate', handleWebhookCreate);
       socket.off('webhookUpdate', handleWebhookUpdate);
       socket.off('webhookDelete', handleWebhookDelete);
