@@ -6,7 +6,7 @@
 import React, { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { Button, Divider, Header, Radio, Tab } from 'semantic-ui-react';
+import { Button, Divider, Dropdown, Header, Radio, Tab } from 'semantic-ui-react';
 
 import selectors from '../../../../selectors';
 import entryActions from '../../../../entry-actions';
@@ -24,6 +24,9 @@ const GeneralPane = React.memo(() => {
   );
 
   const canEdit = useSelector(selectors.selectIsCurrentUserManagerForCurrentProject);
+  const parentProjectCandidates = useSelector(
+    selectors.selectParentProjectCandidatesForCurrentProject,
+  );
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
@@ -39,6 +42,27 @@ const GeneralPane = React.memo(() => {
     [dispatch],
   );
 
+  // DTP fork — hierarchical projects
+  const handleParentProjectChange = useCallback(
+    (_, { value }) => {
+      dispatch(
+        entryActions.updateCurrentProject({
+          parentProjectId: value || null,
+        }),
+      );
+    },
+    [dispatch],
+  );
+
+  const parentProjectOptions = [
+    { key: 'none', value: '', text: t('common.noParentProject') },
+    ...parentProjectCandidates.map((candidate) => ({
+      key: candidate.id,
+      value: candidate.id,
+      text: candidate.name,
+    })),
+  ];
+
   const handleDeleteConfirm = useCallback(() => {
     dispatch(entryActions.deleteCurrentProject());
   }, [dispatch]);
@@ -50,6 +74,19 @@ const GeneralPane = React.memo(() => {
       {canEdit && (
         <>
           <EditInformation />
+          <Divider horizontal section>
+            <Header as="h4">{t('common.parentProject')}</Header>
+          </Divider>
+          <Dropdown
+            fluid
+            selection
+            search
+            value={project.parentProjectId || ''}
+            options={parentProjectOptions}
+            placeholder={t('common.noParentProject')}
+            onChange={handleParentProjectChange}
+          />
+          <p className={styles.hint}>{t('common.parentProjectHint')}</p>
           <Divider horizontal section>
             <Header as="h4">
               {t('common.display', {

@@ -118,6 +118,12 @@ const Errors = {
   BACKGROUND_IMAGE_MUST_BE_PRESENT: {
     backgroundImageMustBePresent: 'Background image must be present',
   },
+  PARENT_PROJECT_NOT_FOUND: {
+    parentProjectNotFound: 'Parent project not found',
+  },
+  PARENT_PROJECT_MUST_NOT_BE_ITSELF_OR_DESCENDANT: {
+    parentProjectMustNotBeItselfOrDescendant: 'Parent project must not be itself or descendant',
+  },
   BACKGROUND_GRADIENT_MUST_BE_PRESENT: {
     backgroundGradientMustBePresent: 'Background gradient must be present',
   },
@@ -134,6 +140,10 @@ module.exports = {
       allowNull: true,
     },
     backgroundImageId: {
+      ...idInput,
+      allowNull: true,
+    },
+    parentProjectId: {
       ...idInput,
       allowNull: true,
     },
@@ -191,6 +201,12 @@ module.exports = {
     backgroundGradientMustBePresent: {
       responseType: 'unprocessableEntity',
     },
+    parentProjectNotFound: {
+      responseType: 'notFound',
+    },
+    parentProjectMustNotBeItselfOrDescendant: {
+      responseType: 'unprocessableEntity',
+    },
   },
 
   async fn(inputs) {
@@ -225,6 +241,7 @@ module.exports = {
     if (projectManager) {
       availableInputKeys.push(
         'backgroundImageId',
+        'parentProjectId',
         'name',
         'description',
         'backgroundType',
@@ -247,6 +264,37 @@ module.exports = {
       }
 
       delete inputs.ownerProjectManagerId; // eslint-disable-line no-param-reassign
+    }
+
+    // DTP fork — hierarchical projects: the actor must manage the parent too
+    let nextParentProject;
+    if (inputs.parentProjectId) {
+      nextParentProject = await Project.qm.getOneById(inputs.parentProjectId);
+
+      if (!nextParentProject) {
+        throw Errors.PARENT_PROJECT_NOT_FOUND;
+      }
+
+      const isParentManager = await sails.helpers.users.isProjectManager(
+        currentUser.id,
+        nextParentProject.id,
+      );
+
+      const isAdminOfSharedParent =
+        currentUser.role === User.Roles.ADMIN && !nextParentProject.ownerProjectManagerId;
+
+      if (!isParentManager && !isAdminOfSharedParent) {
+        throw Errors.PARENT_PROJECT_NOT_FOUND; // Forbidden
+      }
+
+      const parentChainIds = [
+        nextParentProject.id,
+        ...(await sails.helpers.projects.getAncestorIds(nextParentProject)),
+      ];
+
+      if (parentChainIds.includes(project.id)) {
+        throw Errors.PARENT_PROJECT_MUST_NOT_BE_ITSELF_OR_DESCENDANT;
+      }
     }
 
     let nextBackgroundImage;
@@ -296,6 +344,9 @@ module.exports = {
           ...values,
           ownerProjectManager: nextOwnerProjectManager,
           backgroundImage: nextBackgroundImage,
+          ...(!_.isUndefined(inputs.parentProjectId) && {
+            parentProject: nextParentProject || null,
+          }),
         },
         actorUser: currentUser,
         request: this.req,

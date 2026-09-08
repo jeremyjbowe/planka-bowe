@@ -42,6 +42,11 @@
  *           nullable: true
  *           description: ID of the background image used as background
  *           example: "1357158568008091266"
+ *         parentProjectId:
+ *           type: string
+ *           nullable: true
+ *           description: ID of the parent project when this project is a sub-project
+ *           example: "1357158568008091267"
  *         name:
  *           type: string
  *           description: Name/title of the project
@@ -172,6 +177,11 @@ module.exports = {
     backgroundImageId: {
       model: 'BackgroundImage',
       columnName: 'background_image_id',
+    },
+    // DTP fork — hierarchical projects
+    parentProjectId: {
+      model: 'Project',
+      columnName: 'parent_project_id',
     },
     managerUsers: {
       collection: 'User',

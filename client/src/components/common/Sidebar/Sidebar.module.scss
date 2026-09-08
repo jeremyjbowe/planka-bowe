@@ -1,0 +1,308 @@
+/*!
+ * DTP fork — sidebar styles. Reads design tokens from styles/theme.css.
+ */
+
+:global(#app) {
+  .wrapper {
+    background: var(--bg-surface);
+    border-right: 1px solid var(--border-subtle);
+    bottom: 0;
+    color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    left: 0;
+    position: fixed;
+    top: 0;
+    transition: width var(--duration-base) var(--ease-out);
+    width: var(--sidebar-width, 264px);
+    z-index: 2;
+  }
+
+  .wrapperCollapsed {
+    .top {
+      justify-content: center;
+      padding: var(--space-2) 0;
+    }
+
+    .homeLink,
+    .addButton {
+      justify-content: center;
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  .top {
+    align-items: center;
+    display: flex;
+    gap: var(--space-2);
+    height: 50px;
+    padding: 0 var(--space-2) 0 var(--space-2);
+  }
+
+  .toggle {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: inline-flex;
+    font-size: 15px;
+    height: 32px;
+    justify-content: center;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+    width: 32px;
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+
+    i {
+      margin: 0;
+    }
+  }
+
+  .brand {
+    align-items: center;
+    color: var(--text-primary);
+    display: inline-flex;
+    gap: var(--space-2);
+    text-decoration: none;
+  }
+
+  .brandMark {
+    background: var(--accent);
+    border-radius: 6px;
+    box-shadow: 0 0 0 4px var(--accent-soft);
+    display: inline-block;
+    height: 14px;
+    width: 14px;
+  }
+
+  .brandName {
+    font-size: var(--text-sm);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+  }
+
+  .nav {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    min-height: 0;
+    overflow-y: auto;
+    padding: var(--space-2) var(--space-2) var(--space-3);
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border-radius: 999px;
+    }
+  }
+
+  .homeLink {
+    align-items: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    display: flex;
+    font-size: var(--text-base);
+    font-weight: 500;
+    gap: var(--space-2);
+    height: 34px;
+    padding: 0 var(--space-2);
+    text-decoration: none;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+  }
+
+  .homeLinkActive {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+  }
+
+  .homeIcon {
+    font-size: 14px;
+    width: 18px;
+  }
+
+  .sectionTitle {
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    margin: var(--space-4) var(--space-2) var(--space-1);
+    text-transform: uppercase;
+  }
+
+  .empty {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    padding: var(--space-2);
+  }
+
+  .tree,
+  .children {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .node {
+    margin: 0;
+  }
+
+  .row {
+    align-items: center;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    display: flex;
+    gap: 4px;
+    height: 32px;
+    padding-right: var(--space-2);
+    text-decoration: none;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+
+      .chevron {
+        opacity: 1;
+      }
+    }
+  }
+
+  .rowActive {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+
+    .rowIcon {
+      color: var(--accent);
+    }
+  }
+
+  .boardRow {
+    height: 30px;
+  }
+
+  .rowLink {
+    align-items: center;
+    color: inherit;
+    display: flex;
+    flex: 1;
+    gap: var(--space-2);
+    min-width: 0;
+    text-decoration: none;
+  }
+
+  .rowIcon {
+    flex-shrink: 0;
+    font-size: 13px;
+    opacity: 0.85;
+    width: 16px;
+  }
+
+  .rowLabel {
+    flex: 1;
+    font-size: var(--text-base);
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .rowStar {
+    color: var(--warning);
+    font-size: 11px;
+  }
+
+  .chevron {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-xs);
+    color: var(--text-muted);
+    cursor: pointer;
+    display: inline-flex;
+    flex-shrink: 0;
+    font-size: 10px;
+    height: 18px;
+    justify-content: center;
+    opacity: 0.6;
+    padding: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+    width: 18px;
+
+    &:hover {
+      color: var(--text-primary);
+    }
+
+    i {
+      margin: 0;
+    }
+  }
+
+  .chevronHidden {
+    pointer-events: none;
+    visibility: hidden;
+  }
+
+  .bottom {
+    border-top: 1px solid var(--border-subtle);
+    padding: var(--space-2);
+  }
+
+  .addButton {
+    align-items: center;
+    background: transparent;
+    border: 1px dashed var(--border-strong);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: var(--text-sm);
+    font-weight: 500;
+    gap: var(--space-2);
+    height: 34px;
+    padding: 0 var(--space-3);
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      border-color var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out);
+    width: 100%;
+
+    &:hover {
+      background: var(--accent-softer);
+      border-color: var(--accent);
+      color: var(--text-primary);
+    }
+  }
+
+  .addIcon {
+    font-size: 12px;
+  }
+
+  @media only screen and (width < 768px) {
+    .wrapper {
+      box-shadow: var(--shadow-lg);
+    }
+  }
+}

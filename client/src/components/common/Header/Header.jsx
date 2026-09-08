@@ -27,6 +27,7 @@ const POPUP_PROPS = {
 const Header = React.memo(() => {
   const user = useSelector(selectors.selectCurrentUser);
   const project = useSelector(selectors.selectCurrentProject);
+  const ancestorProjects = useSelector(selectors.selectAncestorProjectsForCurrentProject);
   const board = useSelector(selectors.selectCurrentBoard);
   const notificationIds = useSelector(selectors.selectNotificationIdsForCurrentUser);
   const isFavoritesEnabled = useSelector(selectors.selectIsFavoritesEnabled);
@@ -110,6 +111,21 @@ const Header = React.memo(() => {
               <Icon fitted name="arrow left" />
             </Menu.Item>
             <Menu.Item className={classNames(styles.item, styles.title)}>
+              {ancestorProjects.length > 0 && (
+                <span className={styles.breadcrumbs}>
+                  {[...ancestorProjects].reverse().map((ancestor) => (
+                    <React.Fragment key={ancestor.id}>
+                      <Link
+                        to={Paths.PROJECTS.replace(':id', ancestor.id)}
+                        className={styles.breadcrumb}
+                      >
+                        {ancestor.name}
+                      </Link>
+                      <span className={styles.breadcrumbSeparator}>/</span>
+                    </React.Fragment>
+                  ))}
+                </span>
+              )}
               {project.name}
               {canEditProject && (
                 <Button className={styles.editButton} onClick={handleProjectSettingsClick}>

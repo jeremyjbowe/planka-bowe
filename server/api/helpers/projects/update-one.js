@@ -43,6 +43,17 @@ module.exports = {
       values.backgroundImageId = values.backgroundImage.id;
     }
 
+    // DTP fork — hierarchical projects: `parentProject` arrives resolved from the controller
+    if (!_.isUndefined(values.parentProject)) {
+      const nextParentProjectId = values.parentProject ? values.parentProject.id : null;
+
+      if (nextParentProjectId !== inputs.record.parentProjectId) {
+        values.parentProjectId = nextParentProjectId;
+      }
+
+      delete values.parentProject;
+    }
+
     if (values.ownerProjectManager) {
       if (inputs.record.ownerProjectManagerId) {
         if (values.ownerProjectManager.id === inputs.record.ownerProjectManagerId) {

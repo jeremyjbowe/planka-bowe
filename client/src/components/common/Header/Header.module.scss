@@ -102,6 +102,26 @@
     }
   }
 
+  .breadcrumbs {
+    display: inline-flex;
+    gap: 6px;
+    margin-right: 6px;
+  }
+
+  .breadcrumb {
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: normal;
+
+    &:hover {
+      color: #fff;
+    }
+  }
+
+  .breadcrumbSeparator {
+    color: rgba(255, 255, 255, 0.35);
+    font-weight: normal;
+  }
+
   .wrapper {
     background: rgba(0, 0, 0, 0.24);
     display: flex;

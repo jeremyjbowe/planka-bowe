@@ -4,6 +4,12 @@
  */
 
 :global(#app) {
+  .hint {
+    color: #6b808c;
+    font-size: 12px;
+    margin: 8px 0 0;
+  }
+
   .action {
     border: none;
     border-radius: 0.28571429rem;

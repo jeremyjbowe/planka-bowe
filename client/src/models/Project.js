@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import { attr, many, oneToOne } from 'redux-orm';
+import { attr, fk, many, oneToOne } from 'redux-orm';
 
 import BaseModel from './BaseModel';
 import ActionTypes from '../constants/ActionTypes';
@@ -31,6 +31,12 @@ export default class extends BaseModel {
       to: 'BackgroundImage',
       as: 'backgroundImage',
       relatedName: 'backgroundedProject', // TODO: rename?
+    }),
+    // DTP fork — hierarchical projects: `projectModel.subprojects` lists the children
+    parentProjectId: fk({
+      to: 'Project',
+      as: 'parentProject',
+      relatedName: 'subprojects',
     }),
     managerUsers: many({
       to: 'User',

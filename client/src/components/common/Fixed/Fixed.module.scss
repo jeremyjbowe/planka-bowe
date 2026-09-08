@@ -5,8 +5,10 @@
 
 :global(#app) {
   .wrapper {
+    left: var(--sidebar-width, 0px);
     position: fixed;
-    width: 100%;
+    transition: left var(--duration-base) var(--ease-out), width var(--duration-base) var(--ease-out);
+    width: calc(100% - var(--sidebar-width, 0px));
     z-index: 1;
   }
 }

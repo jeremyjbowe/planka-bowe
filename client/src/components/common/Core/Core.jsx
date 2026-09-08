@@ -14,6 +14,7 @@ import ModalTypes from '../../../constants/ModalTypes';
 import Message from './Message';
 import Toaster from '../Toaster';
 import Fixed from '../Fixed';
+import Sidebar from '../Sidebar';
 import Static from '../Static';
 import AdministrationModal from '../AdministrationModal';
 import AboutModal from '../AboutModal';
@@ -120,6 +121,7 @@ const Core = React.memo(() => {
         <>
           <Toaster />
           {project && project.backgroundType && <ProjectBackground />}
+          <Sidebar />
           <Fixed />
           <Static />
           {modalNode}

@@ -37,7 +37,9 @@
 
   .wrapper {
     height: 100%;
+    margin-left: var(--sidebar-width, 0px);
     margin-top: calc(116px + var(--promo-banner-height, 0px));
+    transition: margin-left var(--duration-base) var(--ease-out);
   }
 
   .wrapperBoard {

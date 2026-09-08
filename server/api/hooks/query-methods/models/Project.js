@@ -49,6 +49,11 @@ const getShared = ({ exceptIdOrIds } = {}) => {
 
 const getOneById = (id) => Project.findOne(id);
 
+const update = (criteria, values) =>
+  Project.update(criteria)
+    .set({ ...values })
+    .fetch();
+
 const updateOne = (criteria, values) => Project.updateOne(criteria).set({ ...values });
 
 // eslint-disable-next-line no-underscore-dangle
@@ -61,6 +66,7 @@ module.exports = {
   getByIds,
   getShared,
   getOneById,
+  update,
   updateOne,
   deleteOne,
   delete: delete_,

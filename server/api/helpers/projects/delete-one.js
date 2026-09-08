@@ -29,6 +29,12 @@ module.exports = {
       throw 'mustNotHaveBoards';
     }
 
+    // DTP fork — hierarchical projects: children become top-level projects
+    await sails.helpers.projects.detachSubprojects.with({
+      record: inputs.record,
+      request: inputs.request,
+    });
+
     const { projectManagers } = await sails.helpers.projects.deleteRelated(inputs.record);
     const project = await Project.qm.deleteOne(inputs.record.id);
 
