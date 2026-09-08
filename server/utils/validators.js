@@ -6,6 +6,7 @@
 const validator = require('validator');
 const zxcvbn = require('zxcvbn');
 const moment = require('moment');
+const { RRule } = require('rrule');
 
 const MAX_STRING_ID = '9223372036854775807';
 
@@ -40,6 +41,16 @@ const isEmailOrUsername = (value) =>
 
 const isDueDate = (value) => moment(value, moment.ISO_8601, true).isValid();
 
+// DTP fork — recurring cards: the rule must parse and describe a repeating series
+const isRecurrenceRule = (value) => {
+  try {
+    const options = RRule.parseString(value);
+    return !_.isUndefined(options.freq);
+  } catch (error) {
+    return false;
+  }
+};
+
 const isStopwatch = (value) => {
   if (!_.isPlainObject(value) || _.size(value) !== 2) {
     return false;
@@ -72,5 +83,6 @@ module.exports = {
   isPassword,
   isEmailOrUsername,
   isDueDate,
+  isRecurrenceRule,
   isStopwatch,
 };

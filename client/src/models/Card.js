@@ -23,6 +23,13 @@ export default class extends BaseModel {
     isDueCompleted: attr(),
     stopwatch: attr(),
     isClosed: attr(),
+    // DTP fork — recurring cards
+    recurrenceRule: attr({
+      getDefault: () => null,
+    }),
+    recurrenceSpawnedAt: attr({
+      getDefault: () => null,
+    }),
     commentsTotal: attr({
       getDefault: () => 0,
     }),

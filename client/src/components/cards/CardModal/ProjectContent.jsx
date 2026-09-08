@@ -30,6 +30,8 @@ import DueDateChip from '../DueDateChip';
 import StopwatchChip from '../StopwatchChip';
 import EditDueDateStep from '../EditDueDateStep';
 import EditStopwatchStep from '../EditStopwatchStep';
+import EditRecurrenceStep from '../EditRecurrenceStep';
+import { describeRecurrence } from '../../../utils/recurrence';
 import ExpandableMarkdown from '../../common/ExpandableMarkdown';
 import EditMarkdown from '../../common/EditMarkdown';
 import ConfirmationStep from '../../common/ConfirmationStep';
@@ -319,6 +321,7 @@ const ProjectContent = React.memo(() => {
   const ListsPopup = usePopupInClosableContext(ListsStep);
   const EditDueDatePopup = usePopupInClosableContext(EditDueDateStep);
   const EditStopwatchPopup = usePopupInClosableContext(EditStopwatchStep);
+  const EditRecurrencePopup = usePopupInClosableContext(EditRecurrenceStep);
   const AddTaskListPopup = usePopupInClosableContext(AddTaskListStep);
   const AddAttachmentPopup = usePopupInClosableContext(AddAttachmentStep);
   const AddCustomFieldGroupPopup = usePopupInClosableContext(AddCustomFieldGroupStep);
@@ -345,6 +348,7 @@ const ProjectContent = React.memo(() => {
       <Grid.Row className={styles.modalPadding}>
         <Grid.Column width={12} className={styles.contentPadding}>
           {(card.dueDate ||
+            card.recurrenceRule ||
             card.stopwatch ||
             board.alwaysDisplayCardCreator ||
             userIds.length > 0 ||
@@ -475,6 +479,26 @@ const ProjectContent = React.memo(() => {
                         isCompleted={card.isDueCompleted}
                         withStatus={!card.isClosed}
                       />
+                    )}
+                  </span>
+                </div>
+              )}
+              {card.recurrenceRule && (
+                <div className={styles.attachments}>
+                  <div className={styles.text}>{t('common.repeats')}</div>
+                  <span className={styles.attachment}>
+                    {canEditDueDate ? (
+                      <EditRecurrencePopup cardId={card.id}>
+                        <button type="button" className={styles.recurrenceChip}>
+                          <Icon name="sync alternate" className={styles.recurrenceChipIcon} />
+                          {describeRecurrence(card.recurrenceRule)}
+                        </button>
+                      </EditRecurrencePopup>
+                    ) : (
+                      <span className={styles.recurrenceChip}>
+                        <Icon name="sync alternate" className={styles.recurrenceChipIcon} />
+                        {describeRecurrence(card.recurrenceRule)}
+                      </span>
                     )}
                   </span>
                 </div>
@@ -646,6 +670,14 @@ const ProjectContent = React.memo(() => {
                       })}
                     </Button>
                   </EditDueDatePopup>
+                )}
+                {canEditDueDate && (
+                  <EditRecurrencePopup cardId={card.id}>
+                    <Button fluid className={classNames(styles.actionButton, styles.hidable)}>
+                      <Icon name="sync alternate" className={styles.actionIcon} />
+                      {t('common.repeat')}
+                    </Button>
+                  </EditRecurrencePopup>
                 )}
                 {canEditStopwatch && (
                   <EditStopwatchPopup cardId={card.id}>

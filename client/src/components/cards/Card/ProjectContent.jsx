@@ -16,6 +16,7 @@ import { isListArchiveOrTrash } from '../../../utils/record-helpers';
 import { BoardMembershipRoles, BoardViews } from '../../../constants/Enums';
 import TaskList from './TaskList';
 import SubtasksProgress from './SubtasksProgress';
+import { describeRecurrence } from '../../../utils/recurrence';
 import DueDateChip from '../DueDateChip';
 import StopwatchChip from '../StopwatchChip';
 import TimeAgo from '../../common/TimeAgo';
@@ -116,6 +117,7 @@ const ProjectContent = React.memo(({ cardId }) => {
   const hasInformation =
     card.description ||
     card.dueDate ||
+    card.recurrenceRule ||
     card.stopwatch ||
     card.commentsTotal > 0 ||
     withAge ||
@@ -208,6 +210,17 @@ const ProjectContent = React.memo(({ cardId }) => {
                 size="tiny"
                 onClick={canEditStopwatch ? handleToggleStopwatchClick : undefined}
               />
+            </span>
+          )}
+          {card.recurrenceRule && (
+            <span className={classNames(styles.attachment, styles.attachmentLeft)}>
+              <span
+                className={styles.attachmentContent}
+                title={describeRecurrence(card.recurrenceRule)}
+              >
+                <Icon name="sync alternate" />
+                {describeRecurrence(card.recurrenceRule)}
+              </span>
             </span>
           )}
           {listName && (

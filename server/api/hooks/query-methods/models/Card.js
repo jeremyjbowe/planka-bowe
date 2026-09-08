@@ -24,6 +24,16 @@ const getByParentCardId = (parentCardId) =>
     parentCardId,
   });
 
+// DTP fork — recurring cards that closed and have not spawned their successor yet
+const getPendingRecurrences = () =>
+  defaultFind({
+    recurrenceRule: {
+      '!=': null,
+    },
+    isClosed: true,
+    recurrenceSpawnedAt: null,
+  });
+
 const getByBoardId = (boardId) =>
   defaultFind({
     boardId,
@@ -245,6 +255,7 @@ module.exports = {
   getByIds,
   getByBoardId,
   getByParentCardId,
+  getPendingRecurrences,
   getByListId,
   getByEndlessListId,
   getByListIds,

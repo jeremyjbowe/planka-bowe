@@ -1,0 +1,84 @@
+:global(#app) {
+  .presets {
+    display: grid;
+    gap: 6px;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 12px;
+  }
+
+  .preset {
+    background: rgba(9, 30, 66, 0.06);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    color: #17394d;
+    cursor: pointer;
+    font: inherit;
+    font-size: 13px;
+    padding: 7px 10px;
+    text-align: left;
+    transition: background 120ms ease, border-color 120ms ease;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.1);
+    }
+  }
+
+  .presetActive {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    color: #17394d;
+    font-weight: 600;
+  }
+
+  .text {
+    color: #444;
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+  }
+
+  .input {
+    margin-bottom: 8px;
+
+    input {
+      font-family: var(--font-mono);
+      font-size: 12.5px;
+    }
+  }
+
+  .preview {
+    align-items: center;
+    color: #17394d;
+    display: flex;
+    font-size: 13px;
+    gap: 6px;
+    min-height: 20px;
+  }
+
+  .previewInvalid {
+    color: #db2828;
+  }
+
+  .previewIcon {
+    margin: 0;
+  }
+
+  .hint {
+    color: #6b808c;
+    font-size: 12px;
+    line-height: 1.4;
+    margin: 8px 0 12px;
+  }
+
+  .controls {
+    display: flex;
+    gap: 6px;
+  }
+
+  .clearButton {
+    background: rgba(9, 30, 66, 0.06);
+    box-shadow: none;
+    color: #17394d;
+  }
+}

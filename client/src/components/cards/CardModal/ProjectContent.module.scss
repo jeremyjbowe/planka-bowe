@@ -239,6 +239,30 @@
     padding: 0px;
   }
 
+  .recurrenceChip {
+    align-items: center;
+    background: rgba(9, 30, 66, 0.06);
+    border: none;
+    border-radius: 3px;
+    color: #17394d;
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: 14px;
+    gap: 6px;
+    line-height: 20px;
+    padding: 6px 12px;
+    transition: background 120ms ease;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.1);
+    }
+  }
+
+  .recurrenceChipIcon {
+    margin: 0;
+  }
+
   .moduleHeader {
     color: #17394d;
     font-size: 16px;

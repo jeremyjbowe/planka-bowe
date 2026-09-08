@@ -68,6 +68,17 @@
  *           nullable: true
  *           description: ID of the parent card when this card is a subtask
  *           example: "1357158568008091270"
+ *         recurrenceRule:
+ *           type: string
+ *           nullable: true
+ *           description: RFC 5545 RRULE; when the card is closed the next occurrence is created
+ *           example: FREQ=WEEKLY;BYDAY=MO
+ *         recurrenceSpawnedAt:
+ *           type: string
+ *           format: date-time
+ *           nullable: true
+ *           description: When the next occurrence was created from this card
+ *           example: 2024-01-01T00:00:00.000Z
  *         type:
  *           type: string
  *           enum: [project, story]
@@ -201,6 +212,17 @@ module.exports = {
     listChangedAt: {
       type: 'ref',
       columnName: 'list_changed_at',
+    },
+    // DTP fork — recurring cards
+    recurrenceRule: {
+      type: 'string',
+      isNotEmptyString: true,
+      allowNull: true,
+      columnName: 'recurrence_rule',
+    },
+    recurrenceSpawnedAt: {
+      type: 'ref',
+      columnName: 'recurrence_spawned_at',
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

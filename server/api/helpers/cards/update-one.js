@@ -122,6 +122,14 @@ module.exports = {
       values.parentCardId = null;
     }
 
+    // DTP fork — recurring cards: a new rule starts a fresh cycle
+    if (
+      !_.isUndefined(values.recurrenceRule) &&
+      values.recurrenceRule !== inputs.record.recurrenceRule
+    ) {
+      values.recurrenceSpawnedAt = null;
+    }
+
     const dueDate = _.isUndefined(values.dueDate) ? inputs.record.dueDate : values.dueDate;
 
     if (dueDate) {
@@ -401,6 +409,15 @@ module.exports = {
           },
         }),
         user: inputs.actorUser,
+      });
+    }
+
+    // DTP fork — recurring cards: spawn the next occurrence as soon as this one closes.
+    // The helper's atomic claim makes this safe alongside the interval job.
+    if (card.isClosed && card.recurrenceRule && !card.recurrenceSpawnedAt) {
+      await sails.helpers.cards.spawnNextOccurrence.with({
+        record: card,
+        request: inputs.request,
       });
     }
 

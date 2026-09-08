@@ -117,7 +117,7 @@
  *         $ref: '#/components/responses/UnprocessableEntity'
  */
 
-const { isDueDate, isStopwatch } = require('../../../utils/validators');
+const { isDueDate, isStopwatch, isRecurrenceRule } = require('../../../utils/validators');
 const { idInput } = require('../../../utils/inputs');
 
 const Errors = {
@@ -208,6 +208,12 @@ module.exports = {
     isClosed: {
       type: 'boolean',
     },
+    recurrenceRule: {
+      type: 'string',
+      maxLength: 512,
+      custom: isRecurrenceRule,
+      allowNull: true,
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -283,6 +289,7 @@ module.exports = {
         'stopwatch',
         'parentCardId',
         'isClosed',
+        'recurrenceRule',
       );
     }
 
@@ -367,6 +374,7 @@ module.exports = {
       'isDueCompleted',
       'stopwatch',
       'isClosed',
+      'recurrenceRule',
       'isSubscribed',
     ]);
 
