@@ -119,6 +119,7 @@ export function* fetchBoard(id) {
   let customFieldGroups;
   let customFields;
   let customFieldValues;
+  let savedViews;
 
   try {
     ({
@@ -138,6 +139,7 @@ export function* fetchBoard(id) {
         customFieldGroups,
         customFields,
         customFieldValues,
+        savedViews,
       },
     } = yield call(request, api.getBoard, id, true));
   } catch (error) {
@@ -162,6 +164,7 @@ export function* fetchBoard(id) {
       customFieldGroups,
       customFields,
       customFieldValues,
+      savedViews,
     ),
   );
 }
@@ -230,6 +233,28 @@ export function* searchInCurrentBoard(value) {
   yield put(actions.searchInBoard(boardId, value, currentListId));
 }
 
+// DTP fork — richer board filters. `filterAssignedToMe` needs the current
+// user id at hand inside the ORM, so it travels with the filter state.
+export function* updateFiltersInCurrentBoard(data) {
+  const { boardId } = yield select(selectors.selectPath);
+  const currentUserId = yield select(selectors.selectCurrentUserId);
+
+  yield put(
+    actions.updateBoardFilters(boardId, {
+      ...data,
+      ...(data.filterAssignedToMe !== undefined && {
+        filterCurrentUserId: data.filterAssignedToMe ? currentUserId : null,
+      }),
+    }),
+  );
+}
+
+export function* clearFiltersInCurrentBoard() {
+  const { boardId } = yield select(selectors.selectPath);
+
+  yield put(actions.clearBoardFilters(boardId, {}));
+}
+
 export function* deleteBoard(id) {
   const currentBoard = yield select(selectors.selectCurrentBoard);
 
@@ -274,6 +299,8 @@ export default {
   updateBoardView,
   updateViewInCurrentBoard,
   searchInCurrentBoard,
+  updateFiltersInCurrentBoard,
+  clearFiltersInCurrentBoard,
   deleteBoard,
   handleBoardDelete,
 };

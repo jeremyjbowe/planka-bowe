@@ -139,6 +139,11 @@ module.exports.routes = {
   'POST /api/goals/:goalId/goal-links': 'goal-links/create',
   'DELETE /api/goal-links/:id': 'goal-links/delete',
 
+  // DTP fork — saved views
+  'POST /api/boards/:boardId/saved-views': 'saved-views/create',
+  'PATCH /api/saved-views/:id': 'saved-views/update',
+  'DELETE /api/saved-views/:id': 'saved-views/delete',
+
   'GET /api/webhooks': 'webhooks/index',
   'POST /api/webhooks': 'webhooks/create',
   'PATCH /api/webhooks/:id': 'webhooks/update',

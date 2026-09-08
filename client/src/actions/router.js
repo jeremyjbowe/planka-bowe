@@ -26,6 +26,7 @@ const handleLocationChange = (
   customFields,
   customFieldValues,
   notificationsToDelete,
+  savedViews,
 ) => ({
   type: ActionTypes.LOCATION_CHANGE_HANDLE,
   payload: {
@@ -49,6 +50,7 @@ const handleLocationChange = (
     customFields,
     customFieldValues,
     notificationsToDelete,
+    savedViews,
   },
 });
 

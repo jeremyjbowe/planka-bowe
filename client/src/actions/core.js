@@ -31,6 +31,7 @@ const initializeCore = (
   notifications,
   notificationServices,
   goalsBundle = {},
+  savedViews = [],
 ) => ({
   type: ActionTypes.CORE_INITIALIZE,
   payload: {
@@ -62,6 +63,7 @@ const initializeCore = (
     goalLinks: goalsBundle.goalLinks,
     goalCards: goalsBundle.goalCards,
     goalBoards: goalsBundle.goalBoards,
+    savedViews,
   },
 });
 

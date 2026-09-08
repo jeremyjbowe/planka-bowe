@@ -6,7 +6,7 @@
 import { attr, fk } from 'redux-orm';
 
 import BaseModel from './BaseModel';
-import buildSearchParts from '../utils/build-search-parts';
+import filterCardModels from '../utils/filter-cards';
 import { isListFinite } from '../utils/record-helpers';
 import ActionTypes from '../constants/ActionTypes';
 import Config from '../constants/Config';
@@ -321,73 +321,7 @@ export default class extends BaseModel {
   }
 
   getFilteredCardsModelArray() {
-    let cardModels = this.getCardsModelArray();
-
-    if (cardModels.length === 0) {
-      return cardModels;
-    }
-
-    if (this.board.search) {
-      if (this.board.search.startsWith('/')) {
-        let searchRegex;
-        try {
-          searchRegex = new RegExp(this.board.search.substring(1), 'i');
-        } catch {
-          return [];
-        }
-
-        cardModels = cardModels.filter(
-          (cardModel) =>
-            searchRegex.test(cardModel.name) ||
-            (cardModel.description && searchRegex.test(cardModel.description)),
-        );
-      } else {
-        const searchParts = buildSearchParts(this.board.search);
-
-        cardModels = cardModels.filter((cardModel) => {
-          const name = cardModel.name.toLowerCase();
-          const description = cardModel.description && cardModel.description.toLowerCase();
-
-          return searchParts.every(
-            (searchPart) =>
-              name.includes(searchPart) || (description && description.includes(searchPart)),
-          );
-        });
-      }
-    }
-
-    const filterUserIds = this.board.filterUsers.toRefArray().map((user) => user.id);
-
-    if (filterUserIds.length > 0) {
-      cardModels = cardModels.filter((cardModel) => {
-        const users = cardModel.users.toRefArray();
-
-        if (users.some((user) => filterUserIds.includes(user.id))) {
-          return true;
-        }
-
-        return cardModel
-          .getTaskListsQuerySet()
-          .toModelArray()
-          .some((taskListModel) =>
-            taskListModel
-              .getTasksQuerySet()
-              .toRefArray()
-              .some((task) => task.assigneeUserId && filterUserIds.includes(task.assigneeUserId)),
-          );
-      });
-    }
-
-    const filterLabelIds = this.board.filterLabels.toRefArray().map((label) => label.id);
-
-    if (filterLabelIds.length > 0) {
-      cardModels = cardModels.filter((cardModel) => {
-        const labels = cardModel.labels.toRefArray();
-        return labels.some((label) => filterLabelIds.includes(label.id));
-      });
-    }
-
-    return cardModels;
+    return filterCardModels(this.getCardsModelArray(), this.board);
   }
 
   isAvailableForUser(userModel) {

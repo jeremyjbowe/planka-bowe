@@ -1,0 +1,129 @@
+/*!
+ * DTP fork — Views dropdown.
+ */
+
+:global(#app) {
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 320px;
+    overflow-y: auto;
+  }
+
+  .item {
+    align-items: center;
+    border-radius: var(--radius-sm);
+    display: flex;
+    position: relative;
+
+    &:hover {
+      background: var(--bg-hover);
+    }
+
+    &:hover .itemActions {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+
+  .itemActive .itemName {
+    color: var(--accent);
+  }
+
+  .itemButton {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    flex: 1;
+    font: inherit;
+    font-size: var(--text-base);
+    gap: 8px;
+    min-width: 0;
+    outline: none;
+    padding: 7px 8px;
+    text-align: left;
+  }
+
+  .itemIcon {
+    color: var(--text-muted);
+    flex: 0 0 auto;
+    margin: 0 !important;
+  }
+
+  .itemName {
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .itemCheck {
+    color: var(--accent);
+    flex: 0 0 auto;
+    margin: 0 !important;
+  }
+
+  .itemActions {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 2px;
+    opacity: 0;
+    padding-right: 6px;
+    pointer-events: none;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .itemAction {
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-xs);
+    color: var(--text-muted);
+    cursor: pointer;
+    font: inherit;
+    line-height: 1;
+    outline: none;
+    padding: 5px;
+
+    &:hover {
+      background: var(--bg-active);
+      color: var(--text-primary);
+    }
+  }
+
+  .empty {
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    padding: 8px;
+  }
+
+  .addButton {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: var(--text-sm);
+    margin-top: 8px;
+    outline: none;
+    padding: 7px 8px;
+    width: 100%;
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+  }
+
+  .addButtonIcon {
+    margin-right: 6px !important;
+  }
+}

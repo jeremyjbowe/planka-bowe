@@ -60,6 +60,7 @@ fetchBoard.success = (
   customFieldGroups,
   customFields,
   customFieldValues,
+  savedViews,
 ) => ({
   type: ActionTypes.BOARD_FETCH__SUCCESS,
   payload: {
@@ -78,6 +79,7 @@ fetchBoard.success = (
     customFieldGroups,
     customFields,
     customFieldValues,
+    savedViews,
   },
 });
 
@@ -136,6 +138,23 @@ const searchInBoard = (id, value, currentListId) => ({
   },
 });
 
+// DTP fork — richer board filters (client-only)
+const updateBoardFilters = (id, data) => ({
+  type: ActionTypes.BOARD_FILTERS_UPDATE,
+  payload: {
+    id,
+    data,
+  },
+});
+
+const clearBoardFilters = (id, data) => ({
+  type: ActionTypes.BOARD_FILTERS_CLEAR,
+  payload: {
+    id,
+    data,
+  },
+});
+
 const deleteBoard = (id) => ({
   type: ActionTypes.BOARD_DELETE,
   payload: {
@@ -173,6 +192,8 @@ export default {
   handleBoardUpdate,
   updateBoardContext,
   searchInBoard,
+  updateBoardFilters,
+  clearBoardFilters,
   deleteBoard,
   handleBoardDelete,
 };

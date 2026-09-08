@@ -47,6 +47,7 @@ export function* handleSocketReconnect() {
   let notifications;
   let notificationServices;
   let goalsBundle;
+  let savedViews;
 
   try {
     ({ item: bootstrap } = yield call(request, api.getBootstrap));
@@ -76,6 +77,7 @@ export function* handleSocketReconnect() {
       notifications,
       notificationServices,
       goalsBundle,
+      savedViews,
     } = yield call(requests.fetchCore));
   } catch {
     return;
@@ -109,6 +111,7 @@ export function* handleSocketReconnect() {
       notifications,
       notificationServices,
       goalsBundle,
+      savedViews,
     ),
   );
 

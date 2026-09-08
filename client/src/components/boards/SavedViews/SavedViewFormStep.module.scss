@@ -1,0 +1,19 @@
+/*!
+ * DTP fork — saved view form.
+ */
+
+:global(#app) {
+  .field {
+    margin-bottom: 10px;
+  }
+
+  .checkbox {
+    display: block;
+    margin-bottom: 14px;
+  }
+
+  .submitButton {
+    margin: 0 !important;
+    width: 100%;
+  }
+}

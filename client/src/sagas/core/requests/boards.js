@@ -39,6 +39,7 @@ export function* fetchBoardByCurrentPath() {
   let customFields2;
   let customFieldValues1;
   let customFieldValues2;
+  let savedViews;
 
   if (pathsMatch) {
     let boardId;
@@ -80,6 +81,7 @@ export function* fetchBoardByCurrentPath() {
           customFieldGroups: customFieldGroups2,
           customFields: customFields2,
           customFieldValues: customFieldValues2,
+          savedViews,
         },
       } = yield call(request, api.getBoard, boardId, true));
     }
@@ -92,6 +94,7 @@ export function* fetchBoardByCurrentPath() {
     labels,
     lists,
     cards,
+    savedViews,
     project: projects[0],
     users: mergeRecords(users1, users2),
     cardMemberships: mergeRecords(cardMemberships1, cardMemberships2),

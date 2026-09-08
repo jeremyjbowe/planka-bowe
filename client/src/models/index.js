@@ -26,6 +26,7 @@ import Notification from './Notification';
 import NotificationService from './NotificationService';
 import Goal from './Goal';
 import GoalLink from './GoalLink';
+import SavedView from './SavedView';
 
 export {
   Webhook,
@@ -51,4 +52,5 @@ export {
   NotificationService,
   Goal,
   GoalLink,
+  SavedView,
 };

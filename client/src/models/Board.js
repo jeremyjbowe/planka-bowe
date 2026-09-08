@@ -6,18 +6,28 @@
 import { attr, fk, many } from 'redux-orm';
 
 import BaseModel from './BaseModel';
-import buildSearchParts from '../utils/build-search-parts';
+import filterCardModels from '../utils/filter-cards';
 import { isListKanban } from '../utils/record-helpers';
 import ActionTypes from '../constants/ActionTypes';
 import Config from '../constants/Config';
 import { BoardContexts, BoardViews } from '../constants/Enums';
+
+// DTP fork — client-only filter state, reset every time the board is fetched
+const CLEARED_FILTERS = {
+  search: '',
+  filterDue: null,
+  filterPriorities: [],
+  filterStatus: null,
+  filterAssignedToMe: false,
+  filterCurrentUserId: null,
+};
 
 const prepareFetchedBoard = (board) => ({
   ...board,
   isFetching: false,
   context: BoardContexts.BOARD,
   view: board.defaultView,
-  search: '',
+  ...CLEARED_FILTERS,
 });
 
 export default class extends BaseModel {
@@ -36,6 +46,22 @@ export default class extends BaseModel {
     context: attr(),
     view: attr(),
     search: attr(),
+    // DTP fork — richer board filters (client-only, per board)
+    filterDue: attr({
+      getDefault: () => null,
+    }),
+    filterPriorities: attr({
+      getDefault: () => [],
+    }),
+    filterStatus: attr({
+      getDefault: () => null,
+    }),
+    filterAssignedToMe: attr({
+      getDefault: () => false,
+    }),
+    filterCurrentUserId: attr({
+      getDefault: () => null,
+    }),
     isSubscribed: attr({
       getDefault: () => false,
     }),
@@ -64,6 +90,34 @@ export default class extends BaseModel {
     filterUsers: many('User', 'filterBoards'),
     filterLabels: many('Label', 'filterBoards'),
   };
+
+  // DTP fork — saved views: apply a whole preset (or clear it) at once
+  static applyFilters(boardModel, filters) {
+    const nextFilters = { ...CLEARED_FILTERS };
+
+    Object.keys(CLEARED_FILTERS).forEach((key) => {
+      if (filters[key] !== undefined) {
+        nextFilters[key] = filters[key];
+      }
+    });
+
+    if (filters.view !== undefined) {
+      nextFilters.view = filters.view;
+    }
+
+    boardModel.update(nextFilters);
+
+    boardModel.filterUsers.clear();
+    boardModel.filterLabels.clear();
+
+    (filters.filterUserIds || []).forEach((userId) => {
+      boardModel.filterUsers.add(userId);
+    });
+
+    (filters.filterLabelIds || []).forEach((labelId) => {
+      boardModel.filterLabels.add(labelId);
+    });
+  }
 
   static reducer({ type, payload }, Board) {
     switch (type) {
@@ -254,6 +308,16 @@ export default class extends BaseModel {
         Board.withId(payload.boardId).filterLabels.remove(payload.id);
 
         break;
+      // DTP fork — richer board filters
+      case ActionTypes.BOARD_FILTERS_UPDATE:
+        Board.withId(payload.id).update(payload.data);
+
+        break;
+      case ActionTypes.BOARD_FILTERS_CLEAR:
+      case ActionTypes.SAVED_VIEW_APPLY:
+        Board.applyFilters(Board.withId(payload.id), payload.data);
+
+        break;
       case ActionTypes.ACTIVITIES_IN_BOARD_FETCH:
         Board.withId(payload.boardId).update({
           isActivitiesFetching: true,
@@ -323,73 +387,7 @@ export default class extends BaseModel {
   }
 
   getFilteredCardsModelArray() {
-    let cardModels = this.getCardsModelArray();
-
-    if (cardModels.length === 0) {
-      return cardModels;
-    }
-
-    if (this.search) {
-      if (this.search.startsWith('/')) {
-        let searchRegex;
-        try {
-          searchRegex = new RegExp(this.search.substring(1), 'i');
-        } catch {
-          return [];
-        }
-
-        cardModels = cardModels.filter(
-          (cardModel) =>
-            searchRegex.test(cardModel.name) ||
-            (cardModel.description && searchRegex.test(cardModel.description)),
-        );
-      } else {
-        const searchParts = buildSearchParts(this.search);
-
-        cardModels = cardModels.filter((cardModel) => {
-          const name = cardModel.name.toLowerCase();
-          const description = cardModel.description && cardModel.description.toLowerCase();
-
-          return searchParts.every(
-            (searchPart) =>
-              name.includes(searchPart) || (description && description.includes(searchPart)),
-          );
-        });
-      }
-    }
-
-    const filterUserIds = this.filterUsers.toRefArray().map((user) => user.id);
-
-    if (filterUserIds.length > 0) {
-      cardModels = cardModels.filter((cardModel) => {
-        const users = cardModel.users.toRefArray();
-
-        if (users.some((user) => filterUserIds.includes(user.id))) {
-          return true;
-        }
-
-        return cardModel
-          .getTaskListsQuerySet()
-          .toModelArray()
-          .some((taskListModel) =>
-            taskListModel
-              .getTasksQuerySet()
-              .toRefArray()
-              .some((task) => task.assigneeUserId && filterUserIds.includes(task.assigneeUserId)),
-          );
-      });
-    }
-
-    const filterLabelIds = this.filterLabels.toRefArray().map((label) => label.id);
-
-    if (filterLabelIds.length > 0) {
-      cardModels = cardModels.filter((cardModel) => {
-        const labels = cardModel.labels.toRefArray();
-        return labels.some((label) => filterLabelIds.includes(label.id));
-      });
-    }
-
-    return cardModels;
+    return filterCardModels(this.getCardsModelArray(), this);
   }
 
   getActivitiesModelArray() {
@@ -441,6 +439,10 @@ export default class extends BaseModel {
     });
   }
 
+  getSavedViewsQuerySet() {
+    return this.savedViews.orderBy(['position', 'id.length', 'id']);
+  }
+
   deleteClearable() {
     this.filterUsers.clear();
     this.filterLabels.clear();
@@ -461,6 +463,7 @@ export default class extends BaseModel {
 
     this.deleteListsWithRelated(soft);
     this.notificationServices.delete();
+    this.savedViews.delete();
   }
 
   deleteWithClearable() {

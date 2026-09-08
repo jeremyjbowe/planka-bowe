@@ -23,6 +23,7 @@ views, structure and polish of modern tools.
 | Look | **Soft dark theme by default, light theme on request or by OS preference.** Design tokens, Inter, refined focus rings, custom scrollbars, hover lifts, drag ghosts, glass modals. |
 | First run | **Empty states everywhere and a 30-second onboarding** that creates a project, a board and template lists in one click. |
 | Calendar | **iCalendar feeds** (VTODO or all-day VEVENT): a secret per-user subscribe URL for "my cards" and one per board, with due dates, completion, priority, labels as categories, recurrence rules and parent relations. Works with Thunderbird, Tasks.org, Nextcloud Tasks (tasks) and Apple/Google Calendar (events). |
+| Speed | **Richer filters + saved views**: filter by due (overdue / today / this week / no date), priority, open or done, and "assigned to me" on top of members, labels and search; save any combination plus the view type as a named preset, personal or shared with the board, applied with one click and kept in sync over the socket. |
 | Speed | **Keyboard-first navigation**: `j`/`k` move between cards, `h`/`l` between lists, `Enter` opens, `n` adds, `/` searches, `1`–`5` switch views, `[`/`]` switch boards, `g h` / `g g` / `g 1-9` jump around, `?` shows the shortcuts overlay. Hover shortcuts from upstream still work and fall back to the keyboard selection. |
 | Look | **Card color accents**: ten soft colors (left bar + tint on the card, stripe on the modal) set from the card's *Color* action; cover images render rounded with a legibility gradient. |
 | Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
@@ -125,6 +126,12 @@ Useful extras:
   `webcal://`), or download the `.ics`. The link carries a secret token tied
   to your account; *Reset link* invalidates it. Feeds are read-only; a
   two-way CalDAV server is not part of v1.
+- **Filters and views**: the board header's *Filter* button opens due,
+  priority, status and assigned-to-me filters (badge shows how many are
+  active); *Views* lists saved presets (shared first, then yours) and *Save
+  current view…* stores the current view type plus every filter. Only the
+  creator or a project manager can edit or delete a view; personal views are
+  never sent to other users.
 - **Keyboard**: press `?` anywhere (or user menu → *Keyboard shortcuts*)
   for the full map. Selection lives in `client/src/utils/keyboard-navigation.js`;
   the key map is in `client/src/components/common/KeyboardNavigation/`.
@@ -221,7 +228,6 @@ Conventions that keep the codebase predictable:
 - Calendar sync is one-way (export feeds). Feeds are served from
   `/feeds/:token/...` on the API host without a session, so `BASE_URL` must
   be the public address; calendar apps typically refresh every 15–60 min.
-- Not yet built from the high-value list: saved views.
 
 ## Upstream documentation
 

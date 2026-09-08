@@ -25,6 +25,7 @@ import {
   NotificationService,
   Project,
   ProjectManager,
+  SavedView,
   Task,
   TaskList,
   User,
@@ -59,6 +60,7 @@ orm.register(
   NotificationService,
   Goal,
   GoalLink,
+  SavedView,
 );
 
 export default orm;

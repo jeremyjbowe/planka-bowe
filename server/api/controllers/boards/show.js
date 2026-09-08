@@ -142,6 +142,11 @@
  *                       description: Related custom field values
  *                       items:
  *                         $ref: '#/components/schemas/CustomFieldValue'
+ *                     savedViews:
+ *                       type: array
+ *                       description: Related saved views (shared ones plus the current user's personal ones)
+ *                       items:
+ *                         type: object
  *       400:
  *         $ref: '#/components/responses/ValidationError'
  *       401:
@@ -236,6 +241,9 @@ module.exports = {
     const customFields = await CustomField.qm.getByCustomFieldGroupIds(customFieldGroupIds);
     const customFieldValues = await CustomFieldValue.qm.getByCardIds(cardIds);
 
+    // DTP fork — saved views: shared ones plus this user's personal presets
+    const savedViews = await SavedView.qm.getByBoardIdForUser(board.id, currentUser.id);
+
     const cardSubscriptions = await CardSubscription.qm.getByCardIdsAndUserId(
       cardIds,
       currentUser.id,
@@ -272,6 +280,7 @@ module.exports = {
         customFieldGroups,
         customFields,
         customFieldValues,
+        savedViews,
         users: sails.helpers.users.presentMany(users, currentUser),
         projects: [project],
         attachments: sails.helpers.attachments.presentMany(attachments),

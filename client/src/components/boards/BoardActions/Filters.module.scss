@@ -88,4 +88,52 @@
       }
     }
   }
+
+  /* DTP fork — compact "Filter" button for the richer filter dimensions */
+  .moreFiltersButton {
+    align-items: center;
+    background: var(--bg-active);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: inline-flex;
+    font: inherit;
+    font-size: var(--text-sm);
+    gap: 6px;
+    line-height: 20px;
+    outline: none;
+    padding: 3px 10px;
+    transition: background var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      background: var(--border-strong);
+    }
+  }
+
+  .moreFiltersButtonActive {
+    background: var(--accent-soft);
+    border-color: var(--accent-ring);
+    color: var(--accent);
+
+    &:hover {
+      background: var(--accent-soft);
+    }
+  }
+
+  .moreFiltersIcon {
+    line-height: 1;
+  }
+
+  .moreFiltersBadge {
+    background: var(--accent);
+    border-radius: 9px;
+    color: var(--accent-contrast);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    line-height: 16px;
+    min-width: 16px;
+    padding: 0 5px;
+    text-align: center;
+  }
 }

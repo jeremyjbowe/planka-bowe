@@ -58,6 +58,19 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleGoalLinkDelete(item));
     };
 
+    // DTP fork — saved views
+    const handleSavedViewCreate = ({ item }) => {
+      emit(entryActions.handleSavedViewCreate(item));
+    };
+
+    const handleSavedViewUpdate = ({ item }) => {
+      emit(entryActions.handleSavedViewUpdate(item));
+    };
+
+    const handleSavedViewDelete = ({ item }) => {
+      emit(entryActions.handleSavedViewDelete(item));
+    };
+
     const handleWebhookCreate = ({ item }) => {
       emit(entryActions.handleWebhookCreate(item));
     };
@@ -333,6 +346,9 @@ const createSocketEventsChannel = () =>
     socket.on('goalLinkCreate', handleGoalLinkCreate);
     socket.on('goalLinkUpdate', handleGoalLinkUpdate);
     socket.on('goalLinkDelete', handleGoalLinkDelete);
+    socket.on('savedViewCreate', handleSavedViewCreate);
+    socket.on('savedViewUpdate', handleSavedViewUpdate);
+    socket.on('savedViewDelete', handleSavedViewDelete);
     socket.on('webhookCreate', handleWebhookCreate);
     socket.on('webhookUpdate', handleWebhookUpdate);
     socket.on('webhookDelete', handleWebhookDelete);
@@ -436,6 +452,9 @@ const createSocketEventsChannel = () =>
       socket.off('goalLinkCreate', handleGoalLinkCreate);
       socket.off('goalLinkUpdate', handleGoalLinkUpdate);
       socket.off('goalLinkDelete', handleGoalLinkDelete);
+      socket.off('savedViewCreate', handleSavedViewCreate);
+      socket.off('savedViewUpdate', handleSavedViewUpdate);
+      socket.off('savedViewDelete', handleSavedViewDelete);
       socket.off('webhookCreate', handleWebhookCreate);
       socket.off('webhookUpdate', handleWebhookUpdate);
       socket.off('webhookDelete', handleWebhookDelete);

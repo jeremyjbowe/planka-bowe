@@ -95,6 +95,8 @@ export function* handleLocationChange() {
   let customFields2;
   let customFieldValues1;
   let customFieldValues2;
+  let savedViews1;
+  let savedViews2;
   let notificationsToDelete;
 
   switch (pathsMatch.pattern.path) {
@@ -136,6 +138,7 @@ export function* handleLocationChange() {
                 customFieldGroups: customFieldGroups1,
                 customFields: customFields1,
                 customFieldValues: customFieldValues1,
+                savedViews: savedViews1,
               },
             } = yield call(request, api.getBoard, currentBoard.id, true));
           } catch {
@@ -197,6 +200,7 @@ export function* handleLocationChange() {
                     customFieldGroups: customFieldGroups2,
                     customFields: customFields2,
                     customFieldValues: customFieldValues2,
+                    savedViews: savedViews2,
                   },
                 } = yield call(request, api.getBoard, card.boardId, true));
               } catch {
@@ -250,6 +254,7 @@ export function* handleLocationChange() {
       mergeRecords(customFields1, customFields2),
       mergeRecords(customFieldValues1, customFieldValues2),
       notificationsToDelete,
+      mergeRecords(savedViews1, savedViews2),
     ),
   );
 }

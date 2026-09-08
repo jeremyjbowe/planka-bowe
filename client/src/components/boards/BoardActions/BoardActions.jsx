@@ -14,6 +14,7 @@ import { BoardContexts } from '../../../constants/Enums';
 import { BoardContextIcons } from '../../../constants/Icons';
 import Filters from './Filters';
 import RightSide from './RightSide';
+import SavedViews from '../SavedViews';
 import BoardMemberships from '../../board-memberships/BoardMemberships';
 
 import styles from './BoardActions.module.scss';
@@ -48,6 +49,11 @@ const BoardActions = React.memo(() => {
               <Icon name={BoardContextIcons[boardContext]} className={styles.contextTitleIcon} />
               {t(`common.${boardContext}`)}
             </div>
+          </div>
+        )}
+        {!withContextTitle && (
+          <div className={styles.action}>
+            <SavedViews />
           </div>
         )}
         {withMemberships && (

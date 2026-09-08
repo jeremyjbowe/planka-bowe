@@ -40,6 +40,12 @@ export default function* boardsWatchers() {
     takeEvery(EntryActionTypes.IN_CURRENT_BOARD_SEARCH, ({ payload: { value } }) =>
       services.searchInCurrentBoard(value),
     ),
+    takeEvery(EntryActionTypes.FILTERS_IN_CURRENT_BOARD_UPDATE, ({ payload: { data } }) =>
+      services.updateFiltersInCurrentBoard(data),
+    ),
+    takeEvery(EntryActionTypes.FILTERS_IN_CURRENT_BOARD_CLEAR, () =>
+      services.clearFiltersInCurrentBoard(),
+    ),
     takeEvery(EntryActionTypes.BOARD_DELETE, ({ payload: { id } }) => services.deleteBoard(id)),
     takeEvery(EntryActionTypes.BOARD_DELETE_HANDLE, ({ payload: { board } }) =>
       services.handleBoardDelete(board),

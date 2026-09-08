@@ -15,7 +15,7 @@
 
     &:hover {
       background: var(--bg-active);
-      box-shadow: 0 1px 0 0 rgba(9, 30, 66, 0.25);
+      box-shadow: 0 1px 0 0 var(--border-strong);
       color: var(--text-primary);
     }
   }
@@ -160,7 +160,7 @@
   .draftChip {
     background: var(--warning-soft);
     border-radius: 3px;
-    color: rgba(0, 0, 0, 0.87);
+    color: var(--text-primary);
     display: inline-block;
     line-height: 1.5;
     margin-bottom: 8px;

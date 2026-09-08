@@ -79,6 +79,19 @@ const searchInCurrentBoard = (value) => ({
   },
 });
 
+// DTP fork — richer board filters (client-only, per board)
+const updateFiltersInCurrentBoard = (data) => ({
+  type: EntryActionTypes.FILTERS_IN_CURRENT_BOARD_UPDATE,
+  payload: {
+    data,
+  },
+});
+
+const clearFiltersInCurrentBoard = () => ({
+  type: EntryActionTypes.FILTERS_IN_CURRENT_BOARD_CLEAR,
+  payload: {},
+});
+
 const deleteBoard = (id) => ({
   type: EntryActionTypes.BOARD_DELETE,
   payload: {
@@ -104,6 +117,8 @@ export default {
   updateContextInCurrentBoard,
   updateViewInCurrentBoard,
   searchInCurrentBoard,
+  updateFiltersInCurrentBoard,
+  clearFiltersInCurrentBoard,
   deleteBoard,
   handleBoardDelete,
 };

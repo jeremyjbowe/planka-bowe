@@ -21,6 +21,7 @@ import UserAvatar from '../../users/UserAvatar';
 import BoardMembershipsStep from '../../board-memberships/BoardMembershipsStep';
 import LabelChip from '../../labels/LabelChip';
 import LabelsStep from '../../labels/LabelsStep';
+import FilterStep from './FilterStep';
 
 import styles from './Filters.module.scss';
 
@@ -28,6 +29,7 @@ const Filters = React.memo(() => {
   const board = useSelector(selectors.selectCurrentBoard);
   const userIds = useSelector(selectors.selectFilterUserIdsForCurrentBoard);
   const labelIds = useSelector(selectors.selectFilterLabelIdsForCurrentBoard);
+  const extraFiltersCount = useSelector(selectors.selectExtraFiltersCountForCurrentBoard);
   const currentUserId = useSelector(selectors.selectCurrentUserId);
 
   const withCurrentUserSelector = useSelector(
@@ -145,6 +147,7 @@ const Filters = React.memo(() => {
 
   const BoardMembershipsPopup = usePopup(BoardMembershipsStep);
   const LabelsPopup = usePopup(LabelsStep);
+  const FilterPopup = usePopup(FilterStep);
 
   const isSearchActive = search || isSearchFocused;
 
@@ -192,6 +195,23 @@ const Filters = React.memo(() => {
             <LabelChip id={labelId} size="small" onClick={handleLabelClick} />
           </span>
         ))}
+      </span>
+      <span className={styles.filter}>
+        <FilterPopup>
+          <button
+            type="button"
+            className={classNames(
+              styles.moreFiltersButton,
+              extraFiltersCount > 0 && styles.moreFiltersButtonActive,
+            )}
+          >
+            <Icon fitted name="filter" className={styles.moreFiltersIcon} />
+            {t('common.filter')}
+            {extraFiltersCount > 0 && (
+              <span className={styles.moreFiltersBadge}>{extraFiltersCount}</span>
+            )}
+          </button>
+        </FilterPopup>
       </span>
       <span className={styles.filter}>
         <Input

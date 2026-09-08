@@ -44,6 +44,7 @@ export function* initializeCore() {
     notifications,
     notificationServices,
     goalsBundle,
+    savedViews,
   } = yield call(requests.fetchCore); // TODO: handle error
 
   yield call(i18n.changeLanguage, user.language);
@@ -76,6 +77,7 @@ export function* initializeCore() {
       notifications,
       notificationServices,
       goalsBundle,
+      savedViews,
     ),
   );
 }

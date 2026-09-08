@@ -459,6 +459,57 @@ export const selectFilterLabelIdsForCurrentBoard = createSelector(
   },
 );
 
+// DTP fork — richer board filters (client-only, per board)
+export const selectFiltersForCurrentBoard = createSelector(
+  orm,
+  (state) => selectPath(state).boardId,
+  ({ Board }, id) => {
+    if (!id) {
+      return null;
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return null;
+    }
+
+    return {
+      view: boardModel.view,
+      search: boardModel.search || '',
+      filterUserIds: boardModel.filterUsers.toRefArray().map((user) => user.id),
+      filterLabelIds: boardModel.filterLabels.toRefArray().map((label) => label.id),
+      filterDue: boardModel.filterDue || null,
+      filterPriorities: boardModel.filterPriorities || [],
+      filterStatus: boardModel.filterStatus || null,
+      filterAssignedToMe: !!boardModel.filterAssignedToMe,
+    };
+  },
+);
+
+export const selectExtraFiltersCountForCurrentBoard = createSelector(
+  orm,
+  (state) => selectPath(state).boardId,
+  ({ Board }, id) => {
+    if (!id) {
+      return 0;
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return 0;
+    }
+
+    return (
+      (boardModel.filterDue ? 1 : 0) +
+      (boardModel.filterPriorities && boardModel.filterPriorities.length > 0 ? 1 : 0) +
+      (boardModel.filterStatus ? 1 : 0) +
+      (boardModel.filterAssignedToMe ? 1 : 0)
+    );
+  },
+);
+
 export const selectIsBoardWithIdExists = createSelector(
   orm,
   (_, id) => id,
@@ -491,5 +542,7 @@ export default {
   selectActivityIdsForCurrentBoard,
   selectFilterUserIdsForCurrentBoard,
   selectFilterLabelIdsForCurrentBoard,
+  selectFiltersForCurrentBoard,
+  selectExtraFiltersCountForCurrentBoard,
   selectIsBoardWithIdExists,
 };

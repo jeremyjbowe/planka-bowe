@@ -37,6 +37,7 @@ const handleSocketReconnect = (
   notifications,
   notificationServices,
   goalsBundle = {},
+  savedViews = [],
 ) => ({
   type: ActionTypes.SOCKET_RECONNECT_HANDLE,
   payload: {
@@ -69,6 +70,7 @@ const handleSocketReconnect = (
     goalLinks: goalsBundle.goalLinks,
     goalCards: goalsBundle.goalCards,
     goalBoards: goalsBundle.goalBoards,
+    savedViews,
   },
 });
 
