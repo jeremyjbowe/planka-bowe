@@ -242,3 +242,18 @@ Conventions that keep the codebase predictable:
 Configuration variables, OIDC, S3 storage, SMTP, Apprise notifications and
 the REST API are unchanged; see the upstream docs at
 <https://docs.planka.cloud>.
+
+## AI assistant access (MCP)
+
+`mcp-server/` holds **dtp-tasks-mcp**, an MCP server that lets Claude read and
+run this board through the REST API — listing projects, searching and creating
+cards, completing them, commenting, managing checklists and subtasks, and
+tracking goals.
+
+Credentials live outside the repository (`~/.config/dtp-tasks-mcp/.env` by
+default). Note that the bot account needs an **editor board membership** on each
+board it should change; admin rights alone allow reading but not writing.
+
+See [`mcp-server/README.md`](mcp-server/README.md) for the tool list, the
+configuration format, how to register it with Claude Code and Claude Desktop,
+and how to run the smoke test.
