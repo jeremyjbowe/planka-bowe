@@ -30,6 +30,7 @@ module.exports = {
         'termsAcceptedAt',
         'totpSecret',
         'totpRecoveryCodes',
+        'calendarFeedToken',
       ]),
       avatar: inputs.record.avatar && {
         url: `${sails.config.custom.baseUrl}/user-avatars/${inputs.record.avatar.uploadedFileId}/original.${inputs.record.avatar.extension}`,

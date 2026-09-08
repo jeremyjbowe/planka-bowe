@@ -493,6 +493,27 @@ export default {
       goalLinkedCardsDone: '{{done}} of {{total}} done',
       noDescription: 'No description',
       dueBy: 'Due {{date}}',
+      calendar_title: 'Calendar',
+      calendarFeed_title: 'Calendar feed',
+      calendarFeed: 'Calendar feed',
+      calendarFeedIntro:
+        'Subscribe from your calendar or task app to see your cards there. The link is a read-only feed that refreshes on its own; anyone who has it can read the feed, so treat it like a password.',
+      calendarFeedBoardIntro:
+        'A read-only feed of every card on this board, for calendar and task apps. The link is tied to your account and shows what you can see.',
+      calendarFeedModeTodos: 'Tasks (VTODO)',
+      calendarFeedModeEvents: 'Events (all-day)',
+      calendarFeedModeHint:
+        'Task apps such as Thunderbird, Tasks.org or Nextcloud Tasks read VTODOs. Apple Calendar and Google Calendar ignore tasks, so pick Events for those.',
+      calendarFeedPersonal: 'My cards',
+      calendarFeedPersonalHint: 'Every card you are a member of, across all boards you can see.',
+      calendarFeedSubscribeUrl: 'Subscribe URL',
+      calendarFeedDownload: 'Download .ics',
+      calendarFeedRegenerate: 'Reset link',
+      calendarFeedRegenerateHint:
+        'Creates a new secret link. Apps using the old one stop receiving updates.',
+      copyLink: 'Copy link',
+      copied: 'Copied',
+      openInCalendarApp: 'Open in calendar app',
       table: 'Table',
       barsOnACalendarForCardsWithDueDates: 'Bars on a calendar for cards with due dates.',
       timeline: 'Timeline',

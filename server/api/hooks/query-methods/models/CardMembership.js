@@ -24,6 +24,8 @@ const getByCardId = (cardId, { userIdOrIds } = {}) => {
   return defaultFind(criteria);
 };
 
+const getByUserId = (userId) => defaultFind({ userId });
+
 const getByCardIds = (cardIds) =>
   defaultFind({
     cardId: cardIds,
@@ -46,6 +48,7 @@ module.exports = {
   getByIds,
   getByCardId,
   getByCardIds,
+  getByUserId,
   getOneByCardIdAndUserId,
   deleteOne,
   delete: delete_,

@@ -53,6 +53,9 @@ module.exports.policies = {
   index: true,
   'swagger/show': true,
   'bootstrap/show': true,
+  // DTP fork — calendar feeds are authenticated by their secret token
+  'calendar-feeds/show-personal': true,
+  'calendar-feeds/show-board': true,
   'terms/show': true,
   'access-tokens/create': true,
   'access-tokens/verify-totp': true,

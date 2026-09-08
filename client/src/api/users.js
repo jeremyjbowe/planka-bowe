@@ -33,6 +33,13 @@ const updateUserUsername = (id, data, headers) =>
 
 const updateUserAvatar = (id, data, headers) => http.post(`/users/${id}/avatar`, data, headers);
 
+// DTP fork — calendar feeds
+const getCurrentUserCalendarFeed = (headers) =>
+  socket.get('/users/me/calendar-feed', undefined, headers);
+
+const regenerateCurrentUserCalendarFeed = (headers) =>
+  socket.post('/users/me/calendar-feed/regenerate', undefined, headers);
+
 const createUserApiKey = (userId, headers) =>
   socket.post(`/users/${userId}/api-key`, undefined, headers);
 
@@ -65,6 +72,8 @@ export default {
   updateUserUsername,
   updateUserAvatar,
   createUserApiKey,
+  getCurrentUserCalendarFeed,
+  regenerateCurrentUserCalendarFeed,
   setupUserTotp,
   enableUserTotp,
   disableUserTotp,

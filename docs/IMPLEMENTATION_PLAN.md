@@ -167,8 +167,9 @@ client and `Board.Views` on the server (no DB constraint exists on
 All eight must-have features shipped, one commit each, acceptance tests
 passed in the browser against PostgreSQL (see the commit messages for the
 exact verification). Goals/OKRs shipped afterwards with the data model
-below. High-value items not started: CalDAV/VTODO, keyboard-first
-navigation overlay, cover image accents, saved views, JSON export/import.
+below. CalDAV/VTODO shipped as read-only iCalendar feeds (section 5.2).
+High-value items not started: keyboard-first navigation overlay, cover image
+accents, saved views, JSON export/import.
 
 ### 5.1 Goals data model (confirmed 2026-09-08)
 
@@ -200,3 +201,19 @@ Testing notes for future sessions:
 - Logging out and back in inside the same hot-reloaded tab can break the
   sails.io socket ("Cannot change value of `url` while socket is
   connected"); reload the tab. This is a dev-only artifact.
+
+### 5.2 Calendar feeds (shipped 2026-09-08)
+
+- `user_account.calendar_feed_token` (unique, minted on first use, reset on
+  demand) authenticates public routes `GET /feeds/:token/todos.ics` (cards
+  the user is a member of, on boards they can see) and
+  `GET /feeds/:token/boards/:boardId/todos.ics` (all finite-list cards of a
+  visible board). `?mode=events` emits all-day VEVENTs instead of VTODOs.
+- Mapping: SUMMARY=name, DESCRIPTION, DUE, DTSTART (when recurring),
+  STATUS/COMPLETED/PERCENT-COMPLETE from `isClosed`, PRIORITY
+  (urgent 1 / high 3 / medium 5 / low 7), CATEGORIES=labels, RRULE from
+  `recurrenceRule`, RELATED-TO;RELTYPE=PARENT from `parentCardId`, URL to the
+  card, X-PLANKA-BOARD / X-PLANKA-LIST.
+- Deliberately not built: a CalDAV server (two-way sync). If needed later,
+  the serializer and visibility helpers are reusable; the missing pieces are
+  the DAV method handlers and ETag/CTag bookkeeping.

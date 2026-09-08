@@ -28,7 +28,9 @@ const RightSide = React.memo(() => {
     [dispatch],
   );
 
-  const ActionsPopup = usePopup(ActionsStep);
+  const ActionsPopup = usePopup(ActionsStep, {
+    position: 'bottom right',
+  });
 
   const views = [BoardViews.GRID, BoardViews.LIST, BoardViews.TABLE, BoardViews.TIMELINE];
   if (board.context === BoardContexts.BOARD) {

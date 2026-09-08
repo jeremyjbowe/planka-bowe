@@ -357,6 +357,12 @@ module.exports = {
       isIn: LANGUAGES,
       allowNull: true,
     },
+    // DTP fork — calendar feeds
+    calendarFeedToken: {
+      type: 'string',
+      allowNull: true,
+      columnName: 'calendar_feed_token',
+    },
     apiKeyPrefix: {
       type: 'string',
       isNotEmptyString: true,

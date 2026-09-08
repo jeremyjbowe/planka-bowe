@@ -125,6 +125,12 @@ module.exports.routes = {
   'PATCH /api/config': 'config/update',
   'POST /api/config/test-smtp': 'config/test-smtp',
 
+  // DTP fork — calendar feeds
+  'GET /api/users/me/calendar-feed': 'calendar-feeds/show-current',
+  'POST /api/users/me/calendar-feed/regenerate': 'calendar-feeds/regenerate',
+  'GET /feeds/:token/todos.ics': 'calendar-feeds/show-personal',
+  'GET /feeds/:token/boards/:boardId/todos.ics': 'calendar-feeds/show-board',
+
   // DTP fork — goals
   'GET /api/goals': 'goals/index',
   'POST /api/goals': 'goals/create',

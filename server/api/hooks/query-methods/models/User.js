@@ -92,6 +92,12 @@ const getOneActiveByEmailOrUsername = (emailOrUsername) => {
   });
 };
 
+// DTP fork — calendar feeds
+const getOneByCalendarFeedToken = (calendarFeedToken) =>
+  User.findOne({
+    calendarFeedToken,
+  });
+
 const getOneActiveByApiKeyHash = (apiKeyHash) =>
   User.findOne({
     apiKeyHash,
@@ -200,6 +206,7 @@ module.exports = {
   getOneByEmail,
   getOneActiveByEmailOrUsername,
   getOneActiveByApiKeyHash,
+  getOneByCalendarFeedToken,
   updateOne,
   deleteOne,
 };

@@ -17,12 +17,14 @@ import { BoardContexts, BoardMembershipRoles } from '../../../../constants/Enums
 import { BoardContextIcons } from '../../../../constants/Icons';
 import ConfirmationStep from '../../../common/ConfirmationStep';
 import CustomFieldGroupsStep from '../../../custom-field-groups/CustomFieldGroupsStep';
+import CalendarFeedStep from '../../../common/CalendarFeedLinks/CalendarFeedStep';
 
 import styles from './ActionsStep.module.scss';
 
 const StepTypes = {
   CUSTOM_FIELD_GROUPS: 'CUSTOM_FIELD_GROUPS',
   EMPTY_TRASH: 'EMPTY_TRASH',
+  CALENDAR_FEED: 'CALENDAR_FEED',
 };
 
 const ActionsStep = React.memo(({ onClose }) => {
@@ -87,10 +89,16 @@ const ActionsStep = React.memo(({ onClose }) => {
     openStep(StepTypes.EMPTY_TRASH);
   }, [openStep]);
 
+  const handleCalendarFeedClick = useCallback(() => {
+    openStep(StepTypes.CALENDAR_FEED);
+  }, [openStep]);
+
   if (step) {
     switch (step.type) {
       case StepTypes.CUSTOM_FIELD_GROUPS:
         return <CustomFieldGroupsStep onBack={handleBack} onClose={onClose} />;
+      case StepTypes.CALENDAR_FEED:
+        return <CalendarFeedStep boardId={board.id} onBack={handleBack} />;
       case StepTypes.EMPTY_TRASH:
         return (
           <ConfirmationStep
@@ -136,6 +144,12 @@ const ActionsStep = React.memo(({ onClose }) => {
           <Menu.Item className={styles.menuItem} onClick={handleActivitiesClick}>
             <Icon name="list ul" className={styles.menuItemIcon} />
             {t('common.actions', {
+              context: 'title',
+            })}
+          </Menu.Item>
+          <Menu.Item className={styles.menuItem} onClick={handleCalendarFeedClick}>
+            <Icon name="calendar alternate outline" className={styles.menuItemIcon} />
+            {t('common.calendarFeed', {
               context: 'title',
             })}
           </Menu.Item>

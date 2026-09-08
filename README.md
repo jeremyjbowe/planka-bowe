@@ -22,6 +22,7 @@ views, structure and polish of modern tools.
 | Fields | **Priority** (low / medium / high / urgent) on cards, with chips, an editor and a Table column. |
 | Look | **Soft dark theme by default, light theme on request or by OS preference.** Design tokens, Inter, refined focus rings, custom scrollbars, hover lifts, drag ghosts, glass modals. |
 | First run | **Empty states everywhere and a 30-second onboarding** that creates a project, a board and template lists in one click. |
+| Calendar | **iCalendar feeds** (VTODO or all-day VEVENT): a secret per-user subscribe URL for "my cards" and one per board, with due dates, completion, priority, labels as categories, recurrence rules and parent relations. Works with Thunderbird, Tasks.org, Nextcloud Tasks (tasks) and Apple/Google Calendar (events). |
 | Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
 
 All views read from the same normalized redux-orm store, so anything that
@@ -114,6 +115,13 @@ Useful extras:
   same box searches projects, boards and cards.
 - **Theme**: bottom of the sidebar or user menu → *Theme* cycles
   System / Light / Dark.
+- **Calendar feeds**: user menu → *Settings* → *Calendar* for the personal
+  feed (every card you are a member of), or a board's *⋮* menu → *Calendar
+  feed* for that board. Pick *Tasks (VTODO)* for task apps or *Events* for
+  calendar apps that ignore tasks, copy the subscribe URL (or open it as
+  `webcal://`), or download the `.ics`. The link carries a secret token tied
+  to your account; *Reset link* invalidates it. Feeds are read-only; a
+  two-way CalDAV server is not part of v1.
 - **Goals**: sidebar → *Goals*. Admins and project owners create goals;
   the owner (or an admin) edits them. Open a goal to set status, target
   date, parent goal and description, and use *Link to goal* to attach
@@ -167,6 +175,12 @@ Conventions that keep the codebase predictable:
   computed by `client/src/selectors/goals.js#computeProgress`. Socket events:
   `goalCreate/Update/Delete`, `goalLinkCreate/Update/Delete`; link summaries
   go through `helpers/goal-links/broadcast-target-update.js` per user.
+- **Calendar feeds**: `server/api/helpers/calendar-feeds/build-ics.js` is the
+  serializer (RFC 5545 escaping and 75-octet folding); controllers in
+  `server/api/controllers/calendar-feeds`; public routes are whitelisted in
+  `server/config/policies.js` and authenticated by `user_account.calendar_feed_token`,
+  which the user presenter never returns. Client UI:
+  `client/src/components/common/CalendarFeedLinks`.
 - **Self references** (`card.parent_card_id`, `project.parent_project_id`)
   are plain indexed columns, like every reference in Planka (there are no
   DB-level foreign keys; `db/clean-orphaned-records.js` exists for that
@@ -198,8 +212,11 @@ Conventions that keep the codebase predictable:
   totals the server sent at startup, refreshed whenever a card on that board
   changes; a loaded board is computed live from the store. Names and totals
   of linked items are only sent to users who can see that board.
-- Not yet built from the high-value list: CalDAV, keyboard-first navigation
-  overlay, cover image accents, saved views, JSON export/import.
+- Calendar sync is one-way (export feeds). Feeds are served from
+  `/feeds/:token/...` on the API host without a session, so `BASE_URL` must
+  be the public address; calendar apps typically refresh every 15–60 min.
+- Not yet built from the high-value list: keyboard-first navigation overlay,
+  cover image accents, saved views, JSON export/import.
 
 ## Upstream documentation
 
