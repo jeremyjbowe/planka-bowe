@@ -28,6 +28,23 @@ const createCard = (listId, data, index, autoOpen = false) => ({
   },
 });
 
+/*
+ * DTP fork — Quick Add. Creates a card and then attaches members and labels
+ * once the server id is known. `boardId` is used when the target board's
+ * lists are not loaded yet (the `~project` token); the saga fetches them.
+ */
+const quickCreateCard = ({ listId, boardId, data, userIds, labelIds, autoOpen = false }) => ({
+  type: EntryActionTypes.QUICK_CARD_CREATE,
+  payload: {
+    listId,
+    boardId,
+    data,
+    userIds,
+    labelIds,
+    autoOpen,
+  },
+});
+
 const createCardInCurrentContext = (data, index = 0, autoOpen = false) => ({
   type: EntryActionTypes.CARD_IN_CURRENT_CONTEXT_CREATE,
   payload: {
@@ -211,6 +228,7 @@ export default {
   fetchCardsInCurrentList,
   handleCardsUpdate,
   createCard,
+  quickCreateCard,
   createCardInCurrentContext,
   createCardInCurrentList,
   handleCardCreate,

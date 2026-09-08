@@ -20,6 +20,9 @@ import ClipboardTypes from '../../../constants/ClipboardTypes';
 import ToastTypes from '../../../constants/ToastTypes';
 import { BoardViews, ListTypes, ListTypeStates } from '../../../constants/Enums';
 import LIST_TYPE_STATE_BY_TYPE from '../../../constants/ListTypeStateByType';
+import { addUserToCard } from './users';
+import { addLabelToCard } from './labels';
+import { fetchBoard } from './boards';
 
 // eslint-disable-next-line no-underscore-dangle
 const _preloadImage = (url) =>
@@ -161,13 +164,63 @@ export function* createCard(listId, data, index, autoOpen) {
     ({ item: card } = yield call(request, api.createCard, listId, nextData));
   } catch (error) {
     yield put(actions.createCard.failure(localId, error));
-    return;
+    return null;
   }
 
   yield put(actions.createCard.success(localId, card));
 
   if (watchForCreateCardActionTask && watchForCreateCardActionTask.isRunning()) {
     yield call(goToCard, card.id);
+  }
+
+  return card;
+}
+
+/*
+ * DTP fork — Quick Add. See entry-actions/cards.js#quickCreateCard.
+ */
+export function* quickCreateCard({ listId, boardId, data, userIds = [], labelIds = [], autoOpen }) {
+  let targetListId = listId;
+
+  if (!targetListId && boardId) {
+    const isLoaded = yield select(selectors.selectFirstKanbanListIdByBoardId, boardId);
+
+    if (!isLoaded) {
+      yield call(fetchBoard, boardId);
+    }
+
+    targetListId = yield select(selectors.selectFirstKanbanListIdByBoardId, boardId);
+  }
+
+  if (!targetListId) {
+    return;
+  }
+
+  const card = yield call(
+    createCard,
+    targetListId,
+    {
+      ...data,
+      ...(data.dueDate && data.isDueCompleted === undefined && { isDueCompleted: false }),
+    },
+    0,
+    autoOpen,
+  );
+
+  if (!card) {
+    return;
+  }
+
+  // Members and labels can only be attached to a persisted card; the board
+  // membership check happens server-side, unknown users are simply skipped.
+  // eslint-disable-next-line no-restricted-syntax
+  for (const userId of userIds) {
+    yield call(addUserToCard, userId, card.id);
+  }
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const labelId of labelIds) {
+    yield call(addLabelToCard, labelId, card.id);
   }
 }
 
@@ -758,6 +811,7 @@ export default {
   fetchCardsInCurrentList,
   handleCardsUpdate,
   createCard,
+  quickCreateCard,
   createCardInCurrentContext,
   createCardInCurrentList,
   handleCardCreate,

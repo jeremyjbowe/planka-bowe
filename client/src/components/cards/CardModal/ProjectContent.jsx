@@ -31,6 +31,8 @@ import StopwatchChip from '../StopwatchChip';
 import EditDueDateStep from '../EditDueDateStep';
 import EditStopwatchStep from '../EditStopwatchStep';
 import EditRecurrenceStep from '../EditRecurrenceStep';
+import EditPriorityStep from '../EditPriorityStep';
+import PriorityChip from '../PriorityChip';
 import { describeRecurrence } from '../../../utils/recurrence';
 import ExpandableMarkdown from '../../common/ExpandableMarkdown';
 import EditMarkdown from '../../common/EditMarkdown';
@@ -322,6 +324,7 @@ const ProjectContent = React.memo(() => {
   const EditDueDatePopup = usePopupInClosableContext(EditDueDateStep);
   const EditStopwatchPopup = usePopupInClosableContext(EditStopwatchStep);
   const EditRecurrencePopup = usePopupInClosableContext(EditRecurrenceStep);
+  const EditPriorityPopup = usePopupInClosableContext(EditPriorityStep);
   const AddTaskListPopup = usePopupInClosableContext(AddTaskListStep);
   const AddAttachmentPopup = usePopupInClosableContext(AddAttachmentStep);
   const AddCustomFieldGroupPopup = usePopupInClosableContext(AddCustomFieldGroupStep);
@@ -348,6 +351,7 @@ const ProjectContent = React.memo(() => {
       <Grid.Row className={styles.modalPadding}>
         <Grid.Column width={12} className={styles.contentPadding}>
           {(card.dueDate ||
+            card.priority ||
             card.recurrenceRule ||
             card.stopwatch ||
             board.alwaysDisplayCardCreator ||
@@ -479,6 +483,20 @@ const ProjectContent = React.memo(() => {
                         isCompleted={card.isDueCompleted}
                         withStatus={!card.isClosed}
                       />
+                    )}
+                  </span>
+                </div>
+              )}
+              {card.priority && (
+                <div className={styles.attachments}>
+                  <div className={styles.text}>{t('common.priority')}</div>
+                  <span className={styles.attachment}>
+                    {canEditDueDate ? (
+                      <EditPriorityPopup cardId={card.id}>
+                        <PriorityChip value={card.priority} onClick={() => {}} />
+                      </EditPriorityPopup>
+                    ) : (
+                      <PriorityChip value={card.priority} />
                     )}
                   </span>
                 </div>
@@ -670,6 +688,14 @@ const ProjectContent = React.memo(() => {
                       })}
                     </Button>
                   </EditDueDatePopup>
+                )}
+                {canEditDueDate && (
+                  <EditPriorityPopup cardId={card.id}>
+                    <Button fluid className={classNames(styles.actionButton, styles.hidable)}>
+                      <Icon name="flag outline" className={styles.actionIcon} />
+                      {t('common.priority')}
+                    </Button>
+                  </EditPriorityPopup>
                 )}
                 {canEditDueDate && (
                   <EditRecurrencePopup cardId={card.id}>

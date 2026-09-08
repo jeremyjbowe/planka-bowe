@@ -180,6 +180,8 @@ module.exports = {
         'isDueCompleted',
         'stopwatch',
         'isClosed',
+        'priority',
+        'recurrenceRule',
       ]),
       ...values,
       creatorUserId: values.creatorUser.id,

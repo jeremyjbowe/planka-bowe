@@ -128,6 +128,7 @@ export const makeSelectTableRowsByCardIds = () =>
             userNames: users.map((user) => user.name),
             labelIds: labels.map((label) => label.id),
             labelNames: labels.map((label) => label.name || ''),
+            priority: cardModel.priority,
             parentCardId: cardModel.parentCardId,
             parentCardName: parentCardModel ? parentCardModel.name : null,
             subtasksTotal: subtasks.length,

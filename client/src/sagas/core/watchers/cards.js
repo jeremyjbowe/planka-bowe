@@ -19,6 +19,9 @@ export default function* cardsWatchers() {
     takeEvery(EntryActionTypes.CARD_CREATE, ({ payload: { listId, data, index, autoOpen } }) =>
       services.createCard(listId, data, index, autoOpen),
     ),
+    takeEvery(EntryActionTypes.QUICK_CARD_CREATE, ({ payload }) =>
+      services.quickCreateCard(payload),
+    ),
     takeEvery(
       EntryActionTypes.CARD_IN_CURRENT_CONTEXT_CREATE,
       ({ payload: { data, index, autoOpen } }) =>

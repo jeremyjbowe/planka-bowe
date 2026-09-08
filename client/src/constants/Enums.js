@@ -98,6 +98,21 @@ export const CardTypes = {
   STORY: 'story',
 };
 
+// DTP fork — card priority
+export const CardPriorities = {
+  LOW: 'low',
+  MEDIUM: 'medium',
+  HIGH: 'high',
+  URGENT: 'urgent',
+};
+
+export const CARD_PRIORITY_RANK = {
+  [CardPriorities.LOW]: 1,
+  [CardPriorities.MEDIUM]: 2,
+  [CardPriorities.HIGH]: 3,
+  [CardPriorities.URGENT]: 4,
+};
+
 export const AttachmentTypes = {
   FILE: 'file',
   LINK: 'link',

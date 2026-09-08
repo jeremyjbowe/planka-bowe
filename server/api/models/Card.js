@@ -68,6 +68,12 @@
  *           nullable: true
  *           description: ID of the parent card when this card is a subtask
  *           example: "1357158568008091270"
+ *         priority:
+ *           type: string
+ *           enum: [low, medium, high, urgent]
+ *           nullable: true
+ *           description: Priority of the card
+ *           example: high
  *         recurrenceRule:
  *           type: string
  *           nullable: true
@@ -161,8 +167,17 @@ const Types = {
   STORY: 'story',
 };
 
+// DTP fork — card priority
+const Priorities = {
+  LOW: 'low',
+  MEDIUM: 'medium',
+  HIGH: 'high',
+  URGENT: 'urgent',
+};
+
 module.exports = {
   Types,
+  Priorities,
 
   attributes: {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
@@ -212,6 +227,12 @@ module.exports = {
     listChangedAt: {
       type: 'ref',
       columnName: 'list_changed_at',
+    },
+    // DTP fork — card priority
+    priority: {
+      type: 'string',
+      isIn: Object.values(Priorities),
+      allowNull: true,
     },
     // DTP fork — recurring cards
     recurrenceRule: {

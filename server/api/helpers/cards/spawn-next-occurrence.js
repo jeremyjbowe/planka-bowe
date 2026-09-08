@@ -87,7 +87,14 @@ module.exports = {
     const position = cardsInList.length > 0 ? cardsInList[0].position / 2 : POSITION_GAP;
 
     const card = await Card.qm.createOne({
-      ..._.pick(record, ['type', 'name', 'description', 'creatorUserId', 'recurrenceRule']),
+      ..._.pick(record, [
+        'type',
+        'name',
+        'description',
+        'creatorUserId',
+        'recurrenceRule',
+        'priority',
+      ]),
       boardId: record.boardId,
       listId: list.id,
       position,

@@ -1,0 +1,67 @@
+:global(#app) {
+  .wrapper {
+    align-items: center;
+    border: 1px solid transparent;
+    border-radius: 999px;
+    display: inline-flex;
+    font-weight: 600;
+    gap: 3px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .clickable {
+    cursor: pointer;
+    font: inherit;
+    font-weight: 600;
+    transition: filter 120ms ease;
+
+    &:hover {
+      filter: brightness(1.08);
+    }
+  }
+
+  .icon {
+    font-size: 0.85em !important;
+    margin: 0 !important;
+  }
+
+  .size_tiny {
+    font-size: 10px;
+    padding: 2px 7px 2px 5px;
+  }
+
+  .size_small {
+    font-size: 11px;
+    padding: 3px 8px 3px 6px;
+  }
+
+  .size_medium {
+    font-size: 13px;
+    padding: 6px 12px 6px 9px;
+  }
+
+  .low {
+    background: rgba(100, 116, 139, 0.16);
+    border-color: rgba(100, 116, 139, 0.25);
+    color: #64748b;
+  }
+
+  .medium {
+    background: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.16);
+    border-color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.3);
+    color: hsl(var(--accent-h) var(--accent-s) 52%);
+  }
+
+  .high {
+    background: rgba(245, 158, 11, 0.16);
+    border-color: rgba(245, 158, 11, 0.3);
+    color: #d97706;
+  }
+
+  .urgent {
+    background: rgba(239, 68, 68, 0.16);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #dc2626;
+  }
+}

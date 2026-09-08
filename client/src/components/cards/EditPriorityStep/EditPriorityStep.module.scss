@@ -1,0 +1,38 @@
+:global(#app) {
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .item {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    justify-content: space-between;
+    padding: 6px 8px;
+    text-align: left;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.06);
+    }
+  }
+
+  .itemActive {
+    background: rgba(9, 30, 66, 0.08);
+  }
+
+  .none {
+    color: #6b808c;
+    font-size: 13px;
+  }
+
+  .check {
+    color: #17394d;
+    margin: 0;
+  }
+}

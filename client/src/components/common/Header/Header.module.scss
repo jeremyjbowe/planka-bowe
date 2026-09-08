@@ -102,6 +102,31 @@
     }
   }
 
+  .searchItem {
+    gap: 8px;
+  }
+
+  .searchLabel {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: 13px;
+    font-weight: normal;
+
+    @media only screen and (width < 900px) {
+      display: none;
+    }
+  }
+
+  .kbd {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 6px;
+  }
+
   .breadcrumbs {
     display: inline-flex;
     gap: 6px;

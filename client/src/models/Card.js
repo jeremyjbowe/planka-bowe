@@ -23,6 +23,10 @@ export default class extends BaseModel {
     isDueCompleted: attr(),
     stopwatch: attr(),
     isClosed: attr(),
+    // DTP fork — card priority
+    priority: attr({
+      getDefault: () => null,
+    }),
     // DTP fork — recurring cards
     recurrenceRule: attr({
       getDefault: () => null,

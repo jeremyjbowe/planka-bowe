@@ -214,6 +214,11 @@ module.exports = {
       custom: isRecurrenceRule,
       allowNull: true,
     },
+    priority: {
+      type: 'string',
+      isIn: Object.values(Card.Priorities),
+      allowNull: true,
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -290,6 +295,7 @@ module.exports = {
         'parentCardId',
         'isClosed',
         'recurrenceRule',
+        'priority',
       );
     }
 
@@ -375,6 +381,7 @@ module.exports = {
       'stopwatch',
       'isClosed',
       'recurrenceRule',
+      'priority',
       'isSubscribed',
     ]);
 

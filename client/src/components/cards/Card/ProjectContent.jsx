@@ -16,6 +16,7 @@ import { isListArchiveOrTrash } from '../../../utils/record-helpers';
 import { BoardMembershipRoles, BoardViews } from '../../../constants/Enums';
 import TaskList from './TaskList';
 import SubtasksProgress from './SubtasksProgress';
+import PriorityChip from '../PriorityChip';
 import { describeRecurrence } from '../../../utils/recurrence';
 import DueDateChip from '../DueDateChip';
 import StopwatchChip from '../StopwatchChip';
@@ -157,8 +158,13 @@ const ProjectContent = React.memo(({ cardId }) => {
           <img src={coverUrl} alt="" className={styles.cover} />
         </div>
       )}
-      {labelIds.length > 0 && (
+      {(card.priority || labelIds.length > 0) && (
         <span className={classNames(styles.labels, !isCompact && styles.labelsFull)}>
+          {card.priority && (
+            <span className={classNames(styles.attachment, styles.attachmentLeft)}>
+              <PriorityChip value={card.priority} size="tiny" />
+            </span>
+          )}
           {labelIds.map((labelId) => (
             <span key={labelId} className={classNames(styles.attachment, styles.attachmentLeft)}>
               <LabelChip id={labelId} size="tiny" />

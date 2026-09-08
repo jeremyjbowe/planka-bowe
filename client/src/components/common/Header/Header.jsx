@@ -6,6 +6,7 @@
 import React, { useCallback } from 'react';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router';
 import { Button, Icon, Menu } from 'semantic-ui-react';
 import { usePopup } from '../../../lib/popup';
@@ -13,8 +14,10 @@ import { usePopup } from '../../../lib/popup';
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
 import Paths from '../../../constants/Paths';
+import Config from '../../../constants/Config';
 import { BoardMembershipRoles, BoardViews, UserRoles } from '../../../constants/Enums';
 import UserAvatar from '../../users/UserAvatar';
+import { openCommandPalette } from '../CommandPalette';
 import UserActionsStep from '../../users/UserActionsStep';
 import NotificationsStep from '../../notifications/NotificationsStep';
 
@@ -73,6 +76,7 @@ const Header = React.memo(() => {
   }, shallowEqual);
 
   const dispatch = useDispatch();
+  const [t] = useTranslation();
 
   const handleToggleFavoritesClick = useCallback(() => {
     dispatch(entryActions.toggleFavorites(!isFavoritesEnabled));
@@ -136,6 +140,15 @@ const Header = React.memo(() => {
           </Menu.Menu>
         )}
         <Menu.Menu position="right">
+          <Menu.Item
+            className={classNames(styles.item, styles.itemHoverable, styles.searchItem)}
+            title={t('common.commandPalette')}
+            onClick={openCommandPalette}
+          >
+            <Icon fitted name="search" />
+            <span className={styles.searchLabel}>{t('common.searchOrCreate')}</span>
+            <kbd className={styles.kbd}>{Config.IS_MAC ? '⌘' : 'Ctrl'} K</kbd>
+          </Menu.Item>
           {withFavoritesToggler && (
             <Menu.Item
               className={classNames(styles.item, styles.itemHoverable)}

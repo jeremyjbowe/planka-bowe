@@ -26,10 +26,11 @@ import {
 import { push } from '../../../../lib/redux-router';
 import selectors from '../../../../selectors';
 import Paths from '../../../../constants/Paths';
-import { BoardMembershipRoles } from '../../../../constants/Enums';
+import { BoardMembershipRoles, CARD_PRIORITY_RANK } from '../../../../constants/Enums';
 import UserAvatar from '../../../users/UserAvatar';
 import LabelChip from '../../../labels/LabelChip';
 import DueDateChip from '../../../cards/DueDateChip';
+import PriorityChip from '../../../cards/PriorityChip';
 import AddCard from '../../../cards/AddCard';
 
 import PlusMathIcon from '../../../../assets/images/plus-math-icon.svg?react';
@@ -145,6 +146,14 @@ function DueDateCell({ row }) {
   );
 }
 
+function PriorityCell({ row }) {
+  if (!row.original.priority) {
+    return <span className={styles.empty}>—</span>;
+  }
+
+  return <PriorityChip value={row.original.priority} size="tiny" />;
+}
+
 function SubtasksCell({ row }) {
   const { subtasksTotal, subtasksCompleted } = row.original;
 
@@ -207,6 +216,12 @@ DueDateCell.propTypes = {
     original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   }).isRequired,
 };
+PriorityCell.propTypes = {
+  row: PropTypes.shape({
+    original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  }).isRequired,
+};
+
 SubtasksCell.propTypes = {
   row: PropTypes.shape({
     original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -323,6 +338,18 @@ const TableView = React.memo(
               (a, b) => a - b,
             ),
           cell: DueDateCell,
+        },
+        {
+          id: 'priority',
+          accessorFn: (row) => row.priority,
+          header: t('common.priority'),
+          sortingFn: (rowA, rowB) =>
+            compareNullable(
+              CARD_PRIORITY_RANK[rowA.original.priority],
+              CARD_PRIORITY_RANK[rowB.original.priority],
+              (a, b) => a - b,
+            ),
+          cell: PriorityCell,
         },
         {
           id: 'subtasks',

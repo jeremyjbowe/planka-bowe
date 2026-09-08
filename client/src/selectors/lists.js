@@ -146,6 +146,26 @@ export const selectFirstKanbanListId = createSelector(
   },
 );
 
+// DTP fork — Quick Add targets boards other than the current one
+export const selectFirstKanbanListIdByBoardId = createSelector(
+  orm,
+  (_, id) => id,
+  ({ Board }, id) => {
+    if (!id) {
+      return id;
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return boardModel;
+    }
+
+    const listModel = boardModel.getKanbanListsQuerySet().first();
+    return listModel && listModel.id;
+  },
+);
+
 export const selectFilteredCardIdsForCurrentList = createSelector(
   orm,
   (state) => selectCurrentListId(state),
@@ -175,5 +195,6 @@ export default {
   selectCurrentListId,
   selectCurrentList,
   selectFirstKanbanListId,
+  selectFirstKanbanListIdByBoardId,
   selectFilteredCardIdsForCurrentList,
 };

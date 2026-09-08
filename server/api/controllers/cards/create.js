@@ -169,6 +169,11 @@ module.exports = {
       maxLength: 512,
       custom: isRecurrenceRule,
     },
+    priority: {
+      type: 'string',
+      isIn: Object.values(Card.Priorities),
+      allowNull: true,
+    },
   },
 
   exits: {
@@ -232,6 +237,7 @@ module.exports = {
       'isDueCompleted',
       'stopwatch',
       'recurrenceRule',
+      'priority',
     ]);
 
     if (parentCard) {
