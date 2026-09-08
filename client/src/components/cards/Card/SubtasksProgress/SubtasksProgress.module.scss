@@ -8,14 +8,14 @@
   }
 
   .icon {
-    color: #8b9aa5;
+    color: var(--text-muted);
     flex-shrink: 0;
     font-size: 11px;
     margin: 0;
   }
 
   .track {
-    background: rgba(9, 30, 66, 0.1);
+    background: var(--bg-active);
     border-radius: 999px;
     flex: 1;
     height: 5px;
@@ -36,7 +36,7 @@
   }
 
   .count {
-    color: #888;
+    color: var(--text-muted);
     flex-shrink: 0;
     font-size: 12px;
     line-height: 12px;

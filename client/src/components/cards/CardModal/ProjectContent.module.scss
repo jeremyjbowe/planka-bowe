@@ -5,23 +5,23 @@
 
 :global(#app) {
   .actionButton {
-    background: #ebeef0;
-    box-shadow: 0 1px 0 0 rgba(9, 30, 66, 0.13);
-    color: #444;
+    background: var(--bg-active);
+    box-shadow: 0 1px 0 0 var(--bg-active);
+    color: var(--text-primary);
     margin-top: 8px;
     padding: 6px 8px 6px 18px;
     text-align: left;
     transition: background 85ms ease;
 
     &:hover {
-      background: #dfe3e6;
+      background: var(--bg-active);
       box-shadow: 0 1px 0 0 rgba(9, 30, 66, 0.25);
-      color: #4c4c4c;
+      color: var(--text-primary);
     }
   }
 
   .actionIcon {
-    color: #17394d;
+    color: var(--text-primary);
     margin-right: 8px;
   }
 
@@ -38,7 +38,7 @@
   }
 
   .actionsTitle {
-    color: #8c8c8c;
+    color: var(--text-muted);
     font-size: 12px;
     font-weight: normal;
     letter-spacing: 0.04em;
@@ -101,10 +101,10 @@
   }
 
   .dueDate {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-hover);
     border: none;
     border-radius: 3px;
-    color: #6b808c;
+    color: var(--text-secondary);
     cursor: pointer;
     line-height: 20px;
     outline: none;
@@ -115,17 +115,17 @@
     vertical-align: top;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #17394d;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 
   .descriptionButton {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-hover);
     border: none;
     border-radius: 3px;
     display: block;
-    color: #6b808c;
+    color: var(--text-secondary);
     cursor: pointer;
     min-height: 54px;
     outline: none;
@@ -136,8 +136,8 @@
     width: 100%;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #092d42;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 
@@ -147,7 +147,7 @@
   }
 
   .draftChip {
-    background: #f1eee2;
+    background: var(--warning-soft);
     border-radius: 3px;
     color: rgba(0, 0, 0, 0.87);
     font-size: 14px;
@@ -170,7 +170,7 @@
     width: 28px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
+      background: var(--bg-active);
     }
   }
 
@@ -179,7 +179,7 @@
   }
 
   .headerTitle {
-    color: #17394d;
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: bold;
     line-height: 24px;
@@ -204,10 +204,10 @@
 
   .list {
     align-items: center;
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-hover);
     border: none;
     border-radius: 3px;
-    color: #6b808c;
+    color: var(--text-secondary);
     display: flex;
     line-height: 20px;
     outline: none;
@@ -227,8 +227,8 @@
   }
 
   .listHoverable:hover {
-    background: rgba(9, 30, 66, 0.08);
-    color: #17394d;
+    background: var(--bg-active);
+    color: var(--text-primary);
   }
 
   .listIcon {
@@ -241,10 +241,10 @@
 
   .recurrenceChip {
     align-items: center;
-    background: rgba(9, 30, 66, 0.06);
+    background: var(--bg-hover);
     border: none;
     border-radius: 3px;
-    color: #17394d;
+    color: var(--text-primary);
     cursor: pointer;
     display: inline-flex;
     font: inherit;
@@ -255,7 +255,7 @@
     transition: background 120ms ease;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.1);
+      background: var(--bg-active);
     }
   }
 
@@ -264,7 +264,7 @@
   }
 
   .moduleHeader {
-    color: #17394d;
+    color: var(--text-primary);
     font-size: 16px;
     font-weight: bold;
     line-height: 1.5;
@@ -274,7 +274,7 @@
   }
 
   .moduleIcon {
-    color: #17394d;
+    color: var(--text-primary);
     font-size: 17px;
     height: 32px;
     left: -40px;
@@ -293,7 +293,7 @@
   .moreActionsButton {
     background: transparent;
     box-shadow: none;
-    color: #6b808c;
+    color: var(--text-secondary);
     font-weight: normal;
     margin-top: 8px;
     padding: 6px 8px 6px 18px;
@@ -302,8 +302,8 @@
     transition: none;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #092d42;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 
@@ -333,7 +333,7 @@
   }
 
   .text {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-size: 12px;
     font-weight: bold;
     letter-spacing: 0.3px;
@@ -347,7 +347,7 @@
   }
 
   .wrapper {
-    background: #f5f6f7;
+    background: var(--bg-hover);
     border-radius: 4px;
     margin: 0;
   }

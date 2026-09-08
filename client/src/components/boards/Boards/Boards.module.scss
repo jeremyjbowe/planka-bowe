@@ -6,12 +6,12 @@
 :global(#app) {
   .addButton {
     background: transparent;
-    color: #fff;
+    color: var(--text-secondary);
     margin-right: 0;
     vertical-align: top;
 
     &:hover {
-      background: rgba(34, 36, 38, 0.3);
+      background: var(--bg-hover);
     }
   }
 
@@ -52,7 +52,8 @@
   }
 
   .wrapper {
-    border-bottom: 1px solid rgba(0, 0, 0, 0.24);
+    background: var(--bg-surface);
+    border-bottom: 1px solid var(--border-subtle);
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;

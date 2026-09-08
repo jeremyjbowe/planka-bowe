@@ -28,8 +28,8 @@
   }
 
   .wrapperHoverable:hover {
-    background: #d2d8dc;
-    color: #17394d;
+    background: var(--border-strong);
+    color: var(--text-primary);
   }
 
   /* Sizes */

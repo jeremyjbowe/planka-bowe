@@ -13,8 +13,22 @@ import { Popup } from '../../../lib/custom-ui';
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
 import { UserRoles } from '../../../constants/Enums';
+import { useTheme } from '../../../hooks';
+import { ThemePreferences, cycleThemePreference } from '../../../utils/theme';
 
 import styles from './UserActionsStep.module.scss';
+
+const THEME_ICONS = {
+  [ThemePreferences.SYSTEM]: 'adjust',
+  [ThemePreferences.LIGHT]: 'sun outline',
+  [ThemePreferences.DARK]: 'moon outline',
+};
+
+const THEME_LABEL_KEYS = {
+  [ThemePreferences.SYSTEM]: 'common.themeSystem',
+  [ThemePreferences.LIGHT]: 'common.themeLight',
+  [ThemePreferences.DARK]: 'common.themeDark',
+};
 
 const UserActionsStep = React.memo(({ onClose }) => {
   const isLogouting = useSelector(selectors.selectIsLogouting);
@@ -29,6 +43,11 @@ const UserActionsStep = React.memo(({ onClose }) => {
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
+  const { preference } = useTheme();
+
+  const handleThemeClick = useCallback(() => {
+    cycleThemePreference();
+  }, []);
 
   const handleSettingsClick = useCallback(() => {
     dispatch(entryActions.openUserSettingsModal());
@@ -104,16 +123,10 @@ const UserActionsStep = React.memo(({ onClose }) => {
               context: 'title',
             })}
           </Menu.Item>
-          <Menu.Item
-            href="https://planka.app/pro?ref=app-menu"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.proMenuItem}
-          >
-            <Icon name="gem" className={styles.proMenuItemIcon} />
-            {withAdministration
-              ? t('common.upgradeTeamToPro', { context: 'title' })
-              : t('common.discoverPlankaPro', { context: 'title' })}
+          <Menu.Item className={styles.menuItem} onClick={handleThemeClick}>
+            <Icon name={THEME_ICONS[preference]} className={styles.menuItemIcon} />
+            {t('common.theme')}
+            <span className={styles.menuItemValue}>{t(THEME_LABEL_KEYS[preference])}</span>
           </Menu.Item>
           <hr className={styles.divider} />
           <Menu.Item

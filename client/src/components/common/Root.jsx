@@ -13,6 +13,7 @@ import { toaster } from '@gravity-ui/uikit/toaster-singleton';
 import { ReduxRouter } from '../../lib/redux-router';
 
 import Paths from '../../constants/Paths';
+import { useTheme } from '../../hooks';
 import Login from './Login';
 import Core from './Core';
 import GhostError from './GhostError';
@@ -22,14 +23,17 @@ import 'photoswipe/dist/photoswipe.css';
 import '@gravity-ui/uikit/styles/styles.css';
 import '../../lib/custom-ui/styles.css';
 
+import '@fontsource-variable/inter';
 import '../../styles/theme.css';
 import '../../styles.module.scss';
+import '../../styles/app-theme.scss';
 
 function Root({ store, history }) {
+  const { theme } = useTheme();
   return (
     <Provider store={store}>
       <ReduxRouter history={history}>
-        <ThemeProvider theme="light">
+        <ThemeProvider theme={theme}>
           <ToasterProvider toaster={toaster}>
             <Routes>
               <Route path={Paths.LOGIN} element={<Login />} />

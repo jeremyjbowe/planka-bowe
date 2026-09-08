@@ -9,12 +9,14 @@
   }
 
   .addCardButton {
-    background: #dfe3e6;
+    background: transparent;
     border: none;
-    color: #6b808c;
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
     cursor: pointer;
     display: block;
-    fill: #6b808c;
+    fill: var(--text-secondary);
+    transition: background var(--duration-fast) var(--ease-out), color var(--duration-fast) var(--ease-out);
     flex: 1;
     font-weight: normal;
     height: 36px;
@@ -23,9 +25,9 @@
     text-align: left;
 
     &:hover {
-      background: #c3cbd0;
-      color: #17394d;
-      fill: #17394d;
+      background: var(--bg-active);
+      color: var(--text-primary);
+      fill: var(--text-primary);
     }
 
     &.paste {
@@ -65,7 +67,7 @@
     width: 290px;
 
     @supports (-moz-appearance: none) {
-      scrollbar-color: rgba(0, 0, 0, 0.32) transparent;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
       scrollbar-width: thin;
     }
 
@@ -115,7 +117,7 @@
   .headerButton {
     background: none;
     box-shadow: none;
-    color: #798d99;
+    color: var(--text-muted);
     line-height: 32px;
     margin: 0;
     opacity: 0;
@@ -126,21 +128,23 @@
     width: 32px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.13);
-      color: #516b7a;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 
   .headerIcon {
-    color: #798d99;
+    color: var(--text-muted);
     position: absolute;
     right: 8px;
     top: 10px;
   }
 
   .headerName {
-    color: #17394d;
-    font-weight: bold;
+    color: var(--text-primary);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
     line-height: 20px;
     max-height: 256px;
     outline: none;
@@ -161,8 +165,9 @@
   }
 
   .outerWrapper {
-    background: #dfe3e6;
-    border-radius: 3px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
     display: flex;
     flex-direction: column;
     max-height: calc(100vh - 198px);

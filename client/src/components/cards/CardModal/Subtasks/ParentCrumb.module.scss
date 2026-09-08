@@ -4,7 +4,7 @@
     background: transparent;
     border: none;
     border-radius: 6px;
-    color: #6b808c;
+    color: var(--text-secondary);
     cursor: pointer;
     display: inline-flex;
     font: inherit;
@@ -16,8 +16,8 @@
     transition: background 120ms ease, color 120ms ease;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.06);
-      color: #17394d;
+      background: var(--bg-hover);
+      color: var(--text-primary);
     }
   }
 

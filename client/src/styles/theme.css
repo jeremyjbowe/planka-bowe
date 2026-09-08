@@ -73,7 +73,7 @@
   --space-7: 48px;
 
   /* Typography */
-  --font-sans: 'Inter', 'Nunitoga', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  --font-sans: 'Inter Variable', 'Inter', 'Nunitoga', 'Helvetica Neue', Arial, Helvetica, sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
   --text-xs: 11px;
   --text-sm: 12.5px;
@@ -107,8 +107,8 @@
   --accent-softer: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.06);
   --accent-ring: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.35);
 
-  --bg-app: #f6f6f8;
-  --bg-surface: #ffffff;
+  --bg-app: #f4f4f7;
+  --bg-surface: #ebebf0;
   --bg-elevated: #ffffff;
   --bg-overlay: rgba(255, 255, 255, 0.78);
   --bg-hover: rgba(15, 15, 18, 0.035);

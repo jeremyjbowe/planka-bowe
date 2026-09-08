@@ -1,0 +1,523 @@
+/*!
+ * DTP fork — global re-skin.
+ *
+ * Applies the design tokens from theme.css to the app shell and to the
+ * vendored Semantic UI components (modals, popups, inputs, buttons, menus,
+ * dropdowns, checkboxes) so every surface follows the active theme. Loaded
+ * after lib/custom-ui/styles.css and styles.module.scss so it wins on
+ * specificity ties.
+ */
+
+#app {
+  background: var(--bg-app);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  transition: background var(--duration-base) var(--ease-out);
+
+  /* Typography ------------------------------------------------------------ */
+
+  .ui.button,
+  .ui.input > input,
+  .ui.form input,
+  .ui.form textarea,
+  .ui.form .field > label,
+  .ui.menu,
+  .ui.header,
+  .ui.popup,
+  .ui.modal,
+  .ui.dropdown,
+  .ui.dropdown .menu > .item,
+  .ui.label,
+  .ui.message,
+  .ui.table,
+  .ui.checkbox label,
+  .ui.radio.checkbox label,
+  .ui.search > .results,
+  .ui.modal > .header,
+  .react-datepicker {
+    font-family: var(--font-sans);
+  }
+
+  /* Focus rings ------------------------------------------------------------ */
+
+  :focus-visible {
+    outline: 2px solid var(--accent-ring);
+    outline-offset: 2px;
+  }
+
+  input:focus-visible,
+  textarea:focus-visible,
+  .ui.input > input:focus,
+  .ui.form input:focus,
+  .ui.form textarea:focus {
+    outline: none;
+  }
+
+  /* Scrollbars ------------------------------------------------------------- */
+
+  ::-webkit-scrollbar {
+    height: 10px;
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: var(--scrollbar-thumb);
+    border: 2px solid transparent;
+    background-clip: padding-box;
+    border-radius: 999px;
+
+    &:hover,
+    &:window-inactive {
+      background: var(--scrollbar-thumb-hover);
+      background-clip: padding-box;
+    }
+  }
+
+  /* Buttons ---------------------------------------------------------------- */
+
+  .ui.button {
+    background: var(--bg-active);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    font-weight: 600;
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      color var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+
+    &:hover,
+    &:focus {
+      background: var(--border-strong);
+      color: var(--text-primary);
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+
+  .ui.positive.button,
+  .ui.positive.buttons .button,
+  .ui.primary.button {
+    background: var(--accent);
+    color: var(--accent-contrast);
+
+    &:hover,
+    &:focus {
+      background: var(--accent-hover);
+      color: var(--accent-contrast);
+    }
+
+    &:active {
+      background: var(--accent-strong);
+    }
+  }
+
+  .ui.negative.button {
+    background: var(--danger);
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      background: var(--danger);
+      color: #fff;
+      filter: brightness(1.08);
+    }
+  }
+
+  .ui.basic.button {
+    background: transparent;
+    box-shadow: inset 0 0 0 1px var(--border-strong);
+    color: var(--text-primary);
+
+    &:hover,
+    &:focus {
+      background: var(--bg-hover);
+      box-shadow: inset 0 0 0 1px var(--border-strong);
+      color: var(--text-primary);
+    }
+  }
+
+  .ui.basic.positive.button {
+    box-shadow: inset 0 0 0 1px var(--accent);
+    color: var(--accent);
+
+    &:hover,
+    &:focus {
+      background: var(--accent-soft);
+      box-shadow: inset 0 0 0 1px var(--accent);
+      color: var(--accent);
+    }
+  }
+
+  /* Inputs ----------------------------------------------------------------- */
+
+  .ui.input > input,
+  .ui.form input:not([type]),
+  .ui.form input[type='text'],
+  .ui.form input[type='email'],
+  .ui.form input[type='password'],
+  .ui.form input[type='number'],
+  .ui.form input[type='search'],
+  .ui.form input[type='url'],
+  .ui.form textarea,
+  .ui.selection.dropdown {
+    background: var(--bg-input);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      background: var(--bg-input);
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+      color: var(--text-primary);
+    }
+  }
+
+  .ui.input > i.icon,
+  .ui.icon.input > i.icon {
+    color: var(--text-muted);
+    opacity: 1;
+  }
+
+  .ui.form .field > label {
+    color: var(--text-secondary);
+  }
+
+  /* Dropdowns -------------------------------------------------------------- */
+
+  .ui.selection.dropdown,
+  .ui.selection.active.dropdown,
+  .ui.selection.active.dropdown:hover {
+    border-color: var(--border-default);
+  }
+
+  .ui.selection.dropdown .text,
+  .ui.dropdown > .text,
+  .ui.selection.dropdown > .dropdown.icon {
+    color: var(--text-primary);
+  }
+
+  .ui.dropdown .menu,
+  .ui.selection.dropdown .menu,
+  .ui.selection.active.dropdown .menu {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .ui.dropdown .menu > .item,
+  .ui.selection.dropdown .menu > .item {
+    border-top: none;
+    color: var(--text-primary);
+
+    &:hover {
+      background: var(--bg-hover);
+      color: var(--text-primary);
+    }
+  }
+
+  .ui.dropdown .menu .active.item,
+  .ui.dropdown .menu .selected.item {
+    background: var(--accent-soft);
+    color: var(--text-primary);
+  }
+
+  .ui.dropdown .menu > .header {
+    color: var(--text-muted);
+  }
+
+  /* Menus (secondary vertical menus inside popups) ------------------------- */
+
+  .ui.secondary.menu .item,
+  .ui.secondary.vertical.menu .item {
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+  }
+
+  .ui.secondary.menu .item:hover,
+  .ui.secondary.menu .active.item,
+  .ui.secondary.menu .active.item:hover {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+  }
+
+  .ui.secondary.menu .active.item {
+    background: var(--accent-soft);
+  }
+
+  /* Checkboxes & radios ---------------------------------------------------- */
+
+  .ui.checkbox label,
+  .ui.checkbox + label,
+  .ui.radio.checkbox label {
+    color: var(--text-primary);
+  }
+
+  .ui.checkbox label:before,
+  .ui.checkbox input:focus ~ label:before {
+    background: var(--bg-input);
+    border: 1px solid var(--border-strong);
+  }
+
+  .ui.checkbox label:hover::before,
+  .ui.checkbox input:checked ~ label:before,
+  .ui.checkbox input:checked:focus ~ label:before {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .ui.checkbox input:checked ~ label:after,
+  .ui.checkbox input:checked:focus ~ label:after {
+    color: var(--accent-contrast);
+  }
+
+  .ui.toggle.checkbox label:before {
+    background: var(--border-strong);
+  }
+
+  .ui.toggle.checkbox input:checked ~ label:before,
+  .ui.toggle.checkbox input:checked:focus ~ label:before {
+    background: var(--accent) !important;
+  }
+
+  .ui.radio.checkbox label:before {
+    background: var(--bg-input);
+  }
+
+  .ui.radio.checkbox input:checked ~ label:after {
+    background: var(--accent);
+  }
+
+  /* Popups ----------------------------------------------------------------- */
+
+  .ui.popup {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+
+    &::before {
+      background: var(--bg-elevated);
+      box-shadow: -1px -1px 0 0 var(--border-default);
+    }
+
+    > .header,
+    .header {
+      color: var(--text-primary);
+    }
+  }
+
+  /* Modals ----------------------------------------------------------------- */
+
+  .ui.dimmer {
+    backdrop-filter: blur(6px);
+    background: rgba(6, 6, 10, 0.6);
+  }
+
+  .ui.modal {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+
+    > .header,
+    > .content,
+    > .actions {
+      background: transparent;
+      color: var(--text-primary);
+    }
+
+    > .header {
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    > .actions {
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    > .close {
+      color: var(--text-secondary);
+    }
+
+    > :first-child:not(.icon) {
+      border-top-left-radius: var(--radius-lg);
+      border-top-right-radius: var(--radius-lg);
+    }
+
+    > :last-child {
+      border-bottom-left-radius: var(--radius-lg);
+      border-bottom-right-radius: var(--radius-lg);
+    }
+  }
+
+  /* Headers, dividers, misc ------------------------------------------------ */
+
+  .ui.header {
+    color: var(--text-primary);
+  }
+
+  .ui.divider {
+    border-top-color: var(--border-subtle) !important;
+    border-bottom-color: transparent !important;
+    color: var(--text-muted);
+  }
+
+  .ui.horizontal.divider::before,
+  .ui.horizontal.divider::after {
+    background-image: none;
+    background: linear-gradient(var(--border-subtle), var(--border-subtle)) center / 100% 1px
+      no-repeat;
+  }
+
+  .ui.tab.segment,
+  .ui.segment {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--text-primary);
+  }
+
+  .ui.table {
+    background: transparent;
+    border-color: var(--border-subtle);
+    color: var(--text-primary);
+
+    thead th {
+      background: var(--bg-active);
+      border-color: var(--border-subtle);
+      color: var(--text-secondary);
+    }
+
+    td {
+      border-color: var(--border-subtle);
+    }
+  }
+
+  .ui.message {
+    background: var(--bg-active);
+    box-shadow: none;
+    color: var(--text-primary);
+  }
+
+  .ui.progress {
+    background: var(--bg-active);
+
+    .bar {
+      background: var(--accent);
+      transition: width var(--duration-slow) var(--ease-out);
+    }
+
+    &.success .bar {
+      background: var(--success);
+    }
+  }
+
+  .ui.label {
+    background: var(--bg-active);
+    color: var(--text-primary);
+  }
+
+  .ui.loader::after {
+    border-color: var(--accent) transparent transparent;
+  }
+
+  /* react-datepicker ------------------------------------------------------- */
+
+  .react-datepicker,
+  .react-datepicker__header {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+  }
+
+  .react-datepicker__current-month,
+  .react-datepicker-time__header,
+  .react-datepicker__day-name,
+  .react-datepicker__day {
+    color: var(--text-primary);
+  }
+
+  .react-datepicker__day:hover {
+    background: var(--bg-hover);
+  }
+
+  .react-datepicker__day--selected,
+  .react-datepicker__day--keyboard-selected {
+    background: var(--accent);
+    color: var(--accent-contrast);
+  }
+
+  .react-datepicker__day--outside-month {
+    color: var(--text-muted);
+  }
+
+  /* react-mentions / comment box ------------------------------------------- */
+
+  .mentions-input__suggestions {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-default);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+  }
+
+  /* Gravity markdown editor ------------------------------------------------- */
+
+  .g-root {
+    --g-color-base-background: transparent;
+  }
+}
+
+/* Comment / mention inputs (react-mentions) ---------------------------------- */
+
+#app {
+  .mentions-input__control,
+  .mentions-input__input,
+  .mentions-input__highlighter {
+    background: var(--bg-input) !important;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary) !important;
+  }
+
+  .mentions-input__input {
+    border: 1px solid var(--border-default) !important;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      border-color: var(--accent) !important;
+      box-shadow: 0 0 0 3px var(--accent-ring);
+      outline: none;
+    }
+  }
+
+  .mentions-input__suggestions__item--focused {
+    background: var(--bg-hover) !important;
+    color: var(--text-primary) !important;
+  }
+
+  textarea {
+    color: var(--text-primary);
+  }
+}

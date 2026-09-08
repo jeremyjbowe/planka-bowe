@@ -5,7 +5,7 @@
 
 :global {
   #app {
-    background: #22252a;
+    background: var(--bg-app);
     overflow-x: auto;
 
     &::-webkit-scrollbar {
@@ -42,7 +42,7 @@
       border: 0;
       color: #444444;
       font-size: 14px;
-      font-family: "Nunitoga", "Helvetica Neue", Arial, Helvetica, sans-serif;
+      font-family: var(--font-sans);
       padding-bottom: 8px;
     }
 

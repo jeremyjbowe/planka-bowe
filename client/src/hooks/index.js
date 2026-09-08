@@ -13,7 +13,10 @@ import useModal from './use-modal';
 import useClosableModal from './use-closable-modal';
 import usePopupInClosableContext from './use-popup-in-closable-context';
 
+import useTheme from './use-theme';
+
 export {
+  useTheme,
   useNestedRef,
   useField,
   useForm,

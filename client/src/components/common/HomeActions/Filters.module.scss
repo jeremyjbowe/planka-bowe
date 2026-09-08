@@ -16,16 +16,16 @@
   }
 
   .searchInactive {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--text-secondary);
     max-width: 400px;
 
     input {
-      background: rgba(0, 0, 0, 0.24);
+      background: var(--bg-active);
       border: none;
-      color: rgba(255, 255, 255, 0.72) !important;
+      color: var(--text-primary) !important;
 
       &::placeholder {
-        color: rgba(255, 255, 255, 0.72);
+        color: var(--text-secondary);
       }
     }
   }

@@ -13,7 +13,7 @@
     background: transparent;
     border: none;
     border-radius: 6px;
-    color: #17394d;
+    color: var(--text-primary);
     cursor: pointer;
     display: flex;
     font: inherit;
@@ -23,17 +23,17 @@
     width: 100%;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.06);
+      background: var(--bg-hover);
     }
   }
 
   .itemActive {
-    background: rgba(9, 30, 66, 0.08);
+    background: var(--bg-active);
     font-weight: 600;
   }
 
   .itemIcon {
-    color: #6b808c;
+    color: var(--text-secondary);
     margin: 0;
   }
 
@@ -47,12 +47,12 @@
   }
 
   .itemClosed {
-    color: #8b9aa5;
+    color: var(--text-muted);
     text-decoration: line-through;
   }
 
   .itemList {
-    color: #8b9aa5;
+    color: var(--text-muted);
     flex-shrink: 0;
     font-size: 11px;
     max-width: 100px;

@@ -12,7 +12,7 @@
   .message {
     align-content: space-between;
     align-items: center;
-    color: #fff;
+    color: var(--text-primary);
     display: flex;
     flex: 1 1 auto;
     flex-direction: column;

@@ -5,7 +5,7 @@
 
 :global(#app) {
   .hint {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-size: 12px;
     margin: 8px 0 0;
   }
@@ -27,7 +27,7 @@
 
   .actionButton {
     background: transparent;
-    color: #6b808c;
+    color: var(--text-secondary);
     font-weight: normal;
     height: 36px;
     line-height: 24px;

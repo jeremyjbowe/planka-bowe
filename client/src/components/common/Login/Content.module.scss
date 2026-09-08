@@ -22,7 +22,7 @@
   .debugLog {
     border: 1px solid rgba(9, 30, 66, 0.13);
     border-radius: 3px;
-    color: #333;
+    color: var(--text-primary);
     line-height: 1.4;
     margin-top: 16px;
     padding: 8px 12px;
@@ -102,12 +102,12 @@
   }
 
   .poweredByText {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-weight: lighter;
     text-align: center;
   }
 
   .wrapper {
-    background: #fff;
+    background: var(--bg-elevated);
   }
 }

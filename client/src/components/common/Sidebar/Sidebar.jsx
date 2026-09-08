@@ -21,6 +21,8 @@ import entryActions from '../../../entry-actions';
 import Paths from '../../../constants/Paths';
 import { UserRoles } from '../../../constants/Enums';
 import ProjectNode from './ProjectNode';
+import { useTheme } from '../../../hooks';
+import { Themes, cycleThemePreference } from '../../../utils/theme';
 
 import styles from './Sidebar.module.scss';
 
@@ -60,6 +62,7 @@ const Sidebar = React.memo(() => {
 
   const dispatch = useDispatch();
   const [t] = useTranslation();
+  const { theme } = useTheme();
 
   const [isCollapsed, setIsCollapsed] = useState(() =>
     readStorage(COLLAPSED_STORAGE_KEY, window.innerWidth < MOBILE_BREAKPOINT),
@@ -171,6 +174,19 @@ const Sidebar = React.memo(() => {
           </>
         )}
       </nav>
+      <div className={styles.bottom}>
+        <button
+          type="button"
+          className={styles.themeButton}
+          title={t('common.theme')}
+          onClick={cycleThemePreference}
+        >
+          <Icon fitted name={theme === Themes.DARK ? 'moon outline' : 'sun outline'} />
+          {!isCollapsed && (
+            <span>{theme === Themes.DARK ? t('common.themeDark') : t('common.themeLight')}</span>
+          )}
+        </button>
+      </div>
       {canAddProject && (
         <div className={styles.bottom}>
           <button

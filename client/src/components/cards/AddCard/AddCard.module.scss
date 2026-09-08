@@ -13,7 +13,9 @@
   }
 
   .field {
+    background: transparent;
     border: none;
+    color: var(--text-primary);
     margin-bottom: 4px;
     outline: none;
     overflow: hidden;
@@ -23,9 +25,11 @@
   }
 
   .fieldWrapper {
-    background: #fff;
-    border-radius: 3px;
-    box-shadow: 0 1px 0 #ccc;
+    background: var(--bg-elevated);
+    border: 1px solid var(--accent);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 0 0 3px var(--accent-ring);
+    color: var(--text-primary);
     margin-bottom: 8px;
     min-height: 20px;
     padding: 6px 8px 2px;
@@ -34,7 +38,7 @@
   .selectTypeButton {
     background: transparent;
     box-shadow: none;
-    color: #6b808c;
+    color: var(--text-secondary);
     font-weight: normal;
     margin-left: auto;
     margin-right: 0;
@@ -45,8 +49,8 @@
     transition: none;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #092d42;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 

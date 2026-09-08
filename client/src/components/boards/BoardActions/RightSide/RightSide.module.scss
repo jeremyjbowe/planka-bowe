@@ -9,10 +9,10 @@
   }
 
   .button {
-    background: rgba(0, 0, 0, 0.24);
+    background: var(--bg-active);
     border: none;
-    border-radius: 3px;
-    color: #fff;
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
     cursor: pointer;
     display: inline-block;
     font-size: 13px;
@@ -21,7 +21,7 @@
     padding: 5px 12px;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--border-strong);
     }
   }
 
@@ -30,13 +30,18 @@
       border-radius: 0;
 
       &:enabled {
-        background: rgba(0, 0, 0, 0.08);
-        color: rgba(255, 255, 255, 0.72);
+        background: var(--bg-hover);
+        color: var(--text-muted);
 
         &:hover {
-          background: rgba(0, 0, 0, 0.12);
-          color: #fff;
+          background: var(--bg-active);
+          color: var(--text-primary);
         }
+      }
+
+      &:disabled {
+        background: var(--accent-soft);
+        color: var(--accent);
       }
 
       &:first-child {

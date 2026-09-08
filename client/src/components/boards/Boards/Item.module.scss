@@ -7,7 +7,7 @@
   .editButton {
     background: transparent;
     box-shadow: none;
-    color: #fff;
+    color: var(--text-primary);
     line-height: 32px;
     margin-right: 0;
     opacity: 0;
@@ -18,7 +18,7 @@
     width: 32px;
 
     &:hover {
-      background: rgba(255, 255, 255, 0.08);
+      background: var(--bg-hover);
     }
   }
 
@@ -33,14 +33,14 @@
   }
 
   .name {
-    color: rgba(255, 255, 255, 0.72);
+    color: var(--text-secondary);
   }
 
   .notifications {
     background: #eb5a46;
     border: none;
     border-radius: 3px;
-    color: #fff;
+    color: var(--text-primary);
     display: inline-block;
     font-size: 10px;
     line-height: 18px;
@@ -58,10 +58,10 @@
     transition: all 0.1s ease;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.12);
+      background: var(--bg-hover);
 
       .name {
-        color: #fff;
+        color: var(--text-primary);
       }
 
       .editButton {
@@ -71,14 +71,14 @@
   }
 
   .tabActive {
-    background: rgba(0, 0, 0, 0.24);
+    background: var(--accent-soft);
 
     &:hover {
-      background: rgba(0, 0, 0, 0.32);
+      background: var(--accent-soft);
     }
 
     .name {
-      color: #fff;
+      color: var(--text-primary);
       font-weight: bold;
     }
   }

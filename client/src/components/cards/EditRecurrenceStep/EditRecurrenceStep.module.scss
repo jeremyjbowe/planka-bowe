@@ -7,10 +7,10 @@
   }
 
   .preset {
-    background: rgba(9, 30, 66, 0.06);
+    background: var(--bg-hover);
     border: 1px solid transparent;
     border-radius: 6px;
-    color: #17394d;
+    color: var(--text-primary);
     cursor: pointer;
     font: inherit;
     font-size: 13px;
@@ -19,19 +19,19 @@
     transition: background 120ms ease, border-color 120ms ease;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.1);
+      background: var(--bg-active);
     }
   }
 
   .presetActive {
     background: var(--accent-soft);
     border-color: var(--accent);
-    color: #17394d;
+    color: var(--text-primary);
     font-weight: 600;
   }
 
   .text {
-    color: #444;
+    color: var(--text-primary);
     font-size: 12px;
     font-weight: bold;
     margin-bottom: 4px;
@@ -49,7 +49,7 @@
 
   .preview {
     align-items: center;
-    color: #17394d;
+    color: var(--text-primary);
     display: flex;
     font-size: 13px;
     gap: 6px;
@@ -65,7 +65,7 @@
   }
 
   .hint {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-size: 12px;
     line-height: 1.4;
     margin: 8px 0 12px;
@@ -77,8 +77,8 @@
   }
 
   .clearButton {
-    background: rgba(9, 30, 66, 0.06);
+    background: var(--bg-hover);
     box-shadow: none;
-    color: #17394d;
+    color: var(--text-primary);
   }
 }
