@@ -207,6 +207,18 @@
     }
   }
 
+  /* The keyboard cursor, mirroring the accent focus ring on a card. */
+  .trSelected {
+    .td {
+      background: var(--accent-softer);
+      box-shadow: inset 0 1px 0 var(--accent-ring), inset 0 -1px 0 var(--accent-ring);
+    }
+
+    &:hover .td {
+      background: var(--accent-soft);
+    }
+  }
+
   .td {
     border-bottom: 1px solid var(--border-subtle);
     height: 46px;

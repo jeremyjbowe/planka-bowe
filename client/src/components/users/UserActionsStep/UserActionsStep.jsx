@@ -15,6 +15,7 @@ import entryActions from '../../../entry-actions';
 import { UserRoles } from '../../../constants/Enums';
 import { useTheme } from '../../../hooks';
 import { ThemePreferences, cycleThemePreference } from '../../../utils/theme';
+import { openShortcutsOverlay } from '../../../utils/keyboard-navigation';
 
 import styles from './UserActionsStep.module.scss';
 
@@ -48,6 +49,11 @@ const UserActionsStep = React.memo(({ onClose }) => {
   const handleThemeClick = useCallback(() => {
     cycleThemePreference();
   }, []);
+
+  const handleShortcutsClick = useCallback(() => {
+    openShortcutsOverlay();
+    onClose();
+  }, [onClose]);
 
   const handleSettingsClick = useCallback(() => {
     dispatch(entryActions.openUserSettingsModal());
@@ -127,6 +133,13 @@ const UserActionsStep = React.memo(({ onClose }) => {
             <Icon name={THEME_ICONS[preference]} className={styles.menuItemIcon} />
             {t('common.theme')}
             <span className={styles.menuItemValue}>{t(THEME_LABEL_KEYS[preference])}</span>
+          </Menu.Item>
+          <Menu.Item className={styles.menuItem} onClick={handleShortcutsClick}>
+            <Icon name="keyboard outline" className={styles.menuItemIcon} />
+            {t('common.keyboardShortcuts')}
+            <span className={styles.menuItemValue}>
+              <kbd className={styles.menuItemKbd}>?</kbd>
+            </span>
           </Menu.Item>
           <hr className={styles.divider} />
           <Menu.Item

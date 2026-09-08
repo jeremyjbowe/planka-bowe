@@ -392,6 +392,7 @@ const CommandPalette = React.memo(() => {
             <kbd className={styles.kbd}>↓</kbd>
             <kbd className={styles.kbd}>↵</kbd>
             <kbd className={styles.kbd}>{Config.IS_MAC ? '⌘' : 'Ctrl'} K</kbd>
+            <kbd className={styles.kbd}>?</kbd>
           </span>
         </div>
       </div>

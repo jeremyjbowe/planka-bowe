@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { useTranslation } from 'react-i18next';
 import { Button, Icon, Loader } from 'semantic-ui-react';
 
 import selectors from '../../../selectors';
+import { subscribeToAddCardRequests } from '../../../utils/keyboard-navigation';
 import { BoardMembershipRoles } from '../../../constants/Enums';
 import Card from '../../cards/Card';
 import AddCard from '../../cards/AddCard';
@@ -52,6 +53,17 @@ const ListView = React.memo(
     const handleAddCardClose = useCallback(() => {
       setIsAddCardOpened(false);
     }, []);
+
+    // `n` (components/common/KeyboardNavigation) opens the single composer.
+    useEffect(
+      () =>
+        subscribeToAddCardRequests(() => {
+          if (onCardCreate) {
+            setIsAddCardOpened(true);
+          }
+        }),
+      [onCardCreate],
+    );
 
     return (
       <div className={styles.wrapper}>

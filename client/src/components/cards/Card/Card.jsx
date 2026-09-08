@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,11 @@ import { push } from '../../../lib/redux-router';
 import { closePopup, usePopup } from '../../../lib/popup';
 
 import selectors from '../../../selectors';
+import { useIsCardSelected } from '../../../hooks';
+import {
+  registerSelectedCardHandlers,
+  unregisterSelectedCardHandlers,
+} from '../../../utils/keyboard-navigation';
 import { BoardShortcutsContext } from '../../../contexts';
 import Paths from '../../../constants/Paths';
 import ClipboardTypes from '../../../constants/ClipboardTypes';
@@ -56,11 +61,15 @@ const Card = React.memo(({ id, isInline }) => {
     return !!boardMembership && boardMembership.role === BoardMembershipRoles.EDITOR;
   });
 
+  // The keyboard cursor (utils/keyboard-navigation.js) — not Redux state.
+  const isSelected = useIsCardSelected(id);
+
   const dispatch = useDispatch();
   const [isEditNameOpened, setIsEditNameOpened] = useState(false);
   const [, , handleCardMouseEnter, handleCardMouseLeave] = useContext(BoardShortcutsContext);
 
   const actionsPopupRef = useRef(null);
+  const wrapperRef = useRef(null);
 
   const handleClick = useCallback(() => {
     if (document.activeElement) {
@@ -70,21 +79,51 @@ const Card = React.memo(({ id, isInline }) => {
     dispatch(push(Paths.CARDS.replace(':id', id)));
   }, [id, dispatch]);
 
-  const handleMouseEnter = useCallback(() => {
-    handleCardMouseEnter(
-      id,
-      () => {
-        setIsEditNameOpened(true);
-      },
-      (step) => {
-        closePopup();
+  const handleNameEditRequest = useCallback(() => {
+    setIsEditNameOpened(true);
+  }, []);
 
-        actionsPopupRef.current.open({
-          defaultStep: step,
-        });
-      },
-    );
-  }, [id, handleCardMouseEnter]);
+  const handleActionsOpenRequest = useCallback((step) => {
+    closePopup();
+
+    if (actionsPopupRef.current) {
+      actionsPopupRef.current.open({
+        defaultStep: step,
+      });
+    }
+  }, []);
+
+  const handleMouseEnter = useCallback(() => {
+    handleCardMouseEnter(id, handleNameEditRequest, handleActionsOpenRequest);
+  }, [id, handleCardMouseEnter, handleNameEditRequest, handleActionsOpenRequest]);
+
+  /*
+   * While this card is the keyboard cursor it scrolls itself into view and
+   * publishes its imperative callbacks, so the board's hover shortcuts
+   * (rename, archive, members, labels) can act on it with no pointer at all.
+   */
+  useEffect(() => {
+    if (!isSelected) {
+      return undefined;
+    }
+
+    if (wrapperRef.current) {
+      wrapperRef.current.scrollIntoView({
+        block: 'nearest',
+        inline: 'nearest',
+      });
+    }
+
+    registerSelectedCardHandlers({
+      id,
+      editName: handleNameEditRequest,
+      openActions: handleActionsOpenRequest,
+    });
+
+    return () => {
+      unregisterSelectedCardHandlers(id);
+    };
+  }, [id, isSelected, handleNameEditRequest, handleActionsOpenRequest]);
 
   const handleContextMenu = useCallback((event) => {
     if (!actionsPopupRef.current) {
@@ -95,10 +134,6 @@ const Card = React.memo(({ id, isInline }) => {
 
     closePopup();
     actionsPopupRef.current.open();
-  }, []);
-
-  const handleNameEdit = useCallback(() => {
-    setIsEditNameOpened(true);
   }, []);
 
   const handleEditNameClose = useCallback(() => {
@@ -130,7 +165,14 @@ const Card = React.memo(({ id, isInline }) => {
 
   return (
     <div
-      className={classNames(styles.wrapper, isHighlightedAsRecent && styles.wrapperRecent, 'card')}
+      ref={wrapperRef}
+      data-card-id={id}
+      className={classNames(
+        styles.wrapper,
+        isHighlightedAsRecent && styles.wrapperRecent,
+        isSelected && styles.wrapperSelected,
+        'card',
+      )}
     >
       {card.isPersisted ? (
         <>
@@ -150,7 +192,7 @@ const Card = React.memo(({ id, isInline }) => {
             <Content cardId={id} />
           </div>
           {canUseActions && (
-            <CardActionsPopup ref={actionsPopupRef} cardId={id} onNameEdit={handleNameEdit}>
+            <CardActionsPopup ref={actionsPopupRef} cardId={id} onNameEdit={handleNameEditRequest}>
               <Button className={styles.actionsButton}>
                 <Icon fitted name="pencil" size="small" />
               </Button>

@@ -14,9 +14,12 @@ import useClosableModal from './use-closable-modal';
 import usePopupInClosableContext from './use-popup-in-closable-context';
 
 import useTheme from './use-theme';
+import useKeyboardSelection, { useIsCardSelected } from './use-keyboard-selection';
 
 export {
   useTheme,
+  useKeyboardSelection,
+  useIsCardSelected,
   useNestedRef,
   useField,
   useForm,

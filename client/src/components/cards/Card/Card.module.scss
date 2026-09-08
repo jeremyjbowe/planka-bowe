@@ -71,6 +71,15 @@
     }
   }
 
+  /* The keyboard cursor: an accent focus ring, visible over hover as well. */
+  .wrapperSelected,
+  .wrapperSelected:hover {
+    border-color: var(--accent);
+    box-shadow:
+      0 0 0 2px var(--accent-ring),
+      var(--shadow-md);
+  }
+
   :global(.dtpCardDragging) .wrapper {
     border-color: var(--accent);
     box-shadow: var(--shadow-lift), 0 0 0 1px var(--accent-soft);

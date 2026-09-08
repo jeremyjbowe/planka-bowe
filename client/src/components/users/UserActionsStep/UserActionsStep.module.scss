@@ -31,4 +31,15 @@
     float: right;
     font-size: 12px;
   }
+
+  .menuItemKbd {
+    background: var(--bg-active);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xs);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: 11px;
+    line-height: 1;
+    padding: 3px 6px;
+  }
 }

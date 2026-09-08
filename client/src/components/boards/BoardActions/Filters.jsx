@@ -15,6 +15,7 @@ import { Input } from '../../../lib/custom-ui';
 
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
+import { BOARD_SEARCH_INPUT_ID } from '../../../utils/keyboard-navigation';
 import { useNestedRef } from '../../../hooks';
 import UserAvatar from '../../users/UserAvatar';
 import BoardMembershipsStep from '../../board-memberships/BoardMembershipsStep';
@@ -195,6 +196,7 @@ const Filters = React.memo(() => {
       <span className={styles.filter}>
         <Input
           ref={handleSearchFieldRef}
+          id={BOARD_SEARCH_INPUT_ID}
           value={search}
           placeholder={t('common.searchCards')}
           maxLength={128}

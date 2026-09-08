@@ -5,7 +5,7 @@
 
 import upperFirst from 'lodash/upperFirst';
 import camelCase from 'lodash/camelCase';
-import React, { useCallback, useContext, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ import { usePopup } from '../../../lib/popup';
 
 import selectors from '../../../selectors';
 import entryActions from '../../../entry-actions';
+import { subscribeToAddCardRequests } from '../../../utils/keyboard-navigation';
 import { BoardShortcutsContext } from '../../../contexts';
 import DroppableTypes from '../../../constants/DroppableTypes';
 import { BoardMembershipRoles, ListTypes } from '../../../constants/Enums';
@@ -132,6 +133,20 @@ const List = React.memo(({ id, index }) => {
     wrapperRef,
     styles.outerWrapperTransitioning,
     [isFavoritesActive],
+  );
+
+  /*
+   * `n` in components/common/KeyboardNavigation asks a specific list to open
+   * its composer; the list itself owns `addCardPosition`, so it subscribes.
+   */
+  useEffect(
+    () =>
+      subscribeToAddCardRequests((listId) => {
+        if (listId === id) {
+          setAddCardPosition(AddCardPositions.BOTTOM);
+        }
+      }),
+    [id],
   );
 
   useDidUpdate(() => {

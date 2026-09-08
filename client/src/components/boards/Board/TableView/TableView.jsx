@@ -8,7 +8,7 @@
  * board in localStorage so it survives a reload.
  */
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
@@ -25,6 +25,8 @@ import {
 
 import { push } from '../../../../lib/redux-router';
 import selectors from '../../../../selectors';
+import { useKeyboardSelection } from '../../../../hooks';
+import { subscribeToAddCardRequests } from '../../../../utils/keyboard-navigation';
 import Paths from '../../../../constants/Paths';
 import { BoardMembershipRoles, CARD_PRIORITY_RANK } from '../../../../constants/Enums';
 import UserAvatar from '../../../users/UserAvatar';
@@ -257,14 +259,46 @@ const TableView = React.memo(
       };
     }, shallowEqual);
 
+    // The keyboard cursor (utils/keyboard-navigation.js), shared with Card.
+    const selectedCardId = useKeyboardSelection();
+
     const dispatch = useDispatch();
     const [t] = useTranslation();
     const [isAddCardOpened, setIsAddCardOpened] = useState(false);
     const [sorting, setSorting] = useState(() => readStoredSorting(boardId));
 
+    const bodyRef = useRef(null);
+
     useEffect(() => {
       writeStoredSorting(boardId, sorting);
     }, [boardId, sorting]);
+
+    // Rows are not components of their own, so the table scrolls the cursor.
+    useEffect(() => {
+      if (!selectedCardId || !bodyRef.current) {
+        return;
+      }
+
+      const rowElement = bodyRef.current.querySelector(`[data-card-id="${selectedCardId}"]`);
+
+      if (rowElement) {
+        rowElement.scrollIntoView({
+          block: 'nearest',
+          inline: 'nearest',
+        });
+      }
+    }, [selectedCardId]);
+
+    // `n` (components/common/KeyboardNavigation) opens the single composer.
+    useEffect(
+      () =>
+        subscribeToAddCardRequests(() => {
+          if (onCardCreate) {
+            setIsAddCardOpened(true);
+          }
+        }),
+      [onCardCreate],
+    );
 
     const [inViewRef] = useInView({
       threshold: 1,
@@ -469,11 +503,16 @@ const TableView = React.memo(
                 </tr>
               ))}
             </thead>
-            <tbody>
+            <tbody ref={bodyRef}>
               {tableRows.map((row) => (
                 <tr
                   key={row.id}
-                  className={classNames(styles.tr, row.original.isClosed && styles.trClosed)}
+                  data-card-id={row.original.id}
+                  className={classNames(
+                    styles.tr,
+                    row.original.isClosed && styles.trClosed,
+                    row.original.id === selectedCardId && styles.trSelected,
+                  )}
                   onClick={() => handleRowClick(row.original.id)}
                 >
                   {row.getAllCells().map((cell) => (

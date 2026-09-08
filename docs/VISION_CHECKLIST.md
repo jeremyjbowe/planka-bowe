@@ -20,7 +20,7 @@ commit hash) so the loop never repeats finished work.
 
 - [x] Goals / OKR layer linked to cards and boards (model confirmed by Jeremy) — `c9b9368`
 - [x] CalDAV / VTODO sync as iCalendar feeds (export, v1) — `bd46b29`
-- [ ] Keyboard-first navigation (j/k, h/l, shortcuts overlay `?`)
+- [x] Keyboard-first navigation (j/k, h/l, shortcuts overlay `?`) — see commit `feat: keyboard-first navigation`
 - [x] Card cover images + soft color accents — see commit `feat: card color accents`
 - [ ] Improved filtering and saved views
 - [ ] Export/import of boards as JSON

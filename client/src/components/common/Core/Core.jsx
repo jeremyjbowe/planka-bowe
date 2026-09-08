@@ -16,6 +16,7 @@ import Toaster from '../Toaster';
 import Fixed from '../Fixed';
 import Sidebar from '../Sidebar';
 import CommandPalette from '../CommandPalette';
+import KeyboardNavigation from '../KeyboardNavigation';
 import OnboardingModal from '../OnboardingModal';
 import Static from '../Static';
 import AdministrationModal from '../AdministrationModal';
@@ -130,6 +131,7 @@ const Core = React.memo(() => {
           {project && project.backgroundType && <ProjectBackground />}
           <Sidebar />
           <CommandPalette />
+          <KeyboardNavigation />
           <Fixed />
           <Static />
           <OnboardingModal />
