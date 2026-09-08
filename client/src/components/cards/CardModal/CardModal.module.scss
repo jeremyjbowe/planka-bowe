@@ -61,4 +61,12 @@
       top: 7px;
     }
   }
+
+  @media only screen and (width < 768px) {
+    .wrapper,
+    .wrapperStory {
+      margin: 12px auto;
+      width: calc(100% - 24px);
+    }
+  }
 }

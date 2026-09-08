@@ -121,12 +121,12 @@
 
   .ui.negative.button {
     background: var(--danger);
-    color: #fff;
+    color: var(--accent-contrast);
 
     &:hover,
     &:focus {
       background: var(--danger);
-      color: #fff;
+      color: var(--accent-contrast);
       filter: brightness(1.08);
     }
   }
@@ -519,5 +519,23 @@
 
   textarea {
     color: var(--text-primary);
+  }
+}
+
+/* Motion --------------------------------------------------------------- */
+
+/* Respect the OS-level "reduce motion" preference everywhere: kill
+   transitions, animations and smooth scrolling instead of trying to
+   special-case every animated component. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-delay: -1ms !important;
+    animation-duration: 1ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-delay: 0s !important;
+    transition-duration: 1ms !important;
   }
 }

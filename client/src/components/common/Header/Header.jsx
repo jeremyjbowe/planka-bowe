@@ -18,6 +18,7 @@ import Config from '../../../constants/Config';
 import { BoardMembershipRoles, BoardViews, UserRoles } from '../../../constants/Enums';
 import UserAvatar from '../../users/UserAvatar';
 import { openCommandPalette } from '../CommandPalette';
+import { toggleSidebar } from '../Sidebar';
 import UserActionsStep from '../../users/UserActionsStep';
 import NotificationsStep from '../../notifications/NotificationsStep';
 
@@ -99,9 +100,17 @@ const Header = React.memo(() => {
 
   return (
     <div className={styles.wrapper}>
+      <button
+        type="button"
+        className={styles.menuButton}
+        title={t('common.projects')}
+        onClick={toggleSidebar}
+      >
+        <Icon fitted name="bars" />
+      </button>
       {!project && (
         <Link to={Paths.ROOT} className={classNames(styles.logo, styles.title)}>
-          PLANKA
+          <span className={styles.titleText}>PLANKA</span>
         </Link>
       )}
       <Menu inverted size="large" className={styles.menu}>
@@ -130,7 +139,7 @@ const Header = React.memo(() => {
                   ))}
                 </span>
               )}
-              {project.name}
+              <span className={styles.titleText}>{project.name}</span>
               {canEditProject && (
                 <Button className={styles.editButton} onClick={handleProjectSettingsClick}>
                   <Icon fitted name="pencil" size="small" />

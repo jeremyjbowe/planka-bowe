@@ -18,6 +18,10 @@
     padding: 8vh 16px;
     position: fixed;
     z-index: 1001;
+
+    @media only screen and (width < 768px) {
+      padding: 6vh 12px;
+    }
   }
 
   .panel {
@@ -33,6 +37,10 @@
     max-height: 84vh;
     overflow: hidden;
     width: min(860px, 100%);
+
+    @media only screen and (width < 768px) {
+      max-height: 88vh;
+    }
   }
 
   .header {
@@ -146,8 +154,9 @@
     border-top: 1px solid var(--border-subtle);
     color: var(--text-muted);
     display: flex;
+    flex-wrap: wrap;
     font-size: var(--text-xs);
-    gap: var(--space-3);
+    gap: var(--space-2) var(--space-3);
     justify-content: space-between;
     line-height: 1.4;
     padding: var(--space-2) var(--space-4);

@@ -14,6 +14,10 @@
     padding-top: 12vh;
     position: fixed;
     z-index: 1000;
+
+    @media only screen and (width < 768px) {
+      padding: 8vh 12px 12px;
+    }
   }
 
   .panel {
@@ -29,6 +33,11 @@
     max-height: 70vh;
     overflow: hidden;
     width: min(680px, calc(100vw - 32px));
+
+    @media only screen and (width < 768px) {
+      max-height: 76vh;
+      width: 100%;
+    }
   }
 
   .inputRow {
@@ -216,8 +225,9 @@
     border-top: 1px solid var(--border-subtle);
     color: var(--text-muted);
     display: flex;
+    flex-wrap: wrap;
     font-size: var(--text-xs);
-    gap: var(--space-3);
+    gap: var(--space-2) var(--space-3);
     justify-content: space-between;
     line-height: 1.4;
     padding: var(--space-2) var(--space-4);

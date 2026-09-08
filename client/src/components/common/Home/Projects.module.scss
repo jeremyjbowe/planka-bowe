@@ -57,17 +57,21 @@
   }
 
   .card {
-    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1), 0 6px 12px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-sm);
     height: 150px;
     transition: box-shadow 0.2s ease;
 
     &:hover {
-      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.1), 0 32px 64px rgba(0, 0, 0, 0.1);
+      box-shadow: var(--shadow-lg);
     }
   }
 
   .column {
-    @media only screen and (width < 840px) {
+    @media only screen and (width < 480px) {
+      width: 100% !important;
+    }
+
+    @media only screen and (480px <= width < 840px) {
       width: 50% !important;
     }
 

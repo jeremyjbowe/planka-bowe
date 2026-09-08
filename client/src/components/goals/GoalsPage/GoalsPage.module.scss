@@ -216,4 +216,42 @@
     flex-shrink: 0;
     font-size: var(--text-xs);
   }
+
+  @media only screen and (width < 768px) {
+    .wrapper {
+      padding: var(--space-3) var(--space-3) var(--space-6);
+    }
+
+    .header {
+      flex-direction: column;
+    }
+
+    .addForm {
+      flex-wrap: wrap;
+    }
+
+    .addInput {
+      flex-basis: 100%;
+    }
+
+    .addDate {
+      flex: 1;
+      width: auto;
+    }
+
+    .rowMain {
+      flex-wrap: wrap;
+      row-gap: var(--space-1);
+    }
+
+    .rowName {
+      flex-basis: 100%;
+      overflow: visible;
+      white-space: normal;
+    }
+
+    .rowProgress {
+      padding-left: 0;
+    }
+  }
 }

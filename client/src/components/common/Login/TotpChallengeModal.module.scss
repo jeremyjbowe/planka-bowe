@@ -5,7 +5,7 @@
 
 :global(#app) {
   .intro {
-    color: #444444;
+    color: var(--text-secondary);
     margin-bottom: 16px;
   }
 
