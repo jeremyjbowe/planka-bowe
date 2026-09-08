@@ -161,3 +161,21 @@ client and `Board.Views` on the server (no DB constraint exists on
 - Two browser tabs on the same board: an edit in one appears in the other
   without refresh.
 - The feature's acceptance test from the brief passes in the browser.
+
+## 5. Status (2026-09-08)
+
+All eight must-have features shipped, one commit each, acceptance tests
+passed in the browser against PostgreSQL (see the commit messages for the
+exact verification). High-value items not started: Goals/OKRs (schema to be
+agreed first), CalDAV/VTODO, keyboard-first navigation overlay, cover image
+accents, saved views, JSON export/import.
+
+Testing notes for future sessions:
+
+- `scripts/seed-demo-data.mjs` seeds a demo workspace through the REST API.
+- The browser automation used here could not deliver a native Enter key to
+  React inputs; the code paths were verified with real `keydown` events and
+  by clicking the equivalent buttons. Real keyboards are unaffected.
+- Logging out and back in inside the same hot-reloaded tab can break the
+  sails.io socket ("Cannot change value of `url` while socket is
+  connected"); reload the tab. This is a dev-only artifact.

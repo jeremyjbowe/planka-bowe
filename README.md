@@ -1,67 +1,190 @@
-<div align="center">
+# PLANKA — DTP edition
 
-  ![Logo](https://raw.githubusercontent.com/plankanban/planka/master/assets/logo.png)
+A premium, self-hosted project & goals tracker built on top of
+[Planka](https://github.com/plankanban/planka) 2.2. Everything Planka does
+(real-time Kanban, markdown cards, checklists, time tracking, attachments,
+comments, OIDC, notifications) still works; on top of it this fork adds the
+views, structure and polish of modern tools.
 
-  # PLANKA
+> This is a downstream fork maintained by DTP. It is not intended as a pull
+> request to upstream. Upstream's license (see `LICENSE.md`) applies.
 
-  _Project mastering driven by fun_
+## What's new
 
-  ![Version](https://img.shields.io/github/package-json/v/plankanban/planka?style=flat-square) [![Docker Pulls](https://img.shields.io/badge/docker_pulls-8M%2B-%23066da5?style=flat-square&color=red)](https://github.com/plankanban/planka/pkgs/container/planka) [![Contributors](https://img.shields.io/github/contributors/plankanban/planka?style=flat-square&color=blue)](https://github.com/plankanban/planka/graphs/contributors) [![Chat](https://img.shields.io/discord/1041440072953765979?style=flat-square&logo=discord&logoColor=white)](https://discord.gg/WqqYNd7Jvt)
+| Area | Feature |
+|---|---|
+| Views | **Table view** (TanStack Table) with sortable Title, List, Members, Labels, Due date, Priority, Subtasks and Created columns. Sorting is remembered per board. |
+| Views | **Timeline view** (frappe-gantt): cards with a due date are bars; drag a bar or its edge to reschedule. Unscheduled cards sit in a side panel. Day / Week / Month zoom. |
+| Structure | **Subtasks**: a card can have a parent card. Subtasks are full cards (own list, members, labels, due date, checklists) and show as a live progress line ("2/5") on the parent. Checklists are unchanged. |
+| Structure | **Hierarchical projects**: projects can nest inside projects. A collapsible sidebar renders the tree; a sub-project's boards only appear when its parent is expanded. |
+| Automation | **Recurring cards** (RFC 5545 RRULE): completing a recurring card creates the next occurrence with the same fields and the next due date. Duplicate-safe by design (atomic claim + interval job as a safety net). |
+| Speed | **Quick Add / command palette** (`Cmd/Ctrl + K`): create cards from a sentence — `Fix invoice bug @jeremy #billing !high tomorrow` — and jump to any project, board or card. Client-side search over the data already in the browser. |
+| Fields | **Priority** (low / medium / high / urgent) on cards, with chips, an editor and a Table column. |
+| Look | **Soft dark theme by default, light theme on request or by OS preference.** Design tokens, Inter, refined focus rings, custom scrollbars, hover lifts, drag ghosts, glass modals. |
+| First run | **Empty states everywhere and a 30-second onboarding** that creates a project, a board and template lists in one click. |
 
-  [Install](https://docs.planka.cloud/docs/installation/docker/production-version/) ·  [Demo](https://planka.app) · [Docs](https://docs.planka.cloud/docs/welcome/) · [API](https://plankanban.github.io/planka/swagger-ui/) · [Cloud](https://planka.app/pricing) · [Pro version](https://planka.app/pro)
+All views read from the same normalized redux-orm store, so anything that
+changes anywhere (including by another user over the socket) updates live in
+every view without extra requests.
 
-  ![Demo](https://raw.githubusercontent.com/plankanban/planka/master/assets/demo.gif)
+## Quick start (Docker, production)
 
-</div>
+Requirements: Docker with Compose v2.
 
-## Key Features
+```bash
+git clone <this repository> planka && cd planka
+# 1. Set a real secret (required)
+sed -i.bak "s/SECRET_KEY=notsecretkey/SECRET_KEY=$(openssl rand -hex 32)/" docker-compose.yml
+# 2. Set the URL your users will open
+sed -i.bak "s#BASE_URL=http://localhost:3000#BASE_URL=https://tasks.example.com#" docker-compose.yml
+# 3. Build the fork image and start everything (app + PostgreSQL)
+docker compose up -d --build
+```
 
-- **Collaborative Kanban Boards:** Create projects, boards, lists, cards, and manage tasks with an intuitive drag-and-drop interface
-- **Real-Time Updates:** Instant syncing across all users, no refresh needed
-- **Rich Markdown Support:** Write beautifully formatted card descriptions with a powerful markdown editor
-- **Flexible Notifications:** Get alerts through 100+ providers, fully customizable to your workflow
-- **Multilingual & Easy to Translate:** Full internationalization support for a global audience
+Open the app on port 3000 (or your reverse-proxied URL). The first admin is
+created from the `DEFAULT_ADMIN_*` variables in `docker-compose.yml`
+(uncomment them before the first start), or with
 
-## How to Deploy
+```bash
+docker compose exec planka npm run db:create-admin-user
+```
 
-PLANKA is easy to install using multiple methods - learn more in the [installation guide](https://docs.planka.cloud/docs/welcome/).
+Database migrations run automatically on start (`start.sh` runs
+`db:upgrade`). Data lives in the `db-data` and `data` volumes. Back up with
+`./docker-backup.sh`, restore with `./docker-restore.sh` (unchanged from
+upstream).
 
-For configuration and environment settings, see the [configuration section](https://docs.planka.cloud/docs/category/configuration/).
+The image is built from this repository (`build: .` in `docker-compose.yml`),
+so the fork's features are what you get; `docker compose build` again after
+pulling changes.
 
-Interested in a hosted or [Pro version](https://planka.app/pro) of PLANKA? Check out the pricing on our [website](https://planka.app/pricing).
+## Local development
 
-## Notes App
+Requirements: Node 22+ (24 recommended, matches the Docker image), Python 3
+(used by the server's `postinstall` for the notification providers), Docker
+for PostgreSQL or a local PostgreSQL 16.
 
-A testing version of the Notes app is now available on multiple platforms:
+```bash
+# PostgreSQL
+docker run -d --name planka-pg -e POSTGRES_DB=planka \
+  -e POSTGRES_HOST_AUTH_METHOD=trust -p 5432:5432 postgres:16-alpine
 
-- **iOS:** Join the [TestFlight](https://testflight.apple.com/join/5eJqTaJW) to try the app
-- **Windows & Android:** Download the app [here](https://planka-notes.hillerdaniel.de)
+# Dependencies for root, server and client
+npm install
 
-## Contact
+# Server environment
+cp server/.env.sample server/.env
+# uncomment DEFAULT_ADMIN_* in server/.env to get a first admin (demo/demo)
 
-For any security issues, please do not create a public issue on GitHub - instead, report it privately by emailing [security@planka.group](mailto:security@planka.group).
+# Migrate + seed, then start both dev servers
+npm run server:db:init
+npm start            # server on :1337, client (Vite) on :3000
+```
 
-**Note:** We do NOT offer any public support via email, please use GitHub.
+Useful extras:
 
-**Join our community:** Get help, share ideas, or contribute on our [Discord server](https://discord.gg/WqqYNd7Jvt).
+- `node scripts/seed-demo-data.mjs` fills a running instance with a demo
+  project, board, labels, members and cards (uses the demo admin).
+- `npm run lint` runs ESLint for both packages (the pre-commit hook does too).
+- `docker compose -f docker-compose-dev.yml up` is upstream's all-in-Docker
+  dev setup and still works.
 
-## License
+## Using the new features
 
-PLANKA is [fair-code](https://faircode.io) distributed under the [Fair Use License](https://github.com/plankanban/planka/blob/master/LICENSES/PLANKA%20Community%20License%20EN.md) and [PLANKA Pro/Enterprise License](https://github.com/plankanban/planka/blob/master/LICENSES/PLANKA%20Commercial%20License%20EN.md).
+- **Switch views** with the icons at the right of the board header:
+  Kanban, Grid, List, Table, Timeline. Board settings → Preferences sets the
+  default view per board.
+- **Subtasks**: open a card → *Subtasks* section → *Add subtask* (creates a
+  child card in the same list) or *Link existing card*. Tick a subtask to
+  complete it. The sidebar action *Parent card* makes the current card a
+  subtask of another; a breadcrumb above the title leads back to the parent.
+- **Recurring cards**: open a card → *Repeat* → pick a preset or type an
+  RRULE (`FREQ=WEEKLY;BYDAY=MO,WE`). When the card is completed (moved to a
+  closed list or ticked off), the next occurrence is created at the top of
+  the board's first active list.
+- **Priority**: open a card → *Priority*, or use `!high` in Quick Add.
+- **Sub-projects**: Project settings → *Parent project*. You need to manage
+  both projects. Projects appear as a tree in the sidebar.
+- **Quick Add**: press `Cmd/Ctrl + K` anywhere (or click the search box in
+  the header). Tokens: `@user` (name or username of a board member),
+  `#label` (board label), `!low|medium|high|urgent` (or `p0`–`p3`),
+  `~project` (creates in that project's first board), and natural dates
+  such as `tomorrow`, `next friday 3pm`, `in 2 weeks`. Without tokens the
+  same box searches projects, boards and cards.
+- **Theme**: bottom of the sidebar or user menu → *Theme* cycles
+  System / Light / Dark.
 
-- **Source Available:** The source code is always visible
-- **Self-Hostable:** Deploy and host it anywhere
-- **Extensible:** Customize with your own functionality
-- **Enterprise Licenses:** Available for additional features and support
+## Customizing the accent color and theme
 
-For more details, check the [License Guide](https://github.com/plankanban/planka/blob/master/LICENSES/PLANKA%20License%20Guide%20EN.md).
+Everything visual reads CSS custom properties from
+`client/src/styles/theme.css`.
 
-## Contributing
+- **Accent**: change the three values at the top of `:root` —
+  `--accent-h`, `--accent-s`, `--accent-l` (HSL). Every accent shade
+  (hover, strong, soft backgrounds, focus ring) is derived from them. For a
+  teal accent, for example: `--accent-h: 174; --accent-s: 62%; --accent-l: 47%;`
+- **Surfaces, text, borders, status colors, shadows, radii, spacing,
+  typography and motion** are all tokens in the same file. The dark palette
+  lives on `:root`; the light palette overrides only what differs under
+  `[data-theme='light']`.
+- **Default theme**: `client/src/utils/theme.js` resolves the user's
+  preference. `resolveTheme()` returns dark unless the OS asks for light;
+  flip that condition if you prefer light by default.
+- **Semantic UI surfaces** (buttons, inputs, dropdowns, popups, modals) are
+  re-skinned from tokens in `client/src/styles/app-theme.scss`. Component
+  styles use tokens via `var(--…)` in their `*.module.scss` files.
 
-Found a bug or have a feature request? Check out our [Contributing Guide](https://github.com/plankanban/planka/blob/master/CONTRIBUTING.md) to get started.
+## Architecture notes for future (AI-assisted) development
 
-For setting up the project locally, see the [development section](https://docs.planka.cloud/docs/category/development/).
+Read `docs/IMPLEMENTATION_PLAN.md` first: it maps the codebase, records the
+schema decisions and lists the exact files that own each concern.
 
-**Thanks to all our contributors!**
+Conventions that keep the codebase predictable:
 
-[![Contributors](https://contrib.rocks/image?repo=plankanban/planka)](https://github.com/plankanban/planka/graphs/contributors)
+- **One data path.** UI dispatches `client/src/entry-actions/*`; sagas in
+  `client/src/sagas/core/services/*` call `client/src/api/*` and dispatch
+  `client/src/actions/*`; redux-orm models in `client/src/models/*` reduce
+  them. Socket events arrive through `sagas/core/watchers/socket.js` and go
+  down the same reducers. New views must select from the ORM
+  (`client/src/selectors/*`) and never keep their own copy of cards.
+- **New card field checklist**: Knex migration in `server/db/migrations` →
+  attribute in `server/api/models/Card.js` → input validation in
+  `server/api/controllers/cards/{create,update}.js` → business rules in
+  `server/api/helpers/cards/update-one.js` → `client/src/models/Card.js`
+  field → UI. `priority` and `recurrenceRule` are complete examples.
+- **Self references** (`card.parent_card_id`, `project.parent_project_id`)
+  are plain indexed columns, like every reference in Planka (there are no
+  DB-level foreign keys; `db/clean-orphaned-records.js` exists for that
+  reason). Cycle guards live in the controllers.
+- **Background jobs** are Sails hooks with an interval
+  (`server/api/hooks/recurrence`, modelled on `hooks/watcher`). Make them
+  idempotent with a conditional `UPDATE … RETURNING` claim, as the
+  recurrence spawner does, so inline triggers and the interval can coexist.
+- **Sagas that `call` other sagas** must not leave forks behind:
+  `createBoard`/`createCard` cancel their watcher forks before returning
+  (see the commit history for why).
+- **i18n**: add keys to `client/src/locales/en-US/core.js` under `common`
+  or `action`; other locales fall back to English.
+- **Lint before committing**; the Husky pre-commit hook rejects unused
+  `eslint-disable` directives.
+
+### Deliberate v1 decisions and known limits
+
+- Command-palette search is client-side over the data already loaded:
+  projects and boards are always complete, cards cover the boards visited in
+  this session. A server search endpoint was deliberately not added; add one
+  (and flag it) only if real data volume makes the client-side filter slow.
+- Timeline bars span the due date's day (Planka cards have no start date).
+- Recurrence creates the next occurrence when a card closes; reopening and
+  re-closing the same card does not spawn again.
+- `~project` in Quick Add creates in the project's first board and fetches
+  that board's lists on demand if they are not loaded.
+- Not yet built from the high-value list: Goals/OKRs (needs a schema
+  agreement first), CalDAV, keyboard-first navigation overlay, cover image
+  accents, saved views, JSON export/import.
+
+## Upstream documentation
+
+Configuration variables, OIDC, S3 storage, SMTP, Apprise notifications and
+the REST API are unchanged; see the upstream docs at
+<https://docs.planka.cloud>.
