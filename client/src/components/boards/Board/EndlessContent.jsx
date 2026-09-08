@@ -12,6 +12,7 @@ import { BoardViews } from '../../../constants/Enums';
 import GridView from './GridView';
 import ListView from './ListView';
 import TableView from './TableView';
+import TimelineView from './TimelineView';
 
 const EndlessContent = React.memo(() => {
   const board = useSelector(selectors.selectCurrentBoard);
@@ -56,6 +57,9 @@ const EndlessContent = React.memo(() => {
       break;
     case BoardViews.TABLE:
       View = TableView;
+      break;
+    case BoardViews.TIMELINE:
+      View = TimelineView;
       break;
     default:
   }

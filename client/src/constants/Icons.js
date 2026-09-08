@@ -50,6 +50,7 @@ export const BoardViewIcons = {
   [BoardViews.GRID]: 'th',
   [BoardViews.LIST]: 'unordered list',
   [BoardViews.TABLE]: 'table',
+  [BoardViews.TIMELINE]: 'align left',
 };
 
 export const BoardContextIcons = {
