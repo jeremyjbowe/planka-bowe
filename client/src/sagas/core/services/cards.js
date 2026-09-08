@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import { call, fork, join, put, race, select, take } from 'redux-saga/effects';
+import { call, cancel, fork, join, put, race, select, take } from 'redux-saga/effects';
 import toast from 'react-hot-toast';
 import { LOCATION_CHANGE_HANDLE } from '../../../lib/redux-router';
 
@@ -171,6 +171,11 @@ export function* createCard(listId, data, index, autoOpen) {
 
   if (watchForCreateCardActionTask && watchForCreateCardActionTask.isRunning()) {
     yield call(goToCard, card.id);
+  }
+
+  // DTP fork: see createBoard — never leave a dangling fork behind a `call`.
+  if (watchForCreateCardActionTask && watchForCreateCardActionTask.isRunning()) {
+    yield cancel(watchForCreateCardActionTask);
   }
 
   return card;

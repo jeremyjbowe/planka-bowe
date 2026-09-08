@@ -3,7 +3,7 @@
  * Licensed under the Fair Use License: https://github.com/plankanban/planka/blob/master/LICENSE.md
  */
 
-import { call, fork, put, select, take } from 'redux-saga/effects';
+import { call, cancel, fork, put, select, take } from 'redux-saga/effects';
 
 import { goToBoard, goToProject } from './router';
 import { openModal } from './modals';
@@ -15,7 +15,11 @@ import { createLocalId } from '../../../utils/local-id';
 import ActionTypes from '../../../constants/ActionTypes';
 import ModalTypes from '../../../constants/ModalTypes';
 
-export function* createBoard(projectId, { import: boardImport, ...data }) {
+export function* createBoard(
+  projectId,
+  { import: boardImport, ...data },
+  { openSettings = true } = {},
+) {
   const localId = yield call(createLocalId);
 
   const nextData = {
@@ -58,18 +62,29 @@ export function* createBoard(projectId, { import: boardImport, ...data }) {
       : call(request, api.createBoard, projectId, nextData));
   } catch (error) {
     yield put(actions.createBoard.failure(localId, error));
-    return;
+    return null;
   }
 
   yield put(actions.createBoard.success(localId, board, boardMemberships));
 
   if (watchForCreateBoardActionTask.isRunning()) {
     yield call(goToBoard, board.id);
-    yield call(openModal, ModalTypes.BOARD_SETTINGS, {
-      id: board.id,
-      openPreferences: true,
-    });
+
+    if (openSettings) {
+      yield call(openModal, ModalTypes.BOARD_SETTINGS, {
+        id: board.id,
+        openPreferences: true,
+      });
+    }
   }
+
+  // DTP fork: a saga only finishes once its forks do, so callers that `call`
+  // this generator (onboarding) would hang on the watcher above forever.
+  if (watchForCreateBoardActionTask.isRunning()) {
+    yield cancel(watchForCreateBoardActionTask);
+  }
+
+  return board;
 }
 
 export function* createBoardInCurrentProject(data) {

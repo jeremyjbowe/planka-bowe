@@ -6,7 +6,7 @@
 import React, { useRef } from 'react';
 import classNames from 'classnames';
 import { useSelector } from 'react-redux';
-import { useTranslation, Trans } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 import { Button, Icon, Loader } from 'semantic-ui-react';
 import { useTransitioning } from '../../../lib/hooks';
 import { usePopup } from '../../../lib/popup';
@@ -17,6 +17,7 @@ import Home from '../Home';
 import GhostError from '../GhostError';
 import Board from '../../boards/Board';
 import AddBoardStep from '../../boards/AddBoardStep';
+import EmptyState from '../EmptyState';
 
 import styles from './Static.module.scss';
 
@@ -66,23 +67,21 @@ const Static = React.memo(() => {
 
     contentNode = (
       <div className={styles.message}>
-        <Icon inverted name="hand point up outline" size="huge" className={styles.messageIcon} />
-        <h1 className={styles.messageTitle}>
-          {t('common.openBoard', {
-            context: 'title',
-          })}
-        </h1>
-        <div className={styles.messageContent}>
-          <Trans i18nKey="common.createNewOneOrSelectExistingOne" />
-        </div>
-        {canAddBoard && (
-          <AddBoardPopup>
-            <Button basic positive size="large" className={styles.button}>
-              <Icon name="plus" />
-              {t('action.createBoard')}
-            </Button>
-          </AddBoardPopup>
-        )}
+        <EmptyState
+          size="large"
+          icon="columns"
+          title={t('common.noBoardsYet')}
+          hint={canAddBoard ? t('common.noBoardsHintManager') : t('common.noBoardsHintMember')}
+        >
+          {canAddBoard && (
+            <AddBoardPopup>
+              <Button positive size="large" className={styles.button}>
+                <Icon name="plus" />
+                {t('action.createBoard')}
+              </Button>
+            </AddBoardPopup>
+          )}
+        </EmptyState>
       </div>
     );
   } else if (board.isFetching) {

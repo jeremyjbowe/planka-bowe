@@ -43,6 +43,11 @@
     vertical-align: top;
   }
 
+  .emptyState {
+    margin: var(--space-6) auto var(--space-2);
+    max-width: 560px;
+  }
+
   .list {
     margin-right: 8px;
     width: 272px;

@@ -429,6 +429,35 @@ export default {
       themeSystem: 'System',
       themeLight: 'Light',
       themeDark: 'Dark',
+      boardIsEmpty: 'This board is empty',
+      boardIsEmptyHintEditor:
+        'Lists are the columns of your board. Start from a template or add your own.',
+      boardIsEmptyHintViewer:
+        'Lists are the columns of your board. An editor can add the first one.',
+      noBoardsYet: 'No boards yet',
+      noBoardsHintManager:
+        'A project holds boards, and boards hold your lists and cards. Create the first one.',
+      noBoardsHintMember: 'Ask a project manager to create a board and add you to it.',
+      noCardsYet: 'No cards yet',
+      noProjectsHintOwner: 'Projects group your boards. Create one to start planning.',
+      noProjectsHintMember: 'You will see projects here once someone adds you to a board.',
+      noProjectsMatch: 'No projects match',
+      noProjectsMatchHint: 'Try another search or show hidden projects.',
+      onboardingBoardName: 'First board',
+      onboardingCreate: 'Create workspace',
+      onboardingDefaultBoardName: 'Tasks',
+      onboardingDefaultProjectName: 'My workspace',
+      onboardingEyebrow: 'Welcome',
+      onboardingProjectName: 'Project name',
+      onboardingSkip: 'Skip for now',
+      onboardingSubtitle:
+        'Name your first project, pick how the board is laid out, and you are ready to plan. Takes about thirty seconds.',
+      onboardingTemplate: 'Board template',
+      onboardingTemplatePersonal: 'Personal',
+      onboardingTemplateSimple: 'Simple',
+      onboardingTemplateSprint: 'Sprint',
+      onboardingTip: 'searches or creates anything, from anywhere.',
+      onboardingTitle: "Hi {{name}}, let's set up your workspace",
       table: 'Table',
       barsOnACalendarForCardsWithDueDates: 'Bars on a calendar for cards with due dates.',
       timeline: 'Timeline',
@@ -498,6 +527,7 @@ export default {
     },
 
     action: {
+      useStarterLists: 'Use starter lists',
       activateUser: 'Activate user',
       activateUser_title: 'Activate User',
       addAnotherCard: 'Add another card',

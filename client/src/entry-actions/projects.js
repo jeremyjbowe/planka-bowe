@@ -33,6 +33,17 @@ const createProject = (data) => ({
   },
 });
 
+/*
+ * DTP fork — onboarding: create a project, a board and its lists in one go.
+ * data: { projectName, boardName, lists: [{ name, type }] }
+ */
+const bootstrapWorkspace = (data) => ({
+  type: EntryActionTypes.WORKSPACE_BOOTSTRAP,
+  payload: {
+    data,
+  },
+});
+
 const handleProjectCreate = (project) => ({
   type: EntryActionTypes.PROJECT_CREATE_HANDLE,
   payload: {
@@ -79,6 +90,7 @@ export default {
   updateProjectsOrder,
   toggleHiddenProjects,
   createProject,
+  bootstrapWorkspace,
   handleProjectCreate,
   updateProject,
   updateCurrentProject,

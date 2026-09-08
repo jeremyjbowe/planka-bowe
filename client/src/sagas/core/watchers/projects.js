@@ -22,6 +22,9 @@ export default function* projectsWatchers() {
     takeEvery(EntryActionTypes.PROJECT_CREATE, ({ payload: { data } }) =>
       services.createProject(data),
     ),
+    takeEvery(EntryActionTypes.WORKSPACE_BOOTSTRAP, ({ payload: { data } }) =>
+      services.bootstrapWorkspace(data),
+    ),
     takeEvery(EntryActionTypes.PROJECT_CREATE_HANDLE, ({ payload: { project } }) =>
       services.handleProjectCreate(project),
     ),

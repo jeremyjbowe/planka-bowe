@@ -12,8 +12,10 @@ import requests from '../requests';
 import selectors from '../../../selectors';
 import actions from '../../../actions';
 import api from '../../../api';
+import { ProjectTypes, UserRoles } from '../../../constants/Enums';
 import mergeRecords from '../../../utils/merge-records';
-import { UserRoles } from '../../../constants/Enums';
+import { createBoard } from './boards';
+import { createList } from './lists';
 
 export function* searchProjects(value) {
   yield put(actions.searchProjects(value));
@@ -50,11 +52,40 @@ export function* createProject(data) {
     } = yield call(request, api.createProject, data));
   } catch (error) {
     yield put(actions.createProject.failure(error));
-    return;
+    return null;
   }
 
   yield put(actions.createProject.success(project, projectManagers));
   yield call(goToProject, project.id);
+
+  return project;
+}
+
+/*
+ * DTP fork — onboarding. Chains the regular creation sagas so the result is
+ * indistinguishable from a workspace built by hand.
+ */
+export function* bootstrapWorkspace({ projectName, boardName, lists }) {
+  const project = yield call(createProject, {
+    type: ProjectTypes.PRIVATE,
+    name: projectName,
+    description: null,
+  });
+
+  if (!project) {
+    return;
+  }
+
+  const board = yield call(createBoard, project.id, { name: boardName }, { openSettings: false });
+
+  if (!board) {
+    return;
+  }
+
+  // eslint-disable-next-line no-restricted-syntax
+  for (const list of lists) {
+    yield call(createList, board.id, list);
+  }
 }
 
 export function* handleProjectCreate({ id }) {
@@ -302,6 +333,7 @@ export default {
   updateProjectsOrder,
   toggleHiddenProjects,
   createProject,
+  bootstrapWorkspace,
   handleProjectCreate,
   updateProject,
   updateCurrentProject,

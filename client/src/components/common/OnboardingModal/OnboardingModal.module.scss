@@ -1,0 +1,208 @@
+:global(#app) {
+  .overlay {
+    align-items: center;
+    animation: fadeIn var(--duration-base) var(--ease-out);
+    backdrop-filter: blur(8px);
+    background: rgba(8, 8, 12, 0.6);
+    display: flex;
+    inset: 0;
+    justify-content: center;
+    padding: var(--space-4);
+    position: fixed;
+    z-index: 900;
+  }
+
+  .panel {
+    animation: rise var(--duration-slow) var(--ease-spring);
+    backdrop-filter: blur(var(--glass-blur));
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: var(--space-6);
+    width: min(560px, 100%);
+  }
+
+  .eyebrow {
+    color: var(--accent);
+    font-size: var(--text-xs);
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: var(--space-2);
+    text-transform: uppercase;
+  }
+
+  .title {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin: 0 0 var(--space-2);
+  }
+
+  .subtitle {
+    color: var(--text-secondary);
+    font-size: var(--text-md);
+    line-height: 1.5;
+    margin: 0 0 var(--space-5);
+  }
+
+  .label {
+    color: var(--text-secondary);
+    display: block;
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    margin: 0 0 var(--space-1);
+    text-transform: uppercase;
+  }
+
+  .input {
+    background: var(--bg-input);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-primary);
+    display: block;
+    font: inherit;
+    font-size: var(--text-md);
+    margin-bottom: var(--space-4);
+    outline: none;
+    padding: 10px 12px;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      box-shadow var(--duration-fast) var(--ease-out);
+    width: 100%;
+
+    &::placeholder {
+      color: var(--text-muted);
+    }
+
+    &:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-ring);
+    }
+  }
+
+  .templates {
+    display: grid;
+    gap: var(--space-2);
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: var(--space-5);
+
+    @media only screen and (width < 560px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .template {
+    background: var(--bg-hover);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    color: var(--text-primary);
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    font: inherit;
+    gap: 4px;
+    padding: var(--space-3);
+    text-align: left;
+    transition:
+      border-color var(--duration-fast) var(--ease-out),
+      background var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      border-color: var(--border-strong);
+      transform: translateY(-1px);
+    }
+  }
+
+  .templateActive {
+    background: var(--accent-soft);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-ring);
+  }
+
+  .templateIcon {
+    color: var(--accent);
+    font-size: 16px !important;
+    margin: 0 0 4px !important;
+  }
+
+  .templateName {
+    font-size: var(--text-base);
+    font-weight: 600;
+  }
+
+  .templateLists {
+    color: var(--text-muted);
+    font-size: var(--text-xs);
+    line-height: 1.4;
+  }
+
+  .footer {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+
+  .skip {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font: inherit;
+    font-size: var(--text-sm);
+    padding: var(--space-2);
+
+    &:hover {
+      color: var(--text-primary);
+      text-decoration: underline;
+    }
+  }
+
+  .tip {
+    align-items: center;
+    color: var(--text-muted);
+    display: inline-flex;
+    font-size: var(--text-xs);
+    gap: var(--space-2);
+    margin-left: auto;
+  }
+
+  .kbd {
+    background: var(--bg-active);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-xs);
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: var(--text-xs);
+    padding: 3px 6px;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+}

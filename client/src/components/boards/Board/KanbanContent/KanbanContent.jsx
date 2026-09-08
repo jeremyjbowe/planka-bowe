@@ -6,6 +6,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { Button, Icon } from 'semantic-ui-react';
 import { DragDropContext, Droppable } from 'react-beautiful-dnd';
 import { useDidUpdate } from '../../../../lib/hooks';
 import { closePopup } from '../../../../lib/popup';
@@ -14,8 +15,9 @@ import selectors from '../../../../selectors';
 import entryActions from '../../../../entry-actions';
 import parseDndId from '../../../../utils/parse-dnd-id';
 import DroppableTypes from '../../../../constants/DroppableTypes';
-import { BoardMembershipRoles } from '../../../../constants/Enums';
+import { BoardMembershipRoles, ListTypes } from '../../../../constants/Enums';
 import AddList from './AddList';
+import EmptyState from '../../../common/EmptyState';
 import List from '../../../lists/List';
 import PlusMathIcon from '../../../../assets/images/plus-math-icon.svg?react';
 
@@ -78,6 +80,17 @@ const KanbanContent = React.memo(() => {
     },
     [dispatch],
   );
+
+  // DTP fork — empty board: one click creates a starter set of lists
+  const handleUseTemplateClick = useCallback(() => {
+    [
+      { name: 'To do', type: ListTypes.ACTIVE },
+      { name: 'Doing', type: ListTypes.ACTIVE },
+      { name: 'Done', type: ListTypes.CLOSED },
+    ].forEach((list) => {
+      dispatch(entryActions.createListInCurrentBoard(list));
+    });
+  }, [dispatch]);
 
   const handleAddListClick = useCallback(() => {
     setIsAddListOpened(true);
@@ -151,6 +164,30 @@ const KanbanContent = React.memo(() => {
   return (
     // eslint-disable-next-line jsx-a11y/no-static-element-interactions
     <div ref={wrapperRef} className={styles.wrapper} onMouseDown={handleMouseDown}>
+      {listIds.length === 0 && (
+        <div className={styles.emptyState}>
+          <EmptyState
+            icon="columns"
+            title={t('common.boardIsEmpty')}
+            hint={
+              canAddList ? t('common.boardIsEmptyHintEditor') : t('common.boardIsEmptyHintViewer')
+            }
+          >
+            {canAddList && (
+              <>
+                <Button positive onClick={handleUseTemplateClick}>
+                  <Icon name="magic" />
+                  {t('action.useStarterLists')}
+                </Button>
+                <Button basic onClick={handleAddListClick}>
+                  <Icon name="plus" />
+                  {t('action.addList')}
+                </Button>
+              </>
+            )}
+          </EmptyState>
+        </div>
+      )}
       <div>
         <DragDropContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
           <Droppable droppableId="board" type={DroppableTypes.LIST} direction="horizontal">

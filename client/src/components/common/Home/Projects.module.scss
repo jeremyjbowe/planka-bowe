@@ -10,7 +10,7 @@
     border-radius: 4px;
     color: var(--text-muted);
     cursor: pointer;
-    fill: rgba(255, 255, 255, 0.48);
+    fill: var(--text-muted);
     overflow: hidden;
     padding: 0;
     position: relative;
@@ -50,6 +50,7 @@
 
   .addButtonTitleWrapper {
     display: table;
+    position: relative;
     height: 100%;
     padding: 35px 21px;
     width: 100%;

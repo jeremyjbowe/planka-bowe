@@ -61,6 +61,16 @@
     min-height: 1px;
   }
 
+  .emptyCards {
+    border: 1px dashed var(--border-default);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    font-size: var(--text-sm);
+    margin-bottom: 8px;
+    padding: var(--space-3);
+    text-align: center;
+  }
+
   .cardsInnerWrapper {
     overflow-x: hidden;
     overflow-y: auto;

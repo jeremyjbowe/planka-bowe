@@ -16,6 +16,7 @@ import Toaster from '../Toaster';
 import Fixed from '../Fixed';
 import Sidebar from '../Sidebar';
 import CommandPalette from '../CommandPalette';
+import OnboardingModal from '../OnboardingModal';
 import Static from '../Static';
 import AdministrationModal from '../AdministrationModal';
 import AboutModal from '../AboutModal';
@@ -126,6 +127,7 @@ const Core = React.memo(() => {
           <CommandPalette />
           <Fixed />
           <Static />
+          <OnboardingModal />
           {modalNode}
           <AutoLogoutWarningModal />
         </>

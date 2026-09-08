@@ -173,6 +173,9 @@ const List = React.memo(({ id, index }) => {
             {cardIds.map((cardId, cardIndex) => (
               <DraggableCard key={cardId} id={cardId} index={cardIndex} className={styles.card} />
             ))}
+            {cardIds.length === 0 && !addCardPosition && (
+              <div className={styles.emptyCards}>{t('common.noCardsYet')}</div>
+            )}
             {placeholder}
             {addCardPosition === AddCardPositions.BOTTOM && addCardNode}
           </div>
