@@ -5,6 +5,6 @@
 
 :global(#app) {
   .dragging {
-    background: rgba(247, 246, 247, 0.8);
+    background: var(--bg-elevated);
   }
 }

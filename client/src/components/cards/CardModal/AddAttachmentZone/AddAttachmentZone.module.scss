@@ -5,7 +5,8 @@
 
 :global(#app) {
   .dropzone {
-    background: white;
+    background: var(--bg-surface);
+    color: var(--text-primary);
     font-size: 20px;
     font-weight: bold;
     inset: 0;
