@@ -27,6 +27,7 @@ views, structure and polish of modern tools.
 | Speed | **Keyboard-first navigation**: `j`/`k` move between cards, `h`/`l` between lists, `Enter` opens, `n` adds, `/` searches, `1`–`5` switch views, `[`/`]` switch boards, `g h` / `g g` / `g 1-9` jump around, `?` shows the shortcuts overlay. Hover shortcuts from upstream still work and fall back to the keyboard selection. |
 | Look | **Card color accents**: ten soft colors (left bar + tint on the card, stripe on the modal) set from the card's *Color* action; cover images render rounded with a legibility gradient. |
 | Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
+| Look | **Responsive shell**: below 768px the sidebar becomes a drawer behind a hamburger, the header truncates, and every view fits a phone width with horizontal scroll kept inside the Table and Kanban containers. `prefers-reduced-motion` turns animations off. |
 | Portability | **Board export/import as JSON**: the board menu's *Export as JSON* downloads lists, labels, cards (with priority, color, recurrence, parent links, due dates), checklists and custom fields as a versioned document; *Import* on board creation reads it back into any project. |
 
 All views read from the same normalized redux-orm store, so anything that
@@ -62,7 +63,9 @@ upstream).
 
 The image is built from this repository (`build: .` in `docker-compose.yml`),
 so the fork's features are what you get; `docker compose build` again after
-pulling changes.
+pulling changes. The build has been verified end to end: a fresh container
+against `postgres:16-alpine` runs every migration, serves the client and
+lands on the first-login terms step.
 
 ## Local development
 
@@ -92,6 +95,11 @@ Useful extras:
 - `node scripts/seed-demo-data.mjs` fills a running instance with a demo
   project, board, labels, members and cards (uses the demo admin).
 - `npm run lint` runs ESLint for both packages (the pre-commit hook does too).
+- `npm test --prefix client` runs the Jest unit tests for the fork's pure
+  helpers (Quick Add parser, filter predicate, recurrence, keyboard store).
+  `npm test --prefix server` runs the Mocha suite, which lifts Sails on port
+  1337, so stop the dev server first; it includes the iCalendar builder tests
+  in `server/test/utils/calendar-feeds`.
 - `docker compose -f docker-compose-dev.yml up` is upstream's all-in-Docker
   dev setup and still works.
 

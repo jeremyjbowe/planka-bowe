@@ -33,8 +33,8 @@ commit hash) so the loop never repeats finished work.
 - [x] Micro-interactions: drag ghost, hover lifts, animated progress bars, press scale
 - [x] 8px spacing scale, focus rings, custom scrollbars
 - [x] Glassmorphism on command palette and onboarding/goal overlays
-- [ ] Responsive audit: sidebar, board header, Table/Timeline, modals at 375px / 768px widths
-- [ ] Desktop polish audit: every screen in both themes, no leftover upstream light-theme surfaces
+- [x] Responsive audit: sidebar drawer, board header, Table/Timeline, modals at 375px / 768px widths — `02764d5`
+- [x] Desktop polish audit: both themes, upstream hex leftovers replaced with tokens, reduced-motion honoured — `02764d5`
 
 ## Technical / delivery
 
@@ -42,5 +42,5 @@ commit hash) so the loop never repeats finished work.
 - [x] Background jobs added cleanly (recurrence hook)
 - [x] Self-hostable: `docker-compose.yml` builds the fork image; README setup instructions
 - [x] README: setup, new features, accent/theme customization, notes for AI-assisted development
-- [ ] Docker image build verified on a machine with registry access (blocked here: registry unreachable)
-- [ ] Final pass: lint both packages, client + server test suites, two-tab real-time check after the last feature
+- [x] Docker image build verified: `docker build -t planka-dtp .` succeeds (602 MB); a fresh container against `postgres:16-alpine` runs all 29 migrations (fork tables `goal`, `goal_link`, `saved_view` and card columns present), serves the client and reaches the terms-acceptance step on first admin login
+- [x] Final pass: ESLint clean in both packages; client Jest 81 tests / server Mocha 22 tests passing (`6a62d9d`); two-tab real-time check after the last commit: a card created via the API appeared in both open tabs over the socket without a reload

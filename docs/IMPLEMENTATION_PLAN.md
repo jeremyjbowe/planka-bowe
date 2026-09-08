@@ -168,9 +168,21 @@ All eight must-have features shipped, one commit each, acceptance tests
 passed in the browser against PostgreSQL (see the commit messages for the
 exact verification). Goals/OKRs shipped afterwards with the data model
 below. CalDAV/VTODO shipped as read-only iCalendar feeds (section 5.2).
-JSON export/import shipped afterwards (section 5.3).
-High-value items not started: keyboard-first navigation overlay, cover image
-accents, saved views.
+JSON export/import shipped afterwards (section 5.3). Keyboard-first
+navigation (`11773c5`), card color accents (`0909688`) and richer filters with
+saved views (`1d8eb2e`) followed, so every high-value item in the brief is in.
+
+Responsive and polish pass (`02764d5`): the sidebar becomes an off-canvas
+drawer below 768px, the header truncates and gains a hamburger, every new
+screen fits 375px with horizontal scroll contained to Table/Kanban, upstream
+hex leftovers in the touched screens were replaced with theme tokens, and
+`prefers-reduced-motion` is honoured globally.
+
+Docker: `docker build -t planka-dtp .` produces a 602 MB image; a fresh
+container against `postgres:16-alpine` applied all 29 migrations, served the
+client and reached the terms-acceptance step on the first admin login.
+
+See `docs/VISION_CHECKLIST.md` for the item-by-item verification status.
 
 ### 5.1 Goals data model (confirmed 2026-09-08)
 
