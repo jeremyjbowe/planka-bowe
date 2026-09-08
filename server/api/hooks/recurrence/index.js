@@ -35,7 +35,7 @@ module.exports = function defineRecurrenceHook(sails) {
         }
       }
     } catch (error) {
-      sails.log.error('Recurrence: could not load pending cards', error);
+      sails.log.warn(`Recurrence: could not load pending cards (${error.message})`);
     } finally {
       isRunning = false;
     }
@@ -49,9 +49,23 @@ module.exports = function defineRecurrenceHook(sails) {
     async initialize() {
       sails.log.info('Initializing custom hook (`recurrence`)');
 
+      // The test environment runs on sails-disk and lifts/lowers quickly;
+      // there is nothing to spawn there.
+      if (sails.config.environment === 'test') {
+        return;
+      }
+
+      let timeout;
+      let interval;
+
       sails.after('hook:orm:loaded', () => {
-        setTimeout(spawnPendingOccurrences, 5 * 1000);
-        setInterval(spawnPendingOccurrences, INTERVAL_MS);
+        timeout = setTimeout(spawnPendingOccurrences, 5 * 1000);
+        interval = setInterval(spawnPendingOccurrences, INTERVAL_MS);
+      });
+
+      sails.on('lower', () => {
+        clearTimeout(timeout);
+        clearInterval(interval);
       });
     },
   };
