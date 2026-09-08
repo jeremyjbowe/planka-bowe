@@ -1,0 +1,103 @@
+:global(#app) {
+  .swatches {
+    display: grid;
+    gap: 8px;
+    grid-template-columns: repeat(5, 1fr);
+    padding: 4px 0 8px;
+  }
+
+  .swatch {
+    align-items: center;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    display: flex;
+    height: 32px;
+    justify-content: center;
+    padding: 0;
+    transition: transform 85ms ease;
+    width: 32px;
+
+    &:hover {
+      transform: scale(1.08);
+    }
+  }
+
+  .swatchActive {
+    box-shadow: 0 0 0 2px var(--bg-elevated), 0 0 0 4px var(--text-primary);
+  }
+
+  .check {
+    color: #fff;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.4));
+    margin: 0;
+  }
+
+  .noColor {
+    align-items: center;
+    background: transparent;
+    border: none;
+    border-radius: 6px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    font-size: 13px;
+    justify-content: space-between;
+    padding: 6px 8px;
+    text-align: left;
+    width: 100%;
+
+    &:hover {
+      background: var(--bg-hover);
+    }
+
+    .check {
+      color: var(--text-primary);
+    }
+  }
+
+  .noColorActive {
+    background: var(--bg-active);
+  }
+
+  .swatch_berry {
+    background: var(--card-color-berry);
+  }
+
+  .swatch_coral {
+    background: var(--card-color-coral);
+  }
+
+  .swatch_amber {
+    background: var(--card-color-amber);
+  }
+
+  .swatch_lime {
+    background: var(--card-color-lime);
+  }
+
+  .swatch_teal {
+    background: var(--card-color-teal);
+  }
+
+  .swatch_sky {
+    background: var(--card-color-sky);
+  }
+
+  .swatch_indigo {
+    background: var(--card-color-indigo);
+  }
+
+  .swatch_violet {
+    background: var(--card-color-violet);
+  }
+
+  .swatch_slate {
+    background: var(--card-color-slate);
+  }
+
+  .swatch_rose {
+    background: var(--card-color-rose);
+  }
+}

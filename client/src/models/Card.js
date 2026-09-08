@@ -27,6 +27,10 @@ export default class extends BaseModel {
     priority: attr({
       getDefault: () => null,
     }),
+    // DTP fork — card color accent
+    color: attr({
+      getDefault: () => null,
+    }),
     // DTP fork — recurring cards
     recurrenceRule: attr({
       getDefault: () => null,

@@ -74,6 +74,12 @@
  *           nullable: true
  *           description: Priority of the card
  *           example: high
+ *         color:
+ *           type: string
+ *           enum: [berry, coral, amber, lime, teal, sky, indigo, violet, slate, rose]
+ *           nullable: true
+ *           description: Color accent of the card
+ *           example: teal
  *         recurrenceRule:
  *           type: string
  *           nullable: true
@@ -175,9 +181,24 @@ const Priorities = {
   URGENT: 'urgent',
 };
 
+// DTP fork — card color accent
+const Colors = {
+  BERRY: 'berry',
+  CORAL: 'coral',
+  AMBER: 'amber',
+  LIME: 'lime',
+  TEAL: 'teal',
+  SKY: 'sky',
+  INDIGO: 'indigo',
+  VIOLET: 'violet',
+  SLATE: 'slate',
+  ROSE: 'rose',
+};
+
 module.exports = {
   Types,
   Priorities,
+  Colors,
 
   attributes: {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
@@ -232,6 +253,12 @@ module.exports = {
     priority: {
       type: 'string',
       isIn: Object.values(Priorities),
+      allowNull: true,
+    },
+    // DTP fork — card color accent
+    color: {
+      type: 'string',
+      isIn: Object.values(Colors),
       allowNull: true,
     },
     // DTP fork — recurring cards

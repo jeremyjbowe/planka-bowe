@@ -35,6 +35,7 @@ import EditStopwatchStep from '../EditStopwatchStep';
 import EditRecurrenceStep from '../EditRecurrenceStep';
 import EditPriorityStep from '../EditPriorityStep';
 import PriorityChip from '../PriorityChip';
+import EditColorStep from '../EditColorStep';
 import { describeRecurrence } from '../../../utils/recurrence';
 import ExpandableMarkdown from '../../common/ExpandableMarkdown';
 import EditMarkdown from '../../common/EditMarkdown';
@@ -329,6 +330,7 @@ const ProjectContent = React.memo(() => {
   const EditStopwatchPopup = usePopupInClosableContext(EditStopwatchStep);
   const EditRecurrencePopup = usePopupInClosableContext(EditRecurrenceStep);
   const EditPriorityPopup = usePopupInClosableContext(EditPriorityStep);
+  const EditColorPopup = usePopupInClosableContext(EditColorStep);
   const AddTaskListPopup = usePopupInClosableContext(AddTaskListStep);
   const AddAttachmentPopup = usePopupInClosableContext(AddAttachmentStep);
   const AddCustomFieldGroupPopup = usePopupInClosableContext(AddCustomFieldGroupStep);
@@ -336,7 +338,13 @@ const ProjectContent = React.memo(() => {
   const ConfirmationPopup = usePopupInClosableContext(ConfirmationStep);
 
   return (
-    <Grid className={styles.wrapper}>
+    <Grid
+      className={classNames(
+        styles.wrapper,
+        card.color && styles.wrapperWithColorAccent,
+        card.color && styles[`colorAccent_${card.color}`],
+      )}
+    >
       <Grid.Row className={styles.headerPadding}>
         <Grid.Column width={16} className={styles.headerPadding}>
           <div className={styles.headerWrapper}>
@@ -711,6 +719,14 @@ const ProjectContent = React.memo(() => {
                       {t('common.priority')}
                     </Button>
                   </EditPriorityPopup>
+                )}
+                {canEditDueDate && (
+                  <EditColorPopup cardId={card.id}>
+                    <Button fluid className={classNames(styles.actionButton, styles.hidable)}>
+                      <Icon name="paint brush" className={styles.actionIcon} />
+                      {t('common.color')}
+                    </Button>
+                  </EditColorPopup>
                 )}
                 {canEditDueDate && (
                   <EditRecurrencePopup cardId={card.id}>

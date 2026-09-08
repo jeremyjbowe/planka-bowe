@@ -97,6 +97,29 @@
   /* Scrollbars */
   --scrollbar-thumb: rgba(255, 255, 255, 0.14);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.24);
+
+  /* Card color accents (DTP fork). Fixed 10-name palette, see
+     server/api/models/Card.js#Colors / client/src/constants/Enums.js#CardColors. */
+  --card-color-berry: #d946ef;
+  --card-color-berry-soft: rgba(217, 70, 239, 0.14);
+  --card-color-coral: #fb7185;
+  --card-color-coral-soft: rgba(251, 113, 133, 0.14);
+  --card-color-amber: #f59e0b;
+  --card-color-amber-soft: rgba(245, 158, 11, 0.14);
+  --card-color-lime: #84cc16;
+  --card-color-lime-soft: rgba(132, 204, 22, 0.14);
+  --card-color-teal: #14b8a6;
+  --card-color-teal-soft: rgba(20, 184, 166, 0.14);
+  --card-color-sky: #38bdf8;
+  --card-color-sky-soft: rgba(56, 189, 248, 0.14);
+  --card-color-indigo: #6366f1;
+  --card-color-indigo-soft: rgba(99, 102, 241, 0.14);
+  --card-color-violet: #a78bfa;
+  --card-color-violet-soft: rgba(167, 139, 250, 0.14);
+  --card-color-slate: #94a3b8;
+  --card-color-slate-soft: rgba(148, 163, 184, 0.14);
+  --card-color-rose: #f43f5e;
+  --card-color-rose-soft: rgba(244, 63, 94, 0.14);
 }
 
 [data-theme='light'] {
@@ -141,4 +164,16 @@
 
   --scrollbar-thumb: rgba(15, 15, 18, 0.16);
   --scrollbar-thumb-hover: rgba(15, 15, 18, 0.28);
+
+  /* Card color accents (DTP fork) — same hues, softer tint for a light surface. */
+  --card-color-berry-soft: rgba(217, 70, 239, 0.12);
+  --card-color-coral-soft: rgba(251, 113, 133, 0.12);
+  --card-color-amber-soft: rgba(245, 158, 11, 0.12);
+  --card-color-lime-soft: rgba(132, 204, 22, 0.12);
+  --card-color-teal-soft: rgba(20, 184, 166, 0.12);
+  --card-color-sky-soft: rgba(56, 189, 248, 0.12);
+  --card-color-indigo-soft: rgba(99, 102, 241, 0.12);
+  --card-color-violet-soft: rgba(167, 139, 250, 0.12);
+  --card-color-slate-soft: rgba(148, 163, 184, 0.12);
+  --card-color-rose-soft: rgba(244, 63, 94, 0.12);
 }

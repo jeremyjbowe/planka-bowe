@@ -45,7 +45,9 @@
   }
 
   .cover {
-    max-height: 340px;
+    display: block;
+    height: 140px;
+    max-height: 140px;
     object-fit: cover;
     transform-origin: bottom;
     transition: all .6s cubic-bezier(0.25, 0.1, 0.25, 1);
@@ -54,9 +56,23 @@
   }
 
   .coverWrapper {
-    border-radius: 3px;
-    margin-bottom: 8px;
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    margin: -6px -8px 8px;
     overflow: hidden;
+    position: relative;
+    width: calc(100% + 16px);
+  }
+
+  // DTP fork — cover images: subtle bottom gradient so text placed right
+  // below the cover (name, chips) stays readable in both themes.
+  .coverOverlay {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%);
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 
   .creatorDivider {
@@ -110,6 +126,20 @@
       clear: both;
       content: "";
       display: table;
+    }
+  }
+
+  // DTP fork — card color accent: a soft background tint layered over the
+  // card's normal background, plus a thin left accent bar.
+  $card-colors: berry, coral, amber, lime, teal, sky, indigo, violet, slate, rose;
+
+  @each $name in $card-colors {
+    .color_#{$name} {
+      background-image: linear-gradient(
+        var(--card-color-#{$name}-soft),
+        var(--card-color-#{$name}-soft)
+      );
+      box-shadow: inset 3px 0 0 0 var(--card-color-#{$name});
     }
   }
 

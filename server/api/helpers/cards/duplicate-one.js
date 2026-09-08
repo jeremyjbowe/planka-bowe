@@ -181,6 +181,7 @@ module.exports = {
         'stopwatch',
         'isClosed',
         'priority',
+        'color',
         'recurrenceRule',
       ]),
       ...values,

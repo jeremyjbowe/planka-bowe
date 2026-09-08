@@ -23,6 +23,7 @@ views, structure and polish of modern tools.
 | Look | **Soft dark theme by default, light theme on request or by OS preference.** Design tokens, Inter, refined focus rings, custom scrollbars, hover lifts, drag ghosts, glass modals. |
 | First run | **Empty states everywhere and a 30-second onboarding** that creates a project, a board and template lists in one click. |
 | Calendar | **iCalendar feeds** (VTODO or all-day VEVENT): a secret per-user subscribe URL for "my cards" and one per board, with due dates, completion, priority, labels as categories, recurrence rules and parent relations. Works with Thunderbird, Tasks.org, Nextcloud Tasks (tasks) and Apple/Google Calendar (events). |
+| Look | **Card color accents**: ten soft colors (left bar + tint on the card, stripe on the modal) set from the card's *Color* action; cover images render rounded with a legibility gradient. |
 | Outcomes | **Goals / OKRs**: global goals that nest, link to cards and boards, and compute progress live from linked card completion (manual override when nothing is linked). Goals page in the sidebar, goal chips on cards. |
 
 All views read from the same normalized redux-orm store, so anything that
@@ -216,7 +217,7 @@ Conventions that keep the codebase predictable:
   `/feeds/:token/...` on the API host without a session, so `BASE_URL` must
   be the public address; calendar apps typically refresh every 15–60 min.
 - Not yet built from the high-value list: keyboard-first navigation overlay,
-  cover image accents, saved views, JSON export/import.
+  saved views, JSON export/import.
 
 ## Upstream documentation
 

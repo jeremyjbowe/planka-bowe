@@ -120,6 +120,20 @@ export const CARD_PRIORITY_RANK = {
   [CardPriorities.URGENT]: 4,
 };
 
+// DTP fork — card color accent
+export const CardColors = [
+  'berry',
+  'coral',
+  'amber',
+  'lime',
+  'teal',
+  'sky',
+  'indigo',
+  'violet',
+  'slate',
+  'rose',
+];
+
 export const AttachmentTypes = {
   FILE: 'file',
   LINK: 'link',

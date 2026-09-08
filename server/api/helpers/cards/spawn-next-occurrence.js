@@ -94,6 +94,7 @@ module.exports = {
         'creatorUserId',
         'recurrenceRule',
         'priority',
+        'color',
       ]),
       boardId: record.boardId,
       listId: list.id,

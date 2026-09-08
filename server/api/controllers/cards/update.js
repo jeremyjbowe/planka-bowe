@@ -219,6 +219,11 @@ module.exports = {
       isIn: Object.values(Card.Priorities),
       allowNull: true,
     },
+    color: {
+      type: 'string',
+      isIn: Object.values(Card.Colors),
+      allowNull: true,
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -296,6 +301,7 @@ module.exports = {
         'isClosed',
         'recurrenceRule',
         'priority',
+        'color',
       );
     }
 
@@ -382,6 +388,7 @@ module.exports = {
       'isClosed',
       'recurrenceRule',
       'priority',
+      'color',
       'isSubscribed',
     ]);
 

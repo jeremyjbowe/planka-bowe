@@ -350,5 +350,59 @@
     background: var(--bg-hover);
     border-radius: 4px;
     margin: 0;
+    position: relative;
+  }
+
+  // DTP fork — card color accent: a 4px stripe along the top of the modal.
+  .wrapperWithColorAccent {
+    &::before {
+      border-radius: 4px 4px 0 0;
+      content: '';
+      height: 4px;
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+  }
+
+  .colorAccent_berry::before {
+    background: var(--card-color-berry);
+  }
+
+  .colorAccent_coral::before {
+    background: var(--card-color-coral);
+  }
+
+  .colorAccent_amber::before {
+    background: var(--card-color-amber);
+  }
+
+  .colorAccent_lime::before {
+    background: var(--card-color-lime);
+  }
+
+  .colorAccent_teal::before {
+    background: var(--card-color-teal);
+  }
+
+  .colorAccent_sky::before {
+    background: var(--card-color-sky);
+  }
+
+  .colorAccent_indigo::before {
+    background: var(--card-color-indigo);
+  }
+
+  .colorAccent_violet::before {
+    background: var(--card-color-violet);
+  }
+
+  .colorAccent_slate::before {
+    background: var(--card-color-slate);
+  }
+
+  .colorAccent_rose::before {
+    background: var(--card-color-rose);
   }
 }

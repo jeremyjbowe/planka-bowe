@@ -151,11 +151,12 @@ const ProjectContent = React.memo(({ cardId }) => {
     ) : null;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={classNames(styles.wrapper, card.color && styles[`color_${card.color}`])}>
       <div className={classNames(styles.name, card.isClosed && styles.nameClosed)}>{card.name}</div>
       {coverUrl && (
         <div className={styles.coverWrapper}>
           <img src={coverUrl} alt="" className={styles.cover} />
+          <div className={styles.coverOverlay} />
         </div>
       )}
       {(card.priority || labelIds.length > 0) && (

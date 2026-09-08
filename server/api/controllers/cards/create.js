@@ -174,6 +174,11 @@ module.exports = {
       isIn: Object.values(Card.Priorities),
       allowNull: true,
     },
+    color: {
+      type: 'string',
+      isIn: Object.values(Card.Colors),
+      allowNull: true,
+    },
   },
 
   exits: {
@@ -238,6 +243,7 @@ module.exports = {
       'stopwatch',
       'recurrenceRule',
       'priority',
+      'color',
     ]);
 
     if (parentCard) {
