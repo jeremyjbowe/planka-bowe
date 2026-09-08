@@ -241,6 +241,44 @@
     width: 130px;
   }
 
+  .column_subtasks {
+    width: 130px;
+  }
+
+  .subtasks {
+    align-items: center;
+    display: inline-flex;
+    gap: var(--space-2);
+    width: 100%;
+  }
+
+  .subtasksTrack {
+    background: var(--bg-active);
+    border-radius: 999px;
+    flex: 1;
+    height: 5px;
+    overflow: hidden;
+  }
+
+  .subtasksBar,
+  .subtasksBarComplete {
+    background: var(--accent);
+    border-radius: 999px;
+    display: block;
+    height: 100%;
+    transition: width var(--duration-slow) var(--ease-out);
+  }
+
+  .subtasksBarComplete {
+    background: var(--success);
+  }
+
+  .subtasksCount {
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    font-variant-numeric: tabular-nums;
+  }
+
   .name {
     display: block;
     font-weight: 500;

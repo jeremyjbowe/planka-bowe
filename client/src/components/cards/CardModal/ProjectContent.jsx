@@ -20,6 +20,8 @@ import { CardTypeIcons } from '../../../constants/Icons';
 import { ClosableContext } from '../../../contexts';
 import NameField from './NameField';
 import TaskLists from './TaskLists';
+import Subtasks, { ParentCrumb } from './Subtasks';
+import SelectCardStep from '../SelectCardStep';
 import CustomFieldGroups from './CustomFieldGroups';
 import Communication from './Communication';
 import CreationDetailsStep from './CreationDetailsStep';
@@ -84,6 +86,7 @@ const ProjectContent = React.memo(() => {
     canAddTaskList,
     canAddAttachment,
     canAddCustomFieldGroup,
+    canEditParentCard,
   } = useSelector((state) => {
     const boardMembership = selectors.selectCurrentUserMembershipForCurrentBoard(state);
 
@@ -115,6 +118,7 @@ const ProjectContent = React.memo(() => {
         canAddTaskList: false,
         canAddAttachment: false,
         canAddCustomFieldGroup: false,
+        canEditParentCard: false,
       };
     }
 
@@ -137,6 +141,7 @@ const ProjectContent = React.memo(() => {
       canAddTaskList: isEditor,
       canAddAttachment: isEditor,
       canAddCustomFieldGroup: isEditor,
+      canEditParentCard: isEditor,
     };
   }, shallowEqual);
 
@@ -182,6 +187,30 @@ const ProjectContent = React.memo(() => {
       }),
     );
   }, [card.isDueCompleted, dispatch]);
+
+  const descendantIds = useSelector(
+    selectors.selectDescendantIdsWithSelfForCurrentCard,
+    shallowEqual,
+  );
+
+  const handleParentCardSelect = useCallback(
+    (parentCardId) => {
+      dispatch(
+        entryActions.updateCurrentCard({
+          parentCardId,
+        }),
+      );
+    },
+    [dispatch],
+  );
+
+  const handleParentCardClear = useCallback(() => {
+    dispatch(
+      entryActions.updateCurrentCard({
+        parentCardId: null,
+      }),
+    );
+  }, [dispatch]);
 
   const handleToggleStopwatchClick = useCallback(() => {
     dispatch(
@@ -284,6 +313,7 @@ const ProjectContent = React.memo(() => {
   }, [isEditDescriptionOpened]);
 
   const CreationDetailsPopup = usePopupInClosableContext(CreationDetailsStep);
+  const SelectParentCardPopup = usePopupInClosableContext(SelectCardStep);
   const BoardMembershipsPopup = usePopupInClosableContext(BoardMembershipsStep);
   const LabelsPopup = usePopupInClosableContext(LabelsStep);
   const ListsPopup = usePopupInClosableContext(ListsStep);
@@ -302,6 +332,7 @@ const ProjectContent = React.memo(() => {
           <div className={styles.headerWrapper}>
             <Icon name={CardTypeIcons[CardTypes.PROJECT]} className={styles.moduleIcon} />
             <div className={styles.headerTitleWrapper}>
+              <ParentCrumb />
               {canEditName ? (
                 <NameField defaultValue={card.name} onUpdate={handleNameUpdate} />
               ) : (
@@ -531,6 +562,7 @@ const ProjectContent = React.memo(() => {
           )}
           <CustomFieldGroups />
           <TaskLists />
+          <Subtasks />
           {attachmentIds.length > 0 && (
             <div className={styles.contentModule}>
               <div className={styles.moduleWrapper}>
@@ -632,6 +664,21 @@ const ProjectContent = React.memo(() => {
                       })}
                     </Button>
                   </AddTaskListPopup>
+                )}
+                {canEditParentCard && (
+                  <SelectParentCardPopup
+                    title={t('common.parentCard')}
+                    currentId={card.parentCardId || undefined}
+                    excludedIds={descendantIds}
+                    clearLabel={t('common.noParentCard')}
+                    onSelect={handleParentCardSelect}
+                    onClear={handleParentCardClear}
+                  >
+                    <Button fluid className={classNames(styles.actionButton, styles.hidable)}>
+                      <Icon name="sitemap" className={styles.actionIcon} />
+                      {t('common.parentCard')}
+                    </Button>
+                  </SelectParentCardPopup>
                 )}
                 {canAddAttachment && (
                   <AddAttachmentPopup>

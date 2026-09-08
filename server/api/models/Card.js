@@ -63,6 +63,11 @@
  *           nullable: true
  *           description: ID of the attachment used as cover
  *           example: "1357158568008091269"
+ *         parentCardId:
+ *           type: string
+ *           nullable: true
+ *           description: ID of the parent card when this card is a subtask
+ *           example: "1357158568008091270"
  *         type:
  *           type: string
  *           enum: [project, story]
@@ -228,6 +233,11 @@ module.exports = {
     coverAttachmentId: {
       model: 'Attachment',
       columnName: 'cover_attachment_id',
+    },
+    // DTP fork — subtasks: a card may belong to a parent card on the same board
+    parentCardId: {
+      model: 'Card',
+      columnName: 'parent_card_id',
     },
     subscriptionUsers: {
       collection: 'User',

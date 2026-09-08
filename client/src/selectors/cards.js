@@ -108,6 +108,8 @@ export const makeSelectTableRowsByCardIds = () =>
         const listModel = cardModel.list;
         const users = cardModel.users.toRefArray();
         const labels = cardModel.labels.toRefArray();
+        const subtasks = cardModel.subtasks.toRefArray();
+        const parentCardModel = cardModel.parentCardId ? cardModel.parentCard : null;
 
         return [
           {
@@ -126,12 +128,183 @@ export const makeSelectTableRowsByCardIds = () =>
             userNames: users.map((user) => user.name),
             labelIds: labels.map((label) => label.id),
             labelNames: labels.map((label) => label.name || ''),
+            parentCardId: cardModel.parentCardId,
+            parentCardName: parentCardModel ? parentCardModel.name : null,
+            subtasksTotal: subtasks.length,
+            subtasksCompleted: subtasks.filter((subtask) => subtask.isClosed).length,
           },
         ];
       }),
   );
 
 export const selectTableRowsByCardIds = makeSelectTableRowsByCardIds();
+
+/*
+ * DTP fork — subtasks. Children are ordinary cards with `parentCardId` set,
+ * so these selectors are thin views over the same ORM data.
+ */
+
+const subtaskIdsOf = (cardModel) =>
+  cardModel.subtasks
+    .orderBy(['createdAt', 'id'])
+    .toRefArray()
+    .map((subtask) => subtask.id);
+
+const subtaskProgressOf = (cardModel) => {
+  const subtasks = cardModel.subtasks.toRefArray();
+
+  return {
+    total: subtasks.length,
+    completed: subtasks.filter((subtask) => subtask.isClosed).length,
+  };
+};
+
+const EMPTY_PROGRESS = { total: 0, completed: 0 };
+
+export const makeSelectSubtaskIdsByCardId = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({ Card }, id) => {
+      const cardModel = Card.withId(id);
+
+      if (!cardModel) {
+        return [];
+      }
+
+      return subtaskIdsOf(cardModel);
+    },
+  );
+
+export const selectSubtaskIdsByCardId = makeSelectSubtaskIdsByCardId();
+
+export const makeSelectSubtaskProgressByCardId = () =>
+  createSelector(
+    orm,
+    (_, id) => id,
+    ({ Card }, id) => {
+      const cardModel = Card.withId(id);
+
+      if (!cardModel) {
+        return EMPTY_PROGRESS;
+      }
+
+      return subtaskProgressOf(cardModel);
+    },
+  );
+
+export const selectSubtaskProgressByCardId = makeSelectSubtaskProgressByCardId();
+
+export const selectSubtaskIdsForCurrentCard = createSelector(
+  orm,
+  (state) => selectPath(state).cardId,
+  ({ Card }, id) => {
+    if (!id) {
+      return [];
+    }
+
+    const cardModel = Card.withId(id);
+
+    if (!cardModel) {
+      return [];
+    }
+
+    return subtaskIdsOf(cardModel);
+  },
+);
+
+export const selectSubtaskProgressForCurrentCard = createSelector(
+  orm,
+  (state) => selectPath(state).cardId,
+  ({ Card }, id) => {
+    if (!id) {
+      return EMPTY_PROGRESS;
+    }
+
+    const cardModel = Card.withId(id);
+
+    if (!cardModel) {
+      return EMPTY_PROGRESS;
+    }
+
+    return subtaskProgressOf(cardModel);
+  },
+);
+
+export const selectParentCardForCurrentCard = createSelector(
+  orm,
+  (state) => selectPath(state).cardId,
+  ({ Card }, id) => {
+    if (!id) {
+      return null;
+    }
+
+    const cardModel = Card.withId(id);
+
+    if (!cardModel || !cardModel.parentCardId) {
+      return null;
+    }
+
+    const parentCardModel = Card.withId(cardModel.parentCardId);
+
+    return parentCardModel ? parentCardModel.ref : null;
+  },
+);
+
+// Ids of the current card and everything below it; used to keep the parent
+// picker from creating a cycle.
+export const selectDescendantIdsWithSelfForCurrentCard = createSelector(
+  orm,
+  (state) => selectPath(state).cardId,
+  ({ Card }, id) => {
+    if (!id) {
+      return [];
+    }
+
+    const result = [];
+    const queue = [id];
+
+    while (queue.length > 0) {
+      const currentId = queue.shift();
+
+      if (!result.includes(currentId)) {
+        result.push(currentId);
+
+        const cardModel = Card.withId(currentId);
+
+        if (cardModel) {
+          queue.push(...cardModel.subtasks.toRefArray().map((subtask) => subtask.id));
+        }
+      }
+    }
+
+    return result;
+  },
+);
+
+export const selectCardsForCurrentBoard = createSelector(
+  orm,
+  (state) => selectPath(state).boardId,
+  ({ Board }, id) => {
+    if (!id) {
+      return [];
+    }
+
+    const boardModel = Board.withId(id);
+
+    if (!boardModel) {
+      return [];
+    }
+
+    return boardModel.cards
+      .orderBy(['name'])
+      .toModelArray()
+      .map((cardModel) => ({
+        ...cardModel.ref,
+        listName: cardModel.list ? cardModel.list.name : null,
+      }));
+  },
+);
 
 export const makeSelectShownOnFrontOfCardTaskListIdsByCardId = () =>
   createSelector(
@@ -521,6 +694,15 @@ export default {
   selectLabelIdsByCardId,
   makeSelectTableRowsByCardIds,
   selectTableRowsByCardIds,
+  makeSelectSubtaskIdsByCardId,
+  selectSubtaskIdsByCardId,
+  makeSelectSubtaskProgressByCardId,
+  selectSubtaskProgressByCardId,
+  selectSubtaskIdsForCurrentCard,
+  selectSubtaskProgressForCurrentCard,
+  selectParentCardForCurrentCard,
+  selectDescendantIdsWithSelfForCurrentCard,
+  selectCardsForCurrentBoard,
   makeSelectShownOnFrontOfCardTaskListIdsByCardId,
   selectShownOnFrontOfCardTaskListIdsByCardId,
   makeSelectAttachmentsTotalByCardId,

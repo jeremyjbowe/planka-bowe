@@ -145,6 +145,15 @@ const Errors = {
   POSITION_MUST_BE_PRESENT: {
     positionMustBePresent: 'Position must be present',
   },
+  PARENT_CARD_NOT_FOUND: {
+    parentCardNotFound: 'Parent card not found',
+  },
+  PARENT_CARD_MUST_BE_ON_SAME_BOARD: {
+    parentCardMustBeOnSameBoard: 'Parent card must be on same board',
+  },
+  PARENT_CARD_MUST_NOT_BE_ITSELF_OR_DESCENDANT: {
+    parentCardMustNotBeItselfOrDescendant: 'Parent card must not be itself or descendant',
+  },
 };
 
 module.exports = {
@@ -156,6 +165,10 @@ module.exports = {
     boardId: idInput,
     listId: idInput,
     coverAttachmentId: {
+      ...idInput,
+      allowNull: true,
+    },
+    parentCardId: {
       ...idInput,
       allowNull: true,
     },
@@ -192,6 +205,9 @@ module.exports = {
       type: 'json',
       custom: isStopwatch,
     },
+    isClosed: {
+      type: 'boolean',
+    },
     isSubscribed: {
       type: 'boolean',
     },
@@ -220,6 +236,15 @@ module.exports = {
       responseType: 'unprocessableEntity',
     },
     positionMustBePresent: {
+      responseType: 'unprocessableEntity',
+    },
+    parentCardNotFound: {
+      responseType: 'notFound',
+    },
+    parentCardMustBeOnSameBoard: {
+      responseType: 'unprocessableEntity',
+    },
+    parentCardMustNotBeItselfOrDescendant: {
       responseType: 'unprocessableEntity',
     },
   },
@@ -256,6 +281,8 @@ module.exports = {
         'dueDate',
         'isDueCompleted',
         'stopwatch',
+        'parentCardId',
+        'isClosed',
       );
     }
 
@@ -307,6 +334,29 @@ module.exports = {
       }
     }
 
+    // DTP fork — subtasks: validate the requested parent before touching anything
+    let nextParentCard;
+    if (inputs.parentCardId) {
+      nextParentCard = await Card.qm.getOneById(inputs.parentCardId);
+
+      if (!nextParentCard) {
+        throw Errors.PARENT_CARD_NOT_FOUND;
+      }
+
+      if (nextParentCard.boardId !== (nextBoard || board).id) {
+        throw Errors.PARENT_CARD_MUST_BE_ON_SAME_BOARD;
+      }
+
+      const parentChainIds = [
+        nextParentCard.id,
+        ...(await sails.helpers.cards.getAncestorIds(nextParentCard)),
+      ];
+
+      if (parentChainIds.includes(card.id)) {
+        throw Errors.PARENT_CARD_MUST_NOT_BE_ITSELF_OR_DESCENDANT;
+      }
+    }
+
     const values = _.pick(inputs, [
       'coverAttachmentId',
       'type',
@@ -316,6 +366,7 @@ module.exports = {
       'dueDate',
       'isDueCompleted',
       'stopwatch',
+      'isClosed',
       'isSubscribed',
     ]);
 
@@ -331,6 +382,9 @@ module.exports = {
           board: nextBoard,
           list: nextList,
           coverAttachment: nextCoverAttachment,
+          ...(!_.isUndefined(inputs.parentCardId) && {
+            parentCard: nextParentCard || null,
+          }),
         },
         actorUser: currentUser,
         request: this.req,

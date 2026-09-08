@@ -31,6 +31,12 @@ module.exports = {
   },
 
   async fn(inputs) {
+    // DTP fork — subtasks: children survive as top-level cards
+    await sails.helpers.cards.detachSubtasks.with({
+      record: inputs.record,
+      request: inputs.request,
+    });
+
     await sails.helpers.cards.deleteRelated(inputs.record);
 
     const card = await Card.qm.deleteOne(inputs.record.id);

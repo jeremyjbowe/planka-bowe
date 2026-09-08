@@ -1,0 +1,87 @@
+:global(#app) {
+  .wrapper {
+    align-items: center;
+    border-radius: 6px;
+    display: flex;
+    gap: 8px;
+    margin: 0 -8px;
+    padding: 6px 8px;
+    transition: background 120ms ease;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.04);
+
+      .unlink {
+        opacity: 1;
+      }
+    }
+  }
+
+  .wrapperClosed .name {
+    color: #8b9aa5;
+    text-decoration: line-through;
+  }
+
+  .checkbox {
+    flex-shrink: 0;
+    height: 17px;
+    width: 17px;
+  }
+
+  .name {
+    background: transparent;
+    border: none;
+    color: #17394d;
+    cursor: pointer;
+    flex: 1;
+    font: inherit;
+    font-size: 14px;
+    min-width: 0;
+    overflow: hidden;
+    padding: 0;
+    text-align: left;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  .list {
+    background: rgba(9, 30, 66, 0.06);
+    border-radius: 999px;
+    color: #6b808c;
+    flex-shrink: 0;
+    font-size: 11px;
+    padding: 2px 8px;
+    white-space: nowrap;
+  }
+
+  .dueDate {
+    display: inline-flex;
+    flex-shrink: 0;
+  }
+
+  .users {
+    display: inline-flex;
+    flex-shrink: 0;
+    gap: 2px;
+  }
+
+  .unlink {
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: #6b808c;
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: 0;
+    padding: 4px;
+    transition: opacity 120ms ease, color 120ms ease;
+
+    &:hover {
+      color: #17394d;
+    }
+  }
+}

@@ -116,6 +116,12 @@ const Errors = {
   POSITION_MUST_BE_PRESENT: {
     positionMustBePresent: 'Position must be present',
   },
+  PARENT_CARD_NOT_FOUND: {
+    parentCardNotFound: 'Parent card not found',
+  },
+  PARENT_CARD_MUST_BE_ON_SAME_BOARD: {
+    parentCardMustBeOnSameBoard: 'Parent card must be on same board',
+  },
 };
 
 module.exports = {
@@ -124,6 +130,7 @@ module.exports = {
       ...idInput,
       required: true,
     },
+    parentCardId: idInput,
     type: {
       type: 'string',
       isIn: Object.values(Card.Types),
@@ -169,6 +176,12 @@ module.exports = {
     positionMustBePresent: {
       responseType: 'unprocessableEntity',
     },
+    parentCardNotFound: {
+      responseType: 'notFound',
+    },
+    parentCardMustBeOnSameBoard: {
+      responseType: 'unprocessableEntity',
+    },
   },
 
   async fn(inputs) {
@@ -191,6 +204,20 @@ module.exports = {
       throw Errors.NOT_ENOUGH_RIGHTS;
     }
 
+    // DTP fork — subtasks
+    let parentCard;
+    if (inputs.parentCardId) {
+      parentCard = await Card.qm.getOneById(inputs.parentCardId);
+
+      if (!parentCard) {
+        throw Errors.PARENT_CARD_NOT_FOUND;
+      }
+
+      if (parentCard.boardId !== board.id) {
+        throw Errors.PARENT_CARD_MUST_BE_ON_SAME_BOARD;
+      }
+    }
+
     const values = _.pick(inputs, [
       'type',
       'position',
@@ -200,6 +227,10 @@ module.exports = {
       'isDueCompleted',
       'stopwatch',
     ]);
+
+    if (parentCard) {
+      values.parentCardId = parentCard.id;
+    }
 
     const card = await sails.helpers.cards.createOne
       .with({

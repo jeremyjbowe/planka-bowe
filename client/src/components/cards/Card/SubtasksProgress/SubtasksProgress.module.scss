@@ -1,0 +1,44 @@
+:global(#app) {
+  .wrapper {
+    align-items: center;
+    display: flex;
+    gap: 6px;
+    margin: 0 -8px;
+    padding: 0 8px 8px;
+  }
+
+  .icon {
+    color: #8b9aa5;
+    flex-shrink: 0;
+    font-size: 11px;
+    margin: 0;
+  }
+
+  .track {
+    background: rgba(9, 30, 66, 0.1);
+    border-radius: 999px;
+    flex: 1;
+    height: 5px;
+    overflow: hidden;
+  }
+
+  .bar,
+  .barComplete {
+    background: var(--accent);
+    border-radius: 999px;
+    display: block;
+    height: 100%;
+    transition: width 320ms var(--ease-out), background 200ms ease;
+  }
+
+  .barComplete {
+    background: #21ba45;
+  }
+
+  .count {
+    color: #888;
+    flex-shrink: 0;
+    font-size: 12px;
+    line-height: 12px;
+  }
+}

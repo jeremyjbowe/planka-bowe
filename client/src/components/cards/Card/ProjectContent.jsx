@@ -15,6 +15,7 @@ import { startStopwatch, stopStopwatch } from '../../../utils/stopwatch';
 import { isListArchiveOrTrash } from '../../../utils/record-helpers';
 import { BoardMembershipRoles, BoardViews } from '../../../constants/Enums';
 import TaskList from './TaskList';
+import SubtasksProgress from './SubtasksProgress';
 import DueDateChip from '../DueDateChip';
 import StopwatchChip from '../StopwatchChip';
 import TimeAgo from '../../common/TimeAgo';
@@ -179,6 +180,7 @@ const ProjectContent = React.memo(({ cardId }) => {
       {taskListIds.map((taskListId) => (
         <TaskList key={taskListId} id={taskListId} />
       ))}
+      <SubtasksProgress cardId={cardId} />
       {hasInformation && (
         <span className={styles.attachments}>
           {notificationsTotal > 0 && (

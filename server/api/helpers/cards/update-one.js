@@ -105,6 +105,23 @@ module.exports = {
       }
     }
 
+    // DTP fork — subtasks: `parentCard` arrives resolved from the controller
+    if (!_.isUndefined(values.parentCard)) {
+      const nextParentCardId = values.parentCard ? values.parentCard.id : null;
+
+      if (nextParentCardId !== inputs.record.parentCardId) {
+        values.parentCardId = nextParentCardId;
+      }
+
+      delete values.parentCard;
+    }
+
+    if (values.board) {
+      // A card that changes board leaves its parent behind; its own children
+      // are detached below once the move succeeded.
+      values.parentCardId = null;
+    }
+
     const dueDate = _.isUndefined(values.dueDate) ? inputs.record.dueDate : values.dueDate;
 
     if (dueDate) {
@@ -241,6 +258,11 @@ module.exports = {
       }
 
       if (values.board) {
+        await sails.helpers.cards.detachSubtasks.with({
+          record: inputs.record,
+          request: inputs.request,
+        });
+
         const labels = await Label.qm.getByBoardId(card.boardId);
         const labelByName = _.keyBy(labels, 'name');
 

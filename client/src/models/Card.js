@@ -78,6 +78,12 @@ export default class extends BaseModel {
       as: 'coverAttachment',
       relatedName: 'coveredCard',
     }),
+    // DTP fork — subtasks: self-reference; `cardModel.subtasks` lists the children
+    parentCardId: fk({
+      to: 'Card',
+      as: 'parentCard',
+      relatedName: 'subtasks',
+    }),
     users: many('User', 'cards'),
     labels: many('Label', 'cards'),
   };
@@ -758,6 +764,11 @@ export default class extends BaseModel {
 
   deleteRelated(soft = false) {
     this.deleteClearable();
+
+    // DTP fork — subtasks survive their parent as top-level cards
+    this.subtasks.update({
+      parentCardId: null,
+    });
 
     this.taskLists.toModelArray().forEach((taskListModel) => {
       taskListModel.deleteWithRelated();

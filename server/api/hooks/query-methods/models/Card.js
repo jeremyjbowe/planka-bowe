@@ -19,6 +19,11 @@ const createOne = (values) => Card.create({ ...values }).fetch();
 
 const getByIds = (ids) => defaultFind(ids);
 
+const getByParentCardId = (parentCardId) =>
+  defaultFind({
+    parentCardId,
+  });
+
 const getByBoardId = (boardId) =>
   defaultFind({
     boardId,
@@ -239,6 +244,7 @@ module.exports = {
   createOne,
   getByIds,
   getByBoardId,
+  getByParentCardId,
   getByListId,
   getByEndlessListId,
   getByListIds,

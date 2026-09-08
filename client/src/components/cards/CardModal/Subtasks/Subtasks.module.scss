@@ -1,0 +1,99 @@
+/*!
+ * DTP fork — modal subtasks section. Mirrors the modal's existing module
+ * layout (icon in the gutter, content offset by 40px).
+ */
+
+:global(#app) {
+  .contentModule {
+    margin-bottom: 24px;
+  }
+
+  .moduleWrapper {
+    margin: 0 0 0 40px;
+    position: relative;
+  }
+
+  .moduleIcon {
+    color: #17394d;
+    font-size: 17px;
+    height: 32px;
+    left: -40px;
+    line-height: 32px;
+    margin-right: 0;
+    position: absolute;
+    top: 2px;
+    width: 32px;
+  }
+
+  .header {
+    align-items: baseline;
+    display: flex;
+    gap: 12px;
+  }
+
+  .moduleHeader {
+    color: #17394d;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 1.5;
+    margin: 0 0 4px;
+    padding: 6px 0;
+  }
+
+  .summary {
+    color: #6b808c;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .progress {
+    background: rgba(9, 30, 66, 0.08);
+    border-radius: 999px;
+    height: 6px;
+    margin: 2px 0 12px;
+    overflow: hidden;
+  }
+
+  .progressBar,
+  .progressBarComplete {
+    background: var(--accent);
+    border-radius: 999px;
+    height: 100%;
+    transition: width 320ms var(--ease-out), background 200ms ease;
+  }
+
+  .progressBarComplete {
+    background: #21ba45;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 8px;
+  }
+
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .footerButton {
+    background: rgba(9, 30, 66, 0.06);
+    box-shadow: none;
+    color: #17394d;
+    font-weight: 500;
+    margin: 0;
+    padding: 8px 12px;
+    transition: background 120ms ease;
+
+    &:hover {
+      background: rgba(9, 30, 66, 0.1);
+    }
+  }
+
+  .footerButtonIcon {
+    margin-right: 6px;
+  }
+}

@@ -145,6 +145,30 @@ function DueDateCell({ row }) {
   );
 }
 
+function SubtasksCell({ row }) {
+  const { subtasksTotal, subtasksCompleted } = row.original;
+
+  if (subtasksTotal === 0) {
+    return <span className={styles.empty}>—</span>;
+  }
+
+  const percent = Math.round((subtasksCompleted / subtasksTotal) * 100);
+
+  return (
+    <span className={styles.subtasks}>
+      <span className={styles.subtasksTrack}>
+        <span
+          className={percent === 100 ? styles.subtasksBarComplete : styles.subtasksBar}
+          style={{ width: `${percent}%` }}
+        />
+      </span>
+      <span className={styles.subtasksCount}>
+        {subtasksCompleted}/{subtasksTotal}
+      </span>
+    </span>
+  );
+}
+
 function CreatedCell({ row }) {
   const [t] = useTranslation();
 
@@ -183,6 +207,12 @@ DueDateCell.propTypes = {
     original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
   }).isRequired,
 };
+SubtasksCell.propTypes = {
+  row: PropTypes.shape({
+    original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  }).isRequired,
+};
+
 CreatedCell.propTypes = {
   row: PropTypes.shape({
     original: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
@@ -293,6 +323,24 @@ const TableView = React.memo(
               (a, b) => a - b,
             ),
           cell: DueDateCell,
+        },
+        {
+          id: 'subtasks',
+          accessorFn: (row) => row.subtasksTotal,
+          header: t('common.subtasks'),
+          sortingFn: (rowA, rowB) => {
+            const progressA =
+              rowA.original.subtasksTotal === 0
+                ? -1
+                : rowA.original.subtasksCompleted / rowA.original.subtasksTotal;
+            const progressB =
+              rowB.original.subtasksTotal === 0
+                ? -1
+                : rowB.original.subtasksCompleted / rowB.original.subtasksTotal;
+
+            return progressA - progressB;
+          },
+          cell: SubtasksCell,
         },
         {
           id: 'createdAt',
