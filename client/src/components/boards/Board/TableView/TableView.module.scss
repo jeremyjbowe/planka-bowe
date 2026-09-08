@@ -1,0 +1,356 @@
+/*!
+ * DTP fork — Table view styles. Reads design tokens from styles/theme.css.
+ */
+
+:global(#app) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+    padding: 0 var(--space-4) var(--space-4);
+    width: 100%;
+  }
+
+  .toolbar {
+    align-items: center;
+    display: flex;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+  }
+
+  .count {
+    color: rgba(255, 255, 255, 0.55);
+    font-size: var(--text-sm);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .addCardForm {
+    flex: 1;
+    max-width: 480px;
+  }
+
+  .addCardButtonWrapper {
+    display: flex;
+    gap: 6px;
+  }
+
+  .addCardButton {
+    align-items: center;
+    background: rgba(0, 0, 0, 0.24);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    color: rgba(255, 255, 255, 0.78);
+    cursor: pointer;
+    display: inline-flex;
+    fill: rgba(255, 255, 255, 0.78);
+    font-weight: normal;
+    gap: var(--space-2);
+    height: 36px;
+    margin: 0;
+    padding: 0 var(--space-3);
+    transition:
+      background var(--duration-fast) var(--ease-out),
+      transform var(--duration-fast) var(--ease-out);
+
+    &:hover {
+      background: rgba(0, 0, 0, 0.36);
+      color: #fff;
+    }
+
+    &:active {
+      outline: none;
+      transform: scale(0.98);
+    }
+
+    &.paste {
+      padding: 0 var(--space-3);
+    }
+  }
+
+  .addCardButtonIcon {
+    height: 18px;
+    width: 18px;
+  }
+
+  .addCardButtonText {
+    font-size: var(--text-base);
+    line-height: 20px;
+  }
+
+  .tableWrapper {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    position: relative;
+    scrollbar-color: var(--scrollbar-thumb) transparent;
+    scrollbar-width: thin;
+
+    &::-webkit-scrollbar {
+      height: 10px;
+      width: 10px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: var(--scrollbar-thumb);
+      border: 3px solid var(--bg-surface);
+      border-radius: 999px;
+
+      &:hover {
+        background: var(--scrollbar-thumb-hover);
+      }
+    }
+  }
+
+  .table {
+    border-collapse: separate;
+    border-spacing: 0;
+    color: var(--text-primary);
+    font-size: var(--text-base);
+    min-width: 760px;
+    width: 100%;
+  }
+
+  .thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+  }
+
+  .th {
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border-default);
+    color: var(--text-secondary);
+    font-size: var(--text-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 0;
+    text-align: left;
+    text-transform: uppercase;
+    white-space: nowrap;
+
+    &:first-child {
+      border-top-left-radius: var(--radius-lg);
+    }
+
+    &:last-child {
+      border-top-right-radius: var(--radius-lg);
+    }
+  }
+
+  .thSorted {
+    color: var(--text-primary);
+  }
+
+  .headerButton {
+    align-items: center;
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    font: inherit;
+    gap: var(--space-1);
+    height: 40px;
+    letter-spacing: inherit;
+    padding: 0 var(--space-4);
+    text-transform: inherit;
+    width: 100%;
+
+    &:hover {
+      color: var(--text-primary);
+
+      .sortIcon {
+        opacity: 0.6;
+      }
+    }
+
+    &:focus-visible {
+      box-shadow: inset 0 0 0 2px var(--accent-ring);
+      outline: none;
+    }
+  }
+
+  .sortIcon {
+    font-size: 11px !important;
+    margin: 0 !important;
+    opacity: 0.25;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  .sortIconActive {
+    color: var(--accent);
+    opacity: 1;
+  }
+
+  .tr {
+    cursor: pointer;
+    transition: background var(--duration-fast) var(--ease-out);
+
+    &:hover .td {
+      background: var(--bg-hover);
+    }
+
+    &:last-child .td {
+      border-bottom: none;
+    }
+  }
+
+  .trClosed {
+    .td {
+      opacity: 0.6;
+    }
+  }
+
+  .td {
+    border-bottom: 1px solid var(--border-subtle);
+    height: 46px;
+    padding: 0 var(--space-4);
+    vertical-align: middle;
+    white-space: nowrap;
+  }
+
+  .column_name {
+    max-width: 420px;
+    min-width: 260px;
+    width: 40%;
+  }
+
+  .column_list {
+    width: 140px;
+  }
+
+  .column_members {
+    width: 140px;
+  }
+
+  .column_labels {
+    max-width: 260px;
+  }
+
+  .column_dueDate {
+    width: 150px;
+  }
+
+  .column_createdAt {
+    width: 130px;
+  }
+
+  .name {
+    display: block;
+    font-weight: 500;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .nameClosed {
+    text-decoration: line-through;
+  }
+
+  .listChip {
+    align-items: center;
+    background: var(--bg-active);
+    border-radius: 999px;
+    color: var(--text-secondary);
+    display: inline-flex;
+    font-size: var(--text-sm);
+    gap: var(--space-1);
+    max-width: 100%;
+    overflow: hidden;
+    padding: 2px 10px 2px 8px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .listChipIcon {
+    font-size: 11px !important;
+    margin: 0 !important;
+    opacity: 0.7;
+  }
+
+  .avatars {
+    display: inline-flex;
+  }
+
+  .avatar {
+    display: inline-flex;
+    margin-right: -6px;
+    transition: transform var(--duration-fast) var(--ease-out);
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    &:hover {
+      transform: translateY(-1px);
+      z-index: 1;
+    }
+  }
+
+  .labels {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+
+  .label {
+    display: inline-flex;
+  }
+
+  .empty {
+    color: var(--text-muted);
+  }
+
+  .muted {
+    color: var(--text-secondary);
+    font-size: var(--text-sm);
+  }
+
+  .emptyState {
+    align-items: center;
+    color: var(--text-secondary);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: var(--space-7) var(--space-4);
+    text-align: center;
+  }
+
+  .emptyStateIcon {
+    align-items: center;
+    background: var(--accent-soft);
+    border-radius: var(--radius-lg);
+    color: var(--accent);
+    display: flex;
+    font-size: 22px;
+    height: 56px;
+    justify-content: center;
+    margin-bottom: var(--space-4);
+    width: 56px;
+
+    i {
+      margin: 0;
+    }
+  }
+
+  .emptyStateTitle {
+    color: var(--text-primary);
+    font-size: var(--text-md);
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+  }
+
+  .emptyStateHint {
+    font-size: var(--text-sm);
+  }
+
+  .loaderWrapper {
+    margin: var(--space-5) 0;
+  }
+}

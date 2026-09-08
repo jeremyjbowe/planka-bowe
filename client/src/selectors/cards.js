@@ -85,6 +85,54 @@ export const makeSelectLabelIdsByCardId = () =>
 
 export const selectLabelIdsByCardId = makeSelectLabelIdsByCardId();
 
+/*
+ * DTP fork — flat row objects for the Table and Timeline views.
+ *
+ * Takes an ordered array of card ids and returns plain objects with every
+ * field those views sort or render on, resolved from the ORM in one pass.
+ * Re-computes whenever the ORM changes, which is exactly what keeps the views
+ * live: socket-driven updates land in the same store.
+ */
+export const makeSelectTableRowsByCardIds = () =>
+  createSelector(
+    orm,
+    (_, ids) => ids,
+    ({ Card }, ids) =>
+      ids.flatMap((id) => {
+        const cardModel = Card.withId(id);
+
+        if (!cardModel) {
+          return [];
+        }
+
+        const listModel = cardModel.list;
+        const users = cardModel.users.toRefArray();
+        const labels = cardModel.labels.toRefArray();
+
+        return [
+          {
+            id,
+            name: cardModel.name,
+            description: cardModel.description,
+            isClosed: cardModel.isClosed,
+            dueDate: cardModel.dueDate,
+            isDueCompleted: cardModel.isDueCompleted,
+            createdAt: cardModel.createdAt,
+            creatorUserId: cardModel.creatorUserId,
+            listId: cardModel.listId,
+            listName: listModel ? listModel.name : null,
+            listPosition: listModel ? listModel.position : null,
+            userIds: users.map((user) => user.id),
+            userNames: users.map((user) => user.name),
+            labelIds: labels.map((label) => label.id),
+            labelNames: labels.map((label) => label.name || ''),
+          },
+        ];
+      }),
+  );
+
+export const selectTableRowsByCardIds = makeSelectTableRowsByCardIds();
+
 export const makeSelectShownOnFrontOfCardTaskListIdsByCardId = () =>
   createSelector(
     orm,
@@ -471,6 +519,8 @@ export default {
   selectUserIdsByCardId,
   makeSelectLabelIdsByCardId,
   selectLabelIdsByCardId,
+  makeSelectTableRowsByCardIds,
+  selectTableRowsByCardIds,
   makeSelectShownOnFrontOfCardTaskListIdsByCardId,
   selectShownOnFrontOfCardTaskListIdsByCardId,
   makeSelectAttachmentsTotalByCardId,

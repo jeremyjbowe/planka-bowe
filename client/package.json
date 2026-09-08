@@ -43,7 +43,8 @@
         {
           "ignore": [
             "\\?url$",
-            "\\.svg\\?react$"
+            "\\.svg\\?react$",
+            "^@tanstack/"
           ]
         }
       ],
