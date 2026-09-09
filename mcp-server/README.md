@@ -143,7 +143,7 @@ on them** — read-only access will already work, and writes will fail with a
 ### Claude Code (user scope)
 
 ```sh
-claude mcp add --scope user dtp-tasks -- node "/Users/donna/Developer/ToDo Tracker App/planka/mcp-server/src/index.js"
+claude mcp add --scope user dtp-tasks -- node "/Users/donna/Developer/Planka/mcp-server/src/index.js"
 ```
 
 Then check it:
@@ -164,7 +164,7 @@ Add an entry to `~/Library/Application Support/Claude/claude_desktop_config.json
     "dtp-tasks": {
       "command": "node",
       "args": [
-        "/Users/donna/Developer/ToDo Tracker App/planka/mcp-server/src/index.js"
+        "/Users/donna/Developer/Planka/mcp-server/src/index.js"
       ],
       "env": {
         "DTP_TASKS_MCP_ENV": "/Users/donna/.config/dtp-tasks-mcp/.env"

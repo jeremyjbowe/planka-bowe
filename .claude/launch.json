@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "planka-server",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--prefix", "server"],
+      "port": 1337
+    },
+    {
+      "name": "planka-client",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["start", "--prefix", "client"],
+      "port": 3000
+    }
+  ]
+}
