@@ -10,12 +10,12 @@
   }
 
   .intro {
-    color: #444444;
+    color: var(--text-primary);
     margin-bottom: 16px;
   }
 
   .enabledMeta {
-    color: #444444;
+    color: var(--text-primary);
     font-weight: normal;
   }
 

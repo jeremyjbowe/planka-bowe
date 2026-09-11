@@ -5,11 +5,11 @@
 
 :global(#app) {
   .copyButton {
-    background: #ebeef0;
+    background: var(--bg-elevated);
     box-shadow: none;
     border-radius: 3px;
     box-sizing: content-box;
-    color: #516b7a;
+    color: var(--text-secondary);
     display: none;
     height: 30px;
     margin: 0;
@@ -23,13 +23,13 @@
     width: 20px;
 
     &:hover {
-      background: #dfe3e6;
-      color: #4c4c4c;
+      background: var(--bg-hover);
+      color: var(--text-primary);
     }
   }
 
   .name {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-size: 13px;
     line-height: 1;
     margin-bottom: 6px;
@@ -40,10 +40,10 @@
   }
 
   .value {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-surface);
     border: 1px solid transparent;
     border-radius: 3px;
-    color: #17394d;
+    color: var(--text-primary);
     line-height: 20px;
     opacity: 0.45;
     overflow: hidden;

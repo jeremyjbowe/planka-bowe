@@ -52,7 +52,7 @@
   }
 
   .headerIcon {
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 16px !important;
     margin: 0 !important;
   }
@@ -97,7 +97,7 @@
   }
 
   .groupTitle {
-    color: var(--text-muted);
+    color: var(--text-secondary);
     font-size: var(--text-xs);
     font-weight: 600;
     letter-spacing: 0.08em;
@@ -140,7 +140,7 @@
     background: var(--bg-active);
     border: 1px solid var(--border-default);
     border-radius: var(--radius-xs);
-    color: var(--text-secondary);
+    color: var(--text-primary);
     font-family: inherit;
     font-size: var(--text-xs);
     line-height: 1;

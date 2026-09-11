@@ -28,7 +28,7 @@
   }
 
   .itemActive .itemName {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .itemButton {
@@ -64,7 +64,7 @@
   }
 
   .itemCheck {
-    color: var(--accent);
+    color: var(--accent-text);
     flex: 0 0 auto;
     margin: 0 !important;
   }

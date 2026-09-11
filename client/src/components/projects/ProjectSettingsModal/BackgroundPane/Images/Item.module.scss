@@ -5,7 +5,7 @@
 
 :global(#app) {
   .wrapperSubmitting {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-surface);
     border-radius: 3px;
     height: 74px;
     position: relative;

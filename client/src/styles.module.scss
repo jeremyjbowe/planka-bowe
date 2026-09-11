@@ -159,9 +159,9 @@
   }
 
   .yfm {
-    --yfm-color-accent: #2185d0 !important;
-    --yfm-color-link: #1e70bf !important;
-    --yfm-color-text: #17394d !important;
+    --yfm-color-accent: var(--accent-text) !important;
+    --yfm-color-link: var(--accent-text) !important;
+    --yfm-color-text: var(--text-primary) !important;
     --yfm-font-family-monospace: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace !important;
     --yfm-font-family-sans: "Nunitoga", "Helvetica Neue", Arial, Helvetica, sans-serif !important;
 
@@ -472,6 +472,36 @@
 
   .backgroundBerryRed {
     background: #e83855 !important;
+  }
+
+
+  /* DTP fork: light label/avatar fills get dark text so the name stays readable
+     (white on these fills is below 3.5:1). Computed from each fill's luminance. */
+  .backgroundAutumnLeafs,
+  .backgroundMorningSky,
+  .backgroundAntiqueBlue,
+  .backgroundEggYellow,
+  .backgroundDesertSand,
+  .backgroundFreshSalad,
+  .backgroundLagoonBlue,
+  .backgroundLightOrange,
+  .backgroundPumpkinOrange,
+  .backgroundLightConcrete,
+  .backgroundSunnyGrass,
+  .backgroundApricotRed,
+  .backgroundOrangePeel,
+  .backgroundBrightMoss,
+  .backgroundSummerSky,
+  .backgroundGreyStone,
+  .backgroundTankGreen,
+  .backgroundSugarPlum,
+  .backgroundWetRock,
+  .backgroundLavenderFields,
+  .backgroundPiggyRed,
+  .backgroundLightMud,
+  .backgroundModernGreen,
+  .backgroundFrenchCoast {
+    color: rgba(15, 15, 18, 0.88) !important;
   }
 
   .backgroundBerryRedSoft {

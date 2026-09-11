@@ -13,7 +13,7 @@
   }
 
   .hint {
-    color: #666666;
+    color: var(--text-secondary);
     margin-bottom: 12px;
   }
 
@@ -32,13 +32,13 @@
   }
 
   .deviceSecondary {
-    color: #444444 !important;
+    color: var(--text-primary) !important;
     font-size: 13px;
     margin-top: 2px !important;
   }
 
   .meta {
-    color: #666666 !important;
+    color: var(--text-secondary) !important;
     font-size: 12px;
     margin-top: 4px;
   }

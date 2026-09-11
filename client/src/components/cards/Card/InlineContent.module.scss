@@ -10,7 +10,7 @@
   }
 
   .attachmentContent {
-    color: #6a808b;
+    color: var(--text-secondary);
     font-size: 12px;
     line-height: 20px;
     max-width: 176px;
@@ -45,7 +45,7 @@
   }
 
   .name {
-    color: #17394d;
+    color: var(--text-primary);
     font-size: 14px;
     max-width: 30%;
   }

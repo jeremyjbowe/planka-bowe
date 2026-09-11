@@ -16,12 +16,12 @@
     transition: border-color var(--duration-fast) var(--ease-out);
 
     &:hover {
-      border-color: var(--accent);
+      border-color: var(--accent-text);
     }
   }
 
   .icon {
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 11px !important;
     margin: 0 !important;
   }

@@ -105,17 +105,18 @@
   .ui.positive.button,
   .ui.positive.buttons .button,
   .ui.primary.button {
-    background: var(--accent);
+    background: var(--accent-strong);
     color: var(--accent-contrast);
 
     &:hover,
     &:focus {
-      background: var(--accent-hover);
+      background: var(--accent);
       color: var(--accent-contrast);
     }
 
     &:active {
       background: var(--accent-strong);
+      filter: brightness(0.94);
     }
   }
 
@@ -146,13 +147,13 @@
 
   .ui.basic.positive.button {
     box-shadow: inset 0 0 0 1px var(--accent);
-    color: var(--accent);
+    color: var(--accent-text);
 
     &:hover,
     &:focus {
       background: var(--accent-soft);
       box-shadow: inset 0 0 0 1px var(--accent);
-      color: var(--accent);
+      color: var(--accent-text);
     }
   }
 

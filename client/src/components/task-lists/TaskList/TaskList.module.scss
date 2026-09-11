@@ -5,7 +5,7 @@
 
 :global(#app) {
   .count {
-    color: #8c8c8c;
+    color: var(--text-secondary);
     font-size: 14px;
     line-height: 14px;
   }
@@ -34,7 +34,7 @@
     background: transparent;
     border: none;
     border-radius: 3px;
-    color: #6b808c;
+    color: var(--text-secondary);
     cursor: pointer;
     display: block;
     margin-top: 6px;
@@ -47,8 +47,8 @@
     width: 100%;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.04);
-      color: #092d42;
+      background: var(--bg-hover);
+      color: var(--text-primary);
     }
   }
 

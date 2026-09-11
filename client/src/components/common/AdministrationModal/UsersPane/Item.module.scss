@@ -10,7 +10,7 @@
   }
 
   .icon {
-    color: #888888;
+    color: var(--text-secondary);
     margin: 0 0.35714286em 0 0;
   }
 
@@ -23,7 +23,7 @@
   }
 
   .informationApiKey {
-    color: #cf513d;
+    color: var(--danger);
 
     .icon {
       color: inherit;
@@ -31,7 +31,7 @@
   }
 
   .note {
-    color: #888888;
+    color: var(--text-secondary);
   }
 
   .roleCell {
@@ -45,7 +45,7 @@
   }
 
   .wrapper {
-    color: #212121;
+    color: var(--text-primary);
   }
 
   .wrapperDeactivated {
@@ -72,7 +72,7 @@
     }
 
     .mobileIdentity {
-      color: #6b6b6b;
+      color: var(--text-secondary);
       display: block;
       font-size: 13px;
       margin-top: 4px;

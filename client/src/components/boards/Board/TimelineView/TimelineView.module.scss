@@ -98,7 +98,7 @@
 
     :global(.gantt-container) {
       --g-arrow-color: var(--text-secondary);
-      --g-bar-color: var(--accent);
+      --g-bar-color: var(--accent-text);
       --g-bar-border: transparent;
       --g-tick-color-thick: var(--border-default);
       --g-tick-color: var(--border-subtle);
@@ -352,7 +352,7 @@
     align-items: center;
     background: var(--accent-soft);
     border-radius: var(--radius-lg);
-    color: var(--accent);
+    color: var(--accent-text);
     display: flex;
     font-size: 22px;
     height: 56px;

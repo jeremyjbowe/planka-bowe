@@ -220,7 +220,7 @@
     color: var(--text-primary);
 
     .rowIcon {
-      color: var(--accent);
+      color: var(--accent-text);
     }
   }
 
@@ -343,7 +343,7 @@
 
     &:hover {
       background: var(--accent-softer);
-      border-color: var(--accent);
+      border-color: var(--accent-text);
       color: var(--text-primary);
     }
   }

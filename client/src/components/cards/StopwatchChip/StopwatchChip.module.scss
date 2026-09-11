@@ -14,16 +14,16 @@
   }
 
   .wrapper {
-    background: #dce0e4;
+    background: var(--bg-active);
     border-radius: 3px;
-    color: #6a808b;
+    color: var(--text-secondary);
     display: inline-block;
     font-variant-numeric: tabular-nums;
     transition: background 0.3s ease;
   }
 
   .wrapperActive {
-    background: #21ba45;
+    background: var(--success);
     color: #fff;
 
     &.wrapperHoverable:hover {
@@ -33,8 +33,8 @@
   }
 
   .wrapperHoverable:hover {
-    background: #d2d8dc;
-    color: #17394d;
+    background: var(--border-strong);
+    color: var(--text-primary);
   }
 
   /* Sizes */

@@ -25,19 +25,19 @@
     width: 28px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
+      background: var(--bg-hover);
     }
   }
 
   .information {
     display: block;
-    color: #6b808c;
+    color: var(--text-secondary);
     line-height: 20px;
     margin-bottom: 6px;
   }
 
   .name {
-    color: #17394d;
+    color: var(--text-primary);
     font-size: 14px;
     font-weight: bold;
     line-height: 20px;
@@ -47,7 +47,7 @@
   .option {
     background: none;
     border: none;
-    color: #6b808c;
+    color: var(--text-secondary);
     cursor: pointer;
     outline: none;
     padding: 0;
@@ -57,7 +57,7 @@
     }
 
     &:hover {
-      color: #172b4d;
+      color: var(--text-primary);
     }
   }
 
@@ -71,13 +71,13 @@
 
   .options {
     display: block;
-    color: #6b808c;
+    color: var(--text-secondary);
     line-height: 20px;
   }
 
   .thumbnail {
     align-items: center;
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-surface);
     border-radius: 3px;
     display: flex;
     height: 80px;
@@ -89,7 +89,7 @@
   }
 
   .thumbnailExtension {
-    color: #5e6c84;
+    color: var(--text-secondary);
     display: block;
     font-size: 18px;
     font-weight: bold;
@@ -100,7 +100,7 @@
   }
 
   .thumbnailLabel {
-    border-color: rgba(29, 46, 63, 0.8);
+    border-color: var(--border-strong);
 
     i {
       cursor: inherit;
@@ -115,7 +115,7 @@
 
     &:hover {
       .details {
-        background: rgba(9, 30, 66, 0.04);
+        background: var(--bg-hover);
       }
 
       .editButton {
@@ -125,6 +125,6 @@
   }
 
   .wrapperSubmitting {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-active);
   }
 }

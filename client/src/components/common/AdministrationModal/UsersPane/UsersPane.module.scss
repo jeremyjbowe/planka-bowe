@@ -5,7 +5,7 @@
 
 :global(#app) {
   .actions {
-    border-top: 1px solid rgba(34, 36, 38, 0.15);
+    border-top: 1px solid var(--border-default);
     padding-top: 1rem;
     text-align: right;
 
@@ -43,7 +43,7 @@
     }
 
     @supports (-moz-appearance: none) {
-      scrollbar-color: rgba(0, 0, 0, 0.32) transparent;
+      scrollbar-color: var(--scrollbar-thumb) transparent;
     }
 
     &::-webkit-scrollbar-track {
@@ -58,7 +58,7 @@
   .toggleDeactivatedButton {
     background: transparent;
     box-shadow: none;
-    color: #6b808c;
+    color: var(--text-secondary);
     float: left;
     font-weight: normal;
     margin-left: auto;
@@ -70,8 +70,8 @@
     white-space: nowrap;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #092d42;
+      background: var(--bg-hover);
+      color: var(--text-primary);
     }
   }
 

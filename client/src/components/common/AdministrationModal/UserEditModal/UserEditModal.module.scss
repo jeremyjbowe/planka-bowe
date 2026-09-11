@@ -24,12 +24,12 @@
     // the surface's hue subtly. The :not() chain preserves every
     // explicitly-coloured Semantic UI button.
     :global(.ui.button):not(:global(.positive)):not(:global(.negative)):not(:global(.primary)):not(:global(.secondary)):not(:global(.red)):not(:global(.orange)):not(:global(.yellow)):not(:global(.olive)):not(:global(.green)):not(:global(.teal)):not(:global(.blue)):not(:global(.violet)):not(:global(.purple)):not(:global(.pink)):not(:global(.brown)):not(:global(.grey)):not(:global(.black)):not(:global(.inverted)) {
-      background: rgba(22, 49, 75, 0.15);
-      color: #1b1c1d;
+      background: var(--bg-hover);
+      color: var(--text-primary);
 
       &:hover {
-        background: rgba(22, 49, 75, 0.22);
-        color: #1b1c1d;
+        background: var(--bg-active);
+        color: var(--text-primary);
       }
     }
   }

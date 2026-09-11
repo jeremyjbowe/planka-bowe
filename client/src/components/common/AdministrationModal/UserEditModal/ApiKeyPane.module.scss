@@ -7,7 +7,7 @@
   .actionButton {
     background: transparent;
     box-shadow: none;
-    color: #666666;
+    color: var(--text-secondary);
     font-weight: normal;
     margin-top: 8px;
     padding: 6px 11px;
@@ -16,7 +16,7 @@
     transition: background 0.3s ease;
 
     &:hover {
-      background: #f3f3f3;
+      background: var(--bg-hover);
     }
   }
 
@@ -25,11 +25,11 @@
   }
 
   .copyButton {
-    background: #ebeef0;
+    background: var(--bg-surface);
     box-shadow: none;
     border-radius: 3px;
     box-sizing: content-box;
-    color: #444444;
+    color: var(--text-primary);
     display: none;
     height: 30px;
     margin: 0;
@@ -43,8 +43,8 @@
     width: 20px;
 
     &:hover {
-      background: #dcdfe1;
-      color: #444444;
+      background: var(--bg-active);
+      color: var(--text-primary);
     }
   }
 

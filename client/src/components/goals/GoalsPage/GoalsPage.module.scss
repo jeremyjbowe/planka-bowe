@@ -29,7 +29,7 @@
   }
 
   .titleIcon {
-    color: var(--accent);
+    color: var(--accent-text);
     font-size: 20px !important;
     margin: 0 !important;
   }
@@ -71,7 +71,7 @@
     padding: 8px 12px;
 
     &:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-text);
     }
   }
 
@@ -157,7 +157,7 @@
     align-items: center;
     background: var(--accent-soft);
     border-radius: var(--radius-sm);
-    color: var(--accent);
+    color: var(--accent-text);
     display: inline-flex;
     flex-shrink: 0;
     height: 28px;

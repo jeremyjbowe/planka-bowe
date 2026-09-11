@@ -15,7 +15,7 @@
     background: transparent;
 
     &:hover {
-      background: rgba(0, 0, 0, 0.05);
+      background: var(--bg-hover);
     }
   }
 
@@ -27,7 +27,7 @@
 
   .menuItemTextActive:before {
     bottom: 2px;
-    color: #798d99;
+    color: var(--text-secondary);
     content: "Г";
     font-size: 18px;
     font-weight: normal;

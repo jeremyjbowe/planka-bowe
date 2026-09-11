@@ -22,6 +22,8 @@
   --accent-soft: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.16);
   --accent-softer: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.08);
   --accent-ring: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.45);
+  /* Accent used as text/icon color on dark surfaces (lighter than the fill so it reads). */
+  --accent-text: hsl(var(--accent-h) var(--accent-s) 76%);
   --accent-contrast: #ffffff;
 
   /* Surfaces */
@@ -39,9 +41,9 @@
   --border-strong: rgba(255, 255, 255, 0.18);
 
   /* Text */
-  --text-primary: #ededef;
-  --text-secondary: #a3a3ab;
-  --text-muted: #6f6f78;
+  --text-primary: #f0f0f2;
+  --text-secondary: #b3b3bb;
+  --text-muted: #92929c;
   --text-inverted: #0f0f12;
 
   /* Status */
@@ -129,6 +131,7 @@
   --accent-soft: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.12);
   --accent-softer: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.06);
   --accent-ring: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.35);
+  --accent-text: hsl(var(--accent-h) var(--accent-s) 46%);
 
   --bg-app: #f4f4f7;
   --bg-surface: #ebebf0;
@@ -144,14 +147,14 @@
 
   --text-primary: #17171c;
   --text-secondary: #5c5c66;
-  --text-muted: #8b8b95;
+  --text-muted: #65656f;
   --text-inverted: #ffffff;
 
-  --success: #16a34a;
-  --success-soft: rgba(22, 163, 74, 0.12);
-  --warning: #d97706;
-  --warning-soft: rgba(217, 119, 6, 0.12);
-  --danger: #dc2626;
+  --success: #15803d;
+  --success-soft: rgba(22, 163, 74, 0.14);
+  --warning: #9a3412;
+  --warning-soft: rgba(217, 119, 6, 0.14);
+  --danger: #b91c1c;
   --danger-soft: rgba(220, 38, 38, 0.12);
 
   --shadow-sm: 0 1px 2px rgba(15, 15, 18, 0.06);

@@ -17,8 +17,8 @@
   .field {
     border: none;
     border-radius: 3px;
-    box-shadow: 0 1px 0 #ccc;
-    color: #333;
+    box-shadow: 0 1px 0 var(--border-default);
+    color: var(--text-primary);
     outline: none;
     overflow: hidden;
     width: 100%;
@@ -32,7 +32,7 @@
   .selectTypeButton {
     background: transparent;
     box-shadow: none;
-    color: #6b808c;
+    color: var(--text-secondary);
     font-weight: normal;
     margin-left: auto;
     margin-right: 0;
@@ -43,8 +43,8 @@
     transition: none;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.08);
-      color: #092d42;
+      background: var(--bg-hover);
+      color: var(--text-primary);
     }
   }
 
@@ -53,7 +53,7 @@
   }
 
   .wrapper {
-    background: #e2e4e6;
+    background: var(--bg-surface);
     border-radius: 3px;
     padding: 4px;
     transition: opacity 40ms ease-in;

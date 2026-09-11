@@ -5,7 +5,7 @@
 
   .eyebrow {
     align-items: center;
-    color: var(--accent);
+    color: var(--accent-text);
     display: flex;
     font-size: var(--text-xs);
     font-weight: 700;
@@ -54,7 +54,7 @@
 
     &:focus {
       background: var(--bg-input);
-      border-color: var(--accent);
+      border-color: var(--accent-text);
     }
   }
 
@@ -73,7 +73,7 @@
   }
 
   .range {
-    accent-color: var(--accent);
+    accent-color: var(--accent-text);
     margin-top: var(--space-3);
     width: 100%;
   }
@@ -115,7 +115,7 @@
     width: 100%;
 
     &:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-text);
     }
   }
 
@@ -133,7 +133,7 @@
     width: 100%;
 
     &:focus {
-      border-color: var(--accent);
+      border-color: var(--accent-text);
       box-shadow: 0 0 0 3px var(--accent-ring);
     }
   }

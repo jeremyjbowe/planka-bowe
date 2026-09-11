@@ -44,24 +44,24 @@
   .low {
     background: rgba(100, 116, 139, 0.16);
     border-color: rgba(100, 116, 139, 0.25);
-    color: #64748b;
+    color: var(--text-secondary);
   }
 
   .medium {
     background: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.16);
     border-color: hsl(var(--accent-h) var(--accent-s) var(--accent-l) / 0.3);
-    color: hsl(var(--accent-h) var(--accent-s) 52%);
+    color: var(--accent-text);
   }
 
   .high {
     background: rgba(245, 158, 11, 0.16);
     border-color: rgba(245, 158, 11, 0.3);
-    color: #d97706;
+    color: var(--warning);
   }
 
   .urgent {
     background: rgba(239, 68, 68, 0.16);
     border-color: rgba(239, 68, 68, 0.3);
-    color: #dc2626;
+    color: var(--danger);
   }
 }

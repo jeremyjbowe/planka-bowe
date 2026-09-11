@@ -72,7 +72,7 @@
     background: transparent;
     border: none;
     border-radius: 3px;
-    color: #666666;
+    color: var(--text-secondary);
     cursor: pointer;
     flex-shrink: 0;
     height: 38px;
@@ -81,10 +81,10 @@
     padding: 4px 6px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.1);
+      background: var(--bg-hover);
       // against the dark-mode hover bg. --text-primary flips per
       // theme so the hovered text stays readable in both.
-      color: #1b1c1d;
+      color: var(--text-primary);
     }
   }
 
@@ -100,7 +100,7 @@
   }
 
   .text {
-    color: #444444;
+    color: var(--text-primary);
     font-size: 12px;
     font-weight: bold;
     padding-bottom: 6px;
@@ -110,7 +110,7 @@
     background: transparent;
     border: none;
     border-radius: 3px;
-    color: #666666;
+    color: var(--text-secondary);
     cursor: pointer;
     flex-shrink: 0;
     height: 28px;
@@ -118,10 +118,10 @@
     padding: 4px 6px;
 
     &:hover {
-      background: rgba(9, 30, 66, 0.1);
+      background: var(--bg-hover);
       // against the dark-mode hover bg. --text-primary flips per
       // theme so the hovered text stays readable in both.
-      color: #1b1c1d;
+      color: var(--text-primary);
     }
   }
 
@@ -133,7 +133,7 @@
   }
 
   .totpResetHint {
-    color: #666666;
+    color: var(--text-muted);
     font-size: 12px;
     margin-top: 4px;
   }

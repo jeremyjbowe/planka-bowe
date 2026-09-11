@@ -47,7 +47,7 @@
   .chipActive {
     background: var(--accent-soft);
     border-color: var(--accent-ring);
-    color: var(--accent);
+    color: var(--accent-text);
 
     &:hover {
       background: var(--accent-soft);
@@ -103,7 +103,7 @@
   }
 
   .toggleActive .toggleIcon {
-    color: var(--accent);
+    color: var(--accent-text);
   }
 
   .toggleIcon {

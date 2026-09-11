@@ -15,10 +15,10 @@
 
   // TODO: provide for different sizes
   .creatorIndicator {
-    background: #fff;
+    background: var(--bg-elevated);
     border-radius: 50%;
     bottom: 0;
-    color: #6a808b;
+    color: var(--text-secondary);
     font-size: 12px;
     height: 10px;
     line-height: 10px;
@@ -112,5 +112,13 @@
 
   .backgroundMidnightBlue {
     background: #2c3e50;
+  }
+
+  /* DTP fork: light fills get dark initials (white is below 3.5:1 on these). */
+  .backgroundEmerald,
+  .backgroundPeterRiver,
+  .backgroundCarrot,
+  .backgroundTurquoise {
+    color: rgba(15, 15, 18, 0.88);
   }
 }

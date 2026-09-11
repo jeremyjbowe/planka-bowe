@@ -19,9 +19,9 @@
   }
 
   .wrapper {
-    background: #dce0e4;
+    background: var(--bg-active);
     border-radius: 3px;
-    color: #6a808b;
+    color: var(--text-secondary);
     display: inline-block;
     transition: background 0.3s ease;
     white-space: nowrap;
@@ -54,17 +54,17 @@
   /* Statuses */
 
   .wrapperDueSoon {
-    background: #f2711c;
-    color: #fff;
+    background: var(--warning-soft);
+    color: var(--warning);
   }
 
   .wrapperOverdue {
-    background: #db2828;
-    color: #fff;
+    background: var(--danger-soft);
+    color: var(--danger);
   }
 
   .wrapperCompleted {
-    background: #21ba45;
-    color: #fff;
+    background: var(--success-soft);
+    color: var(--success);
   }
 }

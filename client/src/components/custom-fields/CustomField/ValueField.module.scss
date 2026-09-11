@@ -5,13 +5,13 @@
 
 :global(#app) {
   .field input {
-    background: rgba(9, 30, 66, 0.04);
+    background: var(--bg-surface);
     border: 1px solid transparent;
     overflow: hidden;
     text-overflow: ellipsis;
 
     &:focus {
-      background: #fff;
+      background: var(--bg-elevated);
       border-color: #5ba4cf;
     }
   }

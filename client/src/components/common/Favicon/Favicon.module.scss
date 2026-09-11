@@ -5,7 +5,7 @@
 
 :global(#app) {
   .fallbackIcon {
-    color: #5e6c84;
+    color: var(--text-secondary);
     font-size: 18px;
   }
 }

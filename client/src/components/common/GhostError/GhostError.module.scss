@@ -226,7 +226,7 @@
   }
 
   .text {
-    color: #6b808c;
+    color: var(--text-secondary);
     font-size: 18px;
     line-height: 1.4;
     margin-bottom: 30px;
@@ -239,7 +239,7 @@
 
   .wrapper {
     align-items: center;
-    color: #fff;
+    color: var(--text-primary);
     display: flex;
     flex-direction: column;
     height: 100%;
