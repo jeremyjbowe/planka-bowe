@@ -141,7 +141,7 @@ export const selectIsProjectWithIdExternalAccessibleForCurrentUser =
   makeSelectIsProjectWithIdExternalAccessibleForCurrentUser();
 
 /*
- * DTP fork — hierarchical projects.
+ * planka-bowe — hierarchical projects.
  *
  * Builds the sidebar tree from the projects the current user can see. A
  * project whose parent is not visible to the user is shown as a root, so

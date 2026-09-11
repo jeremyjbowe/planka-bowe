@@ -31,7 +31,7 @@ module.exports = {
   },
 
   async fn(inputs) {
-    // DTP fork — subtasks: children survive as top-level cards
+    // planka-bowe — subtasks: children survive as top-level cards
     await sails.helpers.cards.detachSubtasks.with({
       record: inputs.record,
       request: inputs.request,
@@ -39,14 +39,14 @@ module.exports = {
 
     await sails.helpers.cards.deleteRelated(inputs.record);
 
-    // DTP fork — goals
+    // planka-bowe — goals
     await sails.helpers.goalLinks.deleteByTarget.with({
       cardId: inputs.record.id,
     });
 
     const card = await Card.qm.deleteOne(inputs.record.id);
 
-    // DTP fork — goals: board totals changed
+    // planka-bowe — goals: board totals changed
     await sails.helpers.goalLinks.broadcastTargetUpdate.with({
       board: inputs.board,
     });

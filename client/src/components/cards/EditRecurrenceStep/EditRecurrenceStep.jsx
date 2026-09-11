@@ -1,5 +1,5 @@
 /*!
- * DTP fork — EditRecurrenceStep.
+ * planka-bowe — EditRecurrenceStep.
  *
  * Presets for the common cadences plus a free-form RRULE field with a live
  * human-readable preview. Saving dispatches the ordinary updateCard entry

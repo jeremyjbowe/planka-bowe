@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal progress bar.
+ * planka-bowe — goal progress bar.
  */
 
 import GoalProgressBar from './GoalProgressBar';

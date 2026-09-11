@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GET /api/users/me/calendar-feed
+ * planka-bowe — GET /api/users/me/calendar-feed
  * The current user's feed token and URLs (created on first call).
  */
 

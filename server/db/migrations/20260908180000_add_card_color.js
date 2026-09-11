@@ -1,5 +1,5 @@
 /*!
- * DTP fork — card color accent (a fixed palette of 10 soft colors), used to
+ * planka-bowe — card color accent (a fixed palette of 10 soft colors), used to
  * tint the card face and the card modal header.
  */
 

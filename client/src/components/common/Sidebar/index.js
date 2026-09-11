@@ -1,5 +1,5 @@
 /*!
- * DTP fork — persistent project tree sidebar.
+ * planka-bowe — persistent project tree sidebar.
  */
 
 import Sidebar from './Sidebar';

@@ -105,7 +105,7 @@ module.exports = {
       }
     }
 
-    // DTP fork — subtasks: `parentCard` arrives resolved from the controller
+    // planka-bowe — subtasks: `parentCard` arrives resolved from the controller
     if (!_.isUndefined(values.parentCard)) {
       const nextParentCardId = values.parentCard ? values.parentCard.id : null;
 
@@ -122,7 +122,7 @@ module.exports = {
       values.parentCardId = null;
     }
 
-    // DTP fork — recurring cards: a new rule starts a fresh cycle
+    // planka-bowe — recurring cards: a new rule starts a fresh cycle
     if (
       !_.isUndefined(values.recurrenceRule) &&
       values.recurrenceRule !== inputs.record.recurrenceRule
@@ -412,7 +412,7 @@ module.exports = {
       });
     }
 
-    // DTP fork — goals: keep linked goal progress live for everyone who may see the board
+    // planka-bowe — goals: keep linked goal progress live for everyone who may see the board
     if (
       !_.isUndefined(values.isClosed) ||
       !_.isUndefined(values.name) ||
@@ -431,7 +431,7 @@ module.exports = {
       }
     }
 
-    // DTP fork — recurring cards: spawn the next occurrence as soon as this one closes.
+    // planka-bowe — recurring cards: spawn the next occurrence as soon as this one closes.
     // The helper's atomic claim makes this safe alongside the interval job.
     if (card.isClosed && card.recurrenceRule && !card.recurrenceSpawnedAt) {
       await sails.helpers.cards.spawnNextOccurrence.with({

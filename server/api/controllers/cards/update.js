@@ -353,7 +353,7 @@ module.exports = {
       }
     }
 
-    // DTP fork — subtasks: validate the requested parent before touching anything
+    // planka-bowe — subtasks: validate the requested parent before touching anything
     let nextParentCard;
     if (inputs.parentCardId) {
       nextParentCard = await Card.qm.getOneById(inputs.parentCardId);

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals.
+ * planka-bowe — Goals.
  */
 
 module.exports = {

@@ -173,7 +173,7 @@ const Types = {
   STORY: 'story',
 };
 
-// DTP fork — card priority
+// planka-bowe — card priority
 const Priorities = {
   LOW: 'low',
   MEDIUM: 'medium',
@@ -181,7 +181,7 @@ const Priorities = {
   URGENT: 'urgent',
 };
 
-// DTP fork — card color accent
+// planka-bowe — card color accent
 const Colors = {
   BERRY: 'berry',
   CORAL: 'coral',
@@ -249,19 +249,19 @@ module.exports = {
       type: 'ref',
       columnName: 'list_changed_at',
     },
-    // DTP fork — card priority
+    // planka-bowe — card priority
     priority: {
       type: 'string',
       isIn: Object.values(Priorities),
       allowNull: true,
     },
-    // DTP fork — card color accent
+    // planka-bowe — card color accent
     color: {
       type: 'string',
       isIn: Object.values(Colors),
       allowNull: true,
     },
-    // DTP fork — recurring cards
+    // planka-bowe — recurring cards
     recurrenceRule: {
       type: 'string',
       isNotEmptyString: true,
@@ -304,7 +304,7 @@ module.exports = {
       model: 'Attachment',
       columnName: 'cover_attachment_id',
     },
-    // DTP fork — subtasks: a card may belong to a parent card on the same board
+    // planka-bowe — subtasks: a card may belong to a parent card on the same board
     parentCardId: {
       model: 'Card',
       columnName: 'parent_card_id',

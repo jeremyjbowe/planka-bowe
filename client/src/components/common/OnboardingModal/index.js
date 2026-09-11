@@ -1,5 +1,5 @@
 /*!
- * DTP fork — first-run onboarding.
+ * planka-bowe — first-run onboarding.
  */
 
 import OnboardingModal from './OnboardingModal';

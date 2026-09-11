@@ -34,7 +34,7 @@ const updateBoard = (id, data, headers) => socket.patch(`/boards/${id}`, data, h
 
 const deleteBoard = (id, headers) => socket.delete(`/boards/${id}`, undefined, headers);
 
-/* DTP fork — board export as JSON
+/* planka-bowe — board export as JSON
  * `http` above parses every response as JSON and drops the headers, so the
  * download goes straight through `fetch` with the bearer token from the
  * access token cookie. The Vite dev server proxies `/api` to the backend.

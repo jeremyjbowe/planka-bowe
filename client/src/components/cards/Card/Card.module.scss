@@ -80,7 +80,7 @@
       var(--shadow-md);
   }
 
-  :global(.dtpCardDragging) .wrapper {
+  :global(.boweCardDragging) .wrapper {
     border-color: var(--accent-text);
     box-shadow: var(--shadow-lift), 0 0 0 1px var(--accent-soft);
     transform: rotate(1.5deg) scale(1.02);

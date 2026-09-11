@@ -70,7 +70,7 @@ export const BoardContexts = {
   TRASH: 'trash',
 };
 
-// DTP fork — `plankaJson` is a board exported by this app
+// planka-bowe — `plankaJson` is a board exported by this app
 export const BoardImportTypes = {
   TRELLO: 'trello',
   PLANKA_JSON: 'plankaJson',
@@ -104,14 +104,14 @@ export const CardTypes = {
   STORY: 'story',
 };
 
-// DTP fork — goals
+// planka-bowe — goals
 export const GoalStatuses = {
   ACTIVE: 'active',
   PAUSED: 'paused',
   DONE: 'done',
 };
 
-// DTP fork — card priority
+// planka-bowe — card priority
 export const CardPriorities = {
   LOW: 'low',
   MEDIUM: 'medium',
@@ -126,7 +126,7 @@ export const CARD_PRIORITY_RANK = {
   [CardPriorities.URGENT]: 4,
 };
 
-// DTP fork — board filters (client-only, per board)
+// planka-bowe — board filters (client-only, per board)
 export const CardDueFilters = {
   OVERDUE: 'overdue',
   TODAY: 'today',
@@ -139,7 +139,7 @@ export const CardStatusFilters = {
   DONE: 'done',
 };
 
-// DTP fork — card color accent
+// planka-bowe — card color accent
 export const CardColors = [
   'berry',
   'coral',

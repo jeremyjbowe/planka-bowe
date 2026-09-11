@@ -48,7 +48,7 @@ module.exports = {
       boardId: boardIdOrIds,
     });
 
-    // DTP fork — saved views live and die with their board
+    // planka-bowe — saved views live and die with their board
     await SavedView.qm.delete({
       boardId: boardIdOrIds,
     });

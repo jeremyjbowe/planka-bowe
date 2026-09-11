@@ -34,7 +34,7 @@ const createProject = (data) => ({
 });
 
 /*
- * DTP fork — onboarding: create a project, a board and its lists in one go.
+ * planka-bowe — onboarding: create a project, a board and its lists in one go.
  * data: { projectName, boardName, lists: [{ name, type }] }
  */
 const bootstrapWorkspace = (data) => ({

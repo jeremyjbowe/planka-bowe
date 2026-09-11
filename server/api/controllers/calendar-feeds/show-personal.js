@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GET /feeds/:token/todos.ics[?mode=events]
+ * planka-bowe — GET /feeds/:token/todos.ics[?mode=events]
  * Cards the user is a member of, across the boards they can see. Public
  * route authenticated by the secret token only.
  */

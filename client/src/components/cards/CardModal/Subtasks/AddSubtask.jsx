@@ -1,5 +1,5 @@
 /*!
- * DTP fork — inline "add subtask" input. Enter creates and keeps the field
+ * planka-bowe — inline "add subtask" input. Enter creates and keeps the field
  * open for rapid entry; Escape or an empty submit closes it.
  */
 

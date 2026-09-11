@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feeds. Absolute URLs for a token.
+ * planka-bowe — calendar feeds. Absolute URLs for a token.
  */
 
 module.exports = {

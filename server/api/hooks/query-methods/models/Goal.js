@@ -1,5 +1,5 @@
 /*!
- * DTP fork — query methods for goals.
+ * planka-bowe — query methods for goals.
  */
 
 const defaultFind = (criteria) => Goal.find(criteria).sort(['position', 'id']);

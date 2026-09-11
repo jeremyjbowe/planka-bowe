@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Quick Add parser.
+ * planka-bowe — Quick Add parser.
  *
  * Turns a sentence such as
  *   "Fix invoice bug @jeremy #billing !high tomorrow 3pm"

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved views.
+ * planka-bowe — saved views.
  *
  * Shared views go to everybody in the board room; personal ones only to the
  * sockets of the user who owns them, so a private preset never leaks. When

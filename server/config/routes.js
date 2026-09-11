@@ -125,13 +125,13 @@ module.exports.routes = {
   'PATCH /api/config': 'config/update',
   'POST /api/config/test-smtp': 'config/test-smtp',
 
-  // DTP fork — calendar feeds
+  // planka-bowe — calendar feeds
   'GET /api/users/me/calendar-feed': 'calendar-feeds/show-current',
   'POST /api/users/me/calendar-feed/regenerate': 'calendar-feeds/regenerate',
   'GET /feeds/:token/todos.ics': 'calendar-feeds/show-personal',
   'GET /feeds/:token/boards/:boardId/todos.ics': 'calendar-feeds/show-board',
 
-  // DTP fork — goals
+  // planka-bowe — goals
   'GET /api/goals': 'goals/index',
   'POST /api/goals': 'goals/create',
   'PATCH /api/goals/:id': 'goals/update',
@@ -139,7 +139,7 @@ module.exports.routes = {
   'POST /api/goals/:goalId/goal-links': 'goal-links/create',
   'DELETE /api/goal-links/:id': 'goal-links/delete',
 
-  // DTP fork — saved views
+  // planka-bowe — saved views
   'POST /api/boards/:boardId/saved-views': 'saved-views/create',
   'PATCH /api/saved-views/:id': 'saved-views/update',
   'DELETE /api/saved-views/:id': 'saved-views/delete',
@@ -190,7 +190,7 @@ module.exports.routes = {
 
   'POST /api/projects/:projectId/boards': 'boards/create',
   'GET /api/boards/:id': 'boards/show',
-  // DTP fork — board export as JSON
+  // planka-bowe — board export as JSON
   'GET /api/boards/:id/export': 'boards/export',
   'PATCH /api/boards/:id': 'boards/update',
   'DELETE /api/boards/:id': 'boards/delete',

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GET /feeds/:token/boards/:boardId/todos.ics[?mode=events]
+ * planka-bowe — GET /feeds/:token/boards/:boardId/todos.ics[?mode=events]
  * Every card in the board's active and closed lists, if the token's user may
  * see the board.
  */

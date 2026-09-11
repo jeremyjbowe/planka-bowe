@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved view watchers.
+ * planka-bowe — saved view watchers.
  */
 
 import { all, takeEvery } from 'redux-saga/effects';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Creates a link between a goal and a card or a board and
+ * planka-bowe — Goals. Creates a link between a goal and a card or a board and
  * broadcasts it with a fresh summary so every client can update progress.
  */
 

@@ -33,7 +33,7 @@ const updateUserUsername = (id, data, headers) =>
 
 const updateUserAvatar = (id, data, headers) => http.post(`/users/${id}/avatar`, data, headers);
 
-// DTP fork — calendar feeds
+// planka-bowe — calendar feeds
 const getCurrentUserCalendarFeed = (headers) =>
   socket.get('/users/me/calendar-feed', undefined, headers);
 

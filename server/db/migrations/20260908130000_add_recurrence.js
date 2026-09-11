@@ -1,5 +1,5 @@
 /*!
- * DTP fork — recurring cards.
+ * planka-bowe — recurring cards.
  *
  * `recurrence_rule` holds an RFC 5545 RRULE (e.g. FREQ=WEEKLY;BYDAY=MO).
  * `recurrence_spawned_at` is set exactly once when the next occurrence has

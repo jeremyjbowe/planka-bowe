@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feeds. Gathers the cards for a feed together with the
+ * planka-bowe — calendar feeds. Gathers the cards for a feed together with the
  * lookups the serializer needs (labels per card, lists, boards).
  */
 

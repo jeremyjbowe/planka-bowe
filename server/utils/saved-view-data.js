@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved views.
+ * planka-bowe — saved views.
  *
  * `saved_view.data` is a filter preset written and read by the client. The
  * server does not interpret it, but it does keep it well-formed so a bad

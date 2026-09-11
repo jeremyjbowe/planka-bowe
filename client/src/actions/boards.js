@@ -138,7 +138,7 @@ const searchInBoard = (id, value, currentListId) => ({
   },
 });
 
-// DTP fork — richer board filters (client-only)
+// planka-bowe — richer board filters (client-only)
 const updateBoardFilters = (id, data) => ({
   type: ActionTypes.BOARD_FILTERS_UPDATE,
   payload: {

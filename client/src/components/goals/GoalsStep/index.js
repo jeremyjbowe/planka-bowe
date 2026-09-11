@@ -1,5 +1,5 @@
 /*!
- * DTP fork — card modal popup to link the card to goals.
+ * planka-bowe — card modal popup to link the card to goals.
  */
 
 import GoalsStep from './GoalsStep';

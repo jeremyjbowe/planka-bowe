@@ -1,5 +1,5 @@
 /*!
- * DTP fork — DELETE /api/goal-links/:id
+ * planka-bowe — DELETE /api/goal-links/:id
  */
 
 const { idInput } = require('../../../utils/inputs');

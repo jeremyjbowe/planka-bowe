@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalLink.js
+ * planka-bowe — GoalLink.js
  *
  * Joins a goal to exactly one card or one board.
  */

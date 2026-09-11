@@ -1,5 +1,5 @@
 /*!
- * DTP fork — EditPriorityStep.
+ * planka-bowe — EditPriorityStep.
  */
 
 import React, { useCallback, useMemo } from 'react';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — EmptyState.
+ * planka-bowe — EmptyState.
  *
  * A calm, centered placeholder with an icon, a title, a one-line hint and an
  * optional action row. Used wherever a surface has nothing to show yet.

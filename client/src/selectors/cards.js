@@ -86,7 +86,7 @@ export const makeSelectLabelIdsByCardId = () =>
 export const selectLabelIdsByCardId = makeSelectLabelIdsByCardId();
 
 /*
- * DTP fork — flat row objects for the Table and Timeline views.
+ * planka-bowe — flat row objects for the Table and Timeline views.
  *
  * Takes an ordered array of card ids and returns plain objects with every
  * field those views sort or render on, resolved from the ORM in one pass.
@@ -141,7 +141,7 @@ export const makeSelectTableRowsByCardIds = () =>
 export const selectTableRowsByCardIds = makeSelectTableRowsByCardIds();
 
 /*
- * DTP fork — subtasks. Children are ordinary cards with `parentCardId` set,
+ * planka-bowe — subtasks. Children are ordinary cards with `parentCardId` set,
  * so these selectors are thin views over the same ORM data.
  */
 

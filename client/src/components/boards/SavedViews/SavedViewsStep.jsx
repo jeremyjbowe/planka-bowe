@@ -1,5 +1,5 @@
 /*!
- * DTP fork — the "Views" dropdown: shared presets first, then the personal
+ * planka-bowe — the "Views" dropdown: shared presets first, then the personal
  * ones, plus "Save current view…". Rename and delete show on hover for the
  * views you own.
  */

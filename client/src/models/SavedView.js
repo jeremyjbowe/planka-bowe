@@ -1,5 +1,5 @@
 /*!
- * DTP fork — SavedView model.
+ * planka-bowe — SavedView model.
  *
  * A named preset of a board's view mode and filter state. `data` holds
  * `{ view, search, filterUserIds, filterLabelIds, filterDue,

@@ -62,7 +62,7 @@ export function* createProject(data) {
 }
 
 /*
- * DTP fork — onboarding. Chains the regular creation sagas so the result is
+ * planka-bowe — onboarding. Chains the regular creation sagas so the result is
  * indistinguishable from a workspace built by hand.
  */
 export function* bootstrapWorkspace({ projectName, boardName, lists }) {

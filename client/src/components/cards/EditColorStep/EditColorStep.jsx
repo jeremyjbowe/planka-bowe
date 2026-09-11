@@ -1,5 +1,5 @@
 /*!
- * DTP fork — EditColorStep.
+ * planka-bowe — EditColorStep.
  */
 
 import React, { useCallback, useMemo } from 'react';

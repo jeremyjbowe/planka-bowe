@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalProgressBar. Animated bar with a percentage label.
+ * planka-bowe — GoalProgressBar. Animated bar with a percentage label.
  */
 
 import React from 'react';

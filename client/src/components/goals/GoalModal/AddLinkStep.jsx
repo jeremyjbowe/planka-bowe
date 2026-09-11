@@ -1,5 +1,5 @@
 /*!
- * DTP fork — popup to link a board or a card to a goal. Boards come from the
+ * planka-bowe — popup to link a board or a card to a goal. Boards come from the
  * projects the user can see; cards from the boards loaded in this session.
  */
 

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — the `?` cheat sheet.
+ * planka-bowe — the `?` cheat sheet.
  *
  * Pure presentation: every binding implemented in KeyboardNavigation.jsx (and
  * the board's hover shortcuts in boards/Board/ShortcutsProvider.jsx) is listed

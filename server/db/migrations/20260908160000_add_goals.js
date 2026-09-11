@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals / OKR layer.
+ * planka-bowe — Goals / OKR layer.
  *
  * `goal` is global (not owned by a project) and may nest through
  * `parent_goal_id`. `goal_link` joins a goal to a card or a board; progress

@@ -78,7 +78,7 @@ export function* createBoard(
     }
   }
 
-  // DTP fork: a saga only finishes once its forks do, so callers that `call`
+  // planka-bowe: a saga only finishes once its forks do, so callers that `call`
   // this generator (onboarding) would hang on the watcher above forever.
   if (watchForCreateBoardActionTask.isRunning()) {
     yield cancel(watchForCreateBoardActionTask);
@@ -233,7 +233,7 @@ export function* searchInCurrentBoard(value) {
   yield put(actions.searchInBoard(boardId, value, currentListId));
 }
 
-// DTP fork — richer board filters. `filterAssignedToMe` needs the current
+// planka-bowe — richer board filters. `filterAssignedToMe` needs the current
 // user id at hand inside the ORM, so it travels with the filter state.
 export function* updateFiltersInCurrentBoard(data) {
   const { boardId } = yield select(selectors.selectPath);

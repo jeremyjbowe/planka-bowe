@@ -1,5 +1,5 @@
 /*!
- * DTP fork — query methods for saved views.
+ * planka-bowe — query methods for saved views.
  */
 
 const defaultFind = (criteria, { sort = ['position', 'id'] } = {}) =>

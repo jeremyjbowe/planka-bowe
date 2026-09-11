@@ -1,5 +1,5 @@
 /*!
- * DTP fork — recurrence hook.
+ * planka-bowe — recurrence hook.
  *
  * Background job that turns completed recurring cards into their next
  * occurrence. `helpers/cards/update-one` also calls the spawner inline when a

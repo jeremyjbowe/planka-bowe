@@ -1,5 +1,5 @@
 /*!
- * DTP fork — recurring cards.
+ * planka-bowe — recurring cards.
  *
  * Creates the next occurrence of a completed recurring card: same name,
  * description, type, labels, members, checklists (unchecked) and recurrence

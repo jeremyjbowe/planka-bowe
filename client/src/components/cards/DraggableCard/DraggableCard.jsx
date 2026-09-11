@@ -36,8 +36,8 @@ const DraggableCard = React.memo(({ id, index, className, ...props }) => {
           {...draggableProps} // eslint-disable-line react/jsx-props-no-spreading
           {...dragHandleProps} // eslint-disable-line react/jsx-props-no-spreading
           ref={innerRef}
-          // DTP fork: the global class lets Card.module.scss style the drag ghost
-          className={classNames(styles.wrapper, className, isDragging && 'dtpCardDragging')}
+          // planka-bowe: the global class lets Card.module.scss style the drag ghost
+          className={classNames(styles.wrapper, className, isDragging && 'boweCardDragging')}
         >
           {/* eslint-disable-next-line react/jsx-props-no-spreading */}
           <Card {...props} id={id} />

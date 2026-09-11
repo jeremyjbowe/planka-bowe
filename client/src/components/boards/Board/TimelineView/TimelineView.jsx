@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Timeline view.
+ * planka-bowe — Timeline view.
  *
  * Renders every card that has a due date as a draggable bar on a frappe-gantt
  * chart. The data comes from the same redux-orm selector the Table view uses,
@@ -41,7 +41,7 @@ const VIEW_MODE_LABEL_KEYS = {
   Month: 'common.viewModeMonth',
 };
 
-const VIEW_MODE_STORAGE_KEY = 'dtp_timelineViewMode';
+const VIEW_MODE_STORAGE_KEY = 'bowe_timelineViewMode';
 
 const readStoredViewMode = () => {
   try {
@@ -54,18 +54,18 @@ const readStoredViewMode = () => {
 
 const getBarClassName = (row, now) => {
   if (row.isClosed) {
-    return 'dtp-bar-closed';
+    return 'bowe-bar-closed';
   }
 
   if (row.isDueCompleted) {
-    return 'dtp-bar-completed';
+    return 'bowe-bar-completed';
   }
 
   if (isBefore(row.dueDate, now)) {
-    return 'dtp-bar-overdue';
+    return 'bowe-bar-overdue';
   }
 
-  return 'dtp-bar-open';
+  return 'bowe-bar-open';
 };
 
 // Keeps the original time of day while moving the due date to another day.

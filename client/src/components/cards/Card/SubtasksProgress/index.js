@@ -1,5 +1,5 @@
 /*!
- * DTP fork — front-of-card subtask progress line.
+ * planka-bowe — front-of-card subtask progress line.
  */
 
 import SubtasksProgress from './SubtasksProgress';

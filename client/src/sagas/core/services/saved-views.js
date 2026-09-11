@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved view sagas.
+ * planka-bowe — saved view sagas.
  */
 
 import { call, put, select } from 'redux-saga/effects';

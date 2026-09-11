@@ -1,4 +1,4 @@
-# Vision checklist — DTP fork of Planka
+# Vision checklist — planka-bowe (customized Planka)
 
 The original brief, condensed into checkable items. The autonomous loop
 re-reads this file, marks what is verifiably done in the repo, and works on
@@ -42,5 +42,5 @@ commit hash) so the loop never repeats finished work.
 - [x] Background jobs added cleanly (recurrence hook)
 - [x] Self-hostable: `docker-compose.yml` builds the fork image; README setup instructions
 - [x] README: setup, new features, accent/theme customization, notes for AI-assisted development
-- [x] Docker image build verified: `docker build -t planka-dtp .` succeeds (602 MB); a fresh container against `postgres:16-alpine` runs all 29 migrations (fork tables `goal`, `goal_link`, `saved_view` and card columns present), serves the client and reaches the terms-acceptance step on first admin login
+- [x] Docker image build verified: `docker build -t planka-bowe .` succeeds (602 MB); a fresh container against `postgres:16-alpine` runs all 29 migrations (fork tables `goal`, `goal_link`, `saved_view` and card columns present), serves the client and reaches the terms-acceptance step on first admin login
 - [x] Final pass: ESLint clean in both packages; client Jest 81 tests / server Mocha 22 tests passing (`6a62d9d`); two-tab real-time check after the last commit: a card created via the API appeared in both open tabs over the socket without a reload

@@ -178,7 +178,7 @@ module.exports = {
       model: 'BackgroundImage',
       columnName: 'background_image_id',
     },
-    // DTP fork — hierarchical projects
+    // planka-bowe — hierarchical projects
     parentProjectId: {
       model: 'Project',
       columnName: 'parent_project_id',

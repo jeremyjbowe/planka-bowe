@@ -1,5 +1,5 @@
 /*!
- * DTP fork — CommandPalette.
+ * planka-bowe — CommandPalette.
  *
  * One input for everything:
  *  - type a sentence to create a card (Quick Add). Tokens: @user, #label,

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — breadcrumb shown above a subtask's title, linking to its parent.
+ * planka-bowe — breadcrumb shown above a subtask's title, linking to its parent.
  */
 
 import React, { useCallback } from 'react';

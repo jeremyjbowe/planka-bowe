@@ -1,5 +1,5 @@
 /*!
- * DTP fork — subtasks.
+ * planka-bowe — subtasks.
  *
  * A subtask is a full card that points at its parent card. Planka keeps
  * referential integrity in application code (there are no DB-level foreign

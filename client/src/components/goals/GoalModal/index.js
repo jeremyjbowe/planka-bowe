@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal modal.
+ * planka-bowe — goal modal.
  */
 
 import GoalModal from './GoalModal';

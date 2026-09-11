@@ -1,5 +1,5 @@
 /*!
- * DTP fork — recurrence helpers shared by the card modal, card face and
+ * planka-bowe — recurrence helpers shared by the card modal, card face and
  * Quick Add. Rules are RFC 5545 RRULE strings; the server validates them too.
  */
 

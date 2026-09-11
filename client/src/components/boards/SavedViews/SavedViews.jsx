@@ -1,5 +1,5 @@
 /*!
- * DTP fork — the "Views" button at the left of the board actions row.
+ * planka-bowe — the "Views" button at the left of the board actions row.
  */
 
 import React from 'react';

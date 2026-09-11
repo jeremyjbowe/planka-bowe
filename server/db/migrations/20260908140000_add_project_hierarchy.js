@@ -1,5 +1,5 @@
 /*!
- * DTP fork — hierarchical projects.
+ * planka-bowe — hierarchical projects.
  *
  * Projects can contain sub-projects (boards stay flat inside a project).
  * Referential integrity is application-level, matching the rest of the

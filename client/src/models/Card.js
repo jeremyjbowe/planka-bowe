@@ -23,15 +23,15 @@ export default class extends BaseModel {
     isDueCompleted: attr(),
     stopwatch: attr(),
     isClosed: attr(),
-    // DTP fork — card priority
+    // planka-bowe — card priority
     priority: attr({
       getDefault: () => null,
     }),
-    // DTP fork — card color accent
+    // planka-bowe — card color accent
     color: attr({
       getDefault: () => null,
     }),
-    // DTP fork — recurring cards
+    // planka-bowe — recurring cards
     recurrenceRule: attr({
       getDefault: () => null,
     }),
@@ -93,7 +93,7 @@ export default class extends BaseModel {
       as: 'coverAttachment',
       relatedName: 'coveredCard',
     }),
-    // DTP fork — subtasks: self-reference; `cardModel.subtasks` lists the children
+    // planka-bowe — subtasks: self-reference; `cardModel.subtasks` lists the children
     parentCardId: fk({
       to: 'Card',
       as: 'parentCard',
@@ -780,7 +780,7 @@ export default class extends BaseModel {
   deleteRelated(soft = false) {
     this.deleteClearable();
 
-    // DTP fork — subtasks survive their parent as top-level cards
+    // planka-bowe — subtasks survive their parent as top-level cards
     this.subtasks.update({
       parentCardId: null,
     });

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — CalendarFeedLinks.
+ * planka-bowe — CalendarFeedLinks.
  *
  * Shows the subscribe/download URLs of the current user's iCalendar feed,
  * either the personal "my cards" feed or one board's feed. The feed token is

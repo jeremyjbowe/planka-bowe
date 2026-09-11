@@ -29,7 +29,7 @@ module.exports = {
       throw 'mustNotHaveBoards';
     }
 
-    // DTP fork — hierarchical projects: children become top-level projects
+    // planka-bowe — hierarchical projects: children become top-level projects
     await sails.helpers.projects.detachSubprojects.with({
       record: inputs.record,
       request: inputs.request,

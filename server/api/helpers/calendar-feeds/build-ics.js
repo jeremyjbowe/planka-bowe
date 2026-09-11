@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feeds.
+ * planka-bowe — calendar feeds.
  *
  * Serializes cards as an iCalendar document (RFC 5545). By default every card
  * becomes a VTODO (due date, completion, priority, labels as categories,
@@ -114,7 +114,7 @@ module.exports = {
     const lines = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
-      'PRODID:-//DTP//PLANKA DTP//EN',
+      'PRODID:-//Bowe//PLANKA Bowe//EN',
       'CALSCALE:GREGORIAN',
       'METHOD:PUBLISH',
       `X-WR-CALNAME:${escapeText(inputs.name)}`,

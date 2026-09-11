@@ -88,7 +88,7 @@ module.exports = {
       if (inputs.import.type === Board.ImportTypes.TRELLO) {
         await sails.helpers.boards.importFromTrello(board, lists, inputs.import.board);
       } else if (inputs.import.type === Board.ImportTypes.PLANKA_JSON) {
-        // DTP fork — board exported by this app
+        // planka-bowe — board exported by this app
         await sails.helpers.boards.importFromPlankaJson.with({
           board,
           lists,

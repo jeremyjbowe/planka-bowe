@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Boards the user may read: boards of projects they manage,
+ * planka-bowe — Goals. Boards the user may read: boards of projects they manage,
  * boards they are a member of and, for admins, boards of shared projects.
  * Used to filter the card/board summaries returned with goals.
  */

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — selectors backing Quick Add and the command palette.
+ * planka-bowe — selectors backing Quick Add and the command palette.
  *
  * Everything here is read from the redux-orm store that the rest of the app
  * already keeps in sync over the socket. Card search therefore covers the

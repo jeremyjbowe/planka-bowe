@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Ancestor ids of a goal, nearest first, bounded.
+ * planka-bowe — Goals. Ancestor ids of a goal, nearest first, bounded.
  */
 
 const MAX_DEPTH = 32;

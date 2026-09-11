@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goals API.
+ * planka-bowe — goals API.
  */
 
 import socket from './socket';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved views.
+ * planka-bowe — saved views.
  */
 
 module.exports = {

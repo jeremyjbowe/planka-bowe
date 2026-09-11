@@ -96,7 +96,7 @@ module.exports = {
       inputs.request,
     );
 
-    // DTP fork — goals: board totals changed
+    // planka-bowe — goals: board totals changed
     await sails.helpers.goalLinks.broadcastTargetUpdate.with({
       board: values.board,
     });

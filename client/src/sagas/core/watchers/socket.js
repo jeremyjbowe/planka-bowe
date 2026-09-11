@@ -33,7 +33,7 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleConfigUpdate(item));
     };
 
-    // DTP fork — goals
+    // planka-bowe — goals
     const handleGoalCreate = ({ item }) => {
       emit(entryActions.handleGoalCreate(item));
     };
@@ -58,7 +58,7 @@ const createSocketEventsChannel = () =>
       emit(entryActions.handleGoalLinkDelete(item));
     };
 
-    // DTP fork — saved views
+    // planka-bowe — saved views
     const handleSavedViewCreate = ({ item }) => {
       emit(entryActions.handleSavedViewCreate(item));
     };

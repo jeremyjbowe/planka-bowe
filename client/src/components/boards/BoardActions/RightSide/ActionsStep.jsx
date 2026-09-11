@@ -95,7 +95,7 @@ const ActionsStep = React.memo(({ onClose }) => {
     openStep(StepTypes.CALENDAR_FEED);
   }, [openStep]);
 
-  // DTP fork — board export as JSON. The download is a plain request, so it
+  // planka-bowe — board export as JSON. The download is a plain request, so it
   // does not need a saga; it just streams the file to the browser.
   const handleExportClick = useCallback(async () => {
     setIsExporting(true);

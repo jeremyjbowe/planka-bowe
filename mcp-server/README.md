@@ -1,7 +1,7 @@
-# dtp-tasks-mcp
+# planka-bowe-mcp
 
 An [MCP](https://modelcontextprotocol.io) server that lets Claude read and run
-**DTP Tasks** — the self-hosted Planka fork in this repository — through its REST
+**Planka Bowe** — the self-hosted Planka fork in this repository — through its REST
 API. It speaks stdio, so it works with Claude Code, Claude Desktop, and anything
 else that speaks MCP.
 
@@ -81,8 +81,8 @@ Two consequences worth knowing:
 
 Credentials live outside the repository, in a file the server reads at startup:
 
-- `$DTP_TASKS_MCP_ENV` if that variable is set, otherwise
-- `~/.config/dtp-tasks-mcp/.env`
+- `$PLANKA_BOWE_MCP_ENV` if that variable is set, otherwise
+- `~/.config/planka-bowe-mcp/.env`
 
 Real environment variables always win over the file. Format:
 
@@ -143,7 +143,7 @@ on them** — read-only access will already work, and writes will fail with a
 ### Claude Code (user scope)
 
 ```sh
-claude mcp add --scope user dtp-tasks -- node "/Users/donna/Developer/Planka/mcp-server/src/index.js"
+claude mcp add --scope user planka-bowe -- node "/Users/donna/Developer/Planka/mcp-server/src/index.js"
 ```
 
 Then check it:
@@ -152,7 +152,7 @@ Then check it:
 claude mcp list
 ```
 
-If the env file is not at the default path, add `--env DTP_TASKS_MCP_ENV=/path/to/.env`.
+If the env file is not at the default path, add `--env PLANKA_BOWE_MCP_ENV=/path/to/.env`.
 
 ### Claude Desktop
 
@@ -161,13 +161,13 @@ Add an entry to `~/Library/Application Support/Claude/claude_desktop_config.json
 ```json
 {
   "mcpServers": {
-    "dtp-tasks": {
+    "planka-bowe": {
       "command": "node",
       "args": [
         "/Users/donna/Developer/Planka/mcp-server/src/index.js"
       ],
       "env": {
-        "DTP_TASKS_MCP_ENV": "/Users/donna/.config/dtp-tasks-mcp/.env"
+        "PLANKA_BOWE_MCP_ENV": "/Users/donna/.config/planka-bowe-mcp/.env"
       }
     }
   }

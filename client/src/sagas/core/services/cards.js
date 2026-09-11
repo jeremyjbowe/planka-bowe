@@ -173,7 +173,7 @@ export function* createCard(listId, data, index, autoOpen) {
     yield call(goToCard, card.id);
   }
 
-  // DTP fork: see createBoard — never leave a dangling fork behind a `call`.
+  // planka-bowe: see createBoard — never leave a dangling fork behind a `call`.
   if (watchForCreateCardActionTask && watchForCreateCardActionTask.isRunning()) {
     yield cancel(watchForCreateCardActionTask);
   }
@@ -182,7 +182,7 @@ export function* createCard(listId, data, index, autoOpen) {
 }
 
 /*
- * DTP fork — Quick Add. See entry-actions/cards.js#quickCreateCard.
+ * planka-bowe — Quick Add. See entry-actions/cards.js#quickCreateCard.
  */
 export function* quickCreateCard({ listId, boardId, data, userIds = [], labelIds = [], autoOpen }) {
   let targetListId = listId;

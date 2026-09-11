@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal selectors.
+ * planka-bowe — goal selectors.
  *
  * Progress is computed here, from the ORM: card links use the live card when
  * its board is loaded and the server snapshot otherwise; board links use live

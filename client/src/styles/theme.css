@@ -1,5 +1,5 @@
 /*
- * Design tokens for the DTP fork.
+ * Design tokens for the planka-bowe.
  *
  * Every new component reads colors, spacing, radii and shadows from these
  * custom properties. The dark palette is the default; the light palette is
@@ -100,7 +100,7 @@
   --scrollbar-thumb: rgba(255, 255, 255, 0.14);
   --scrollbar-thumb-hover: rgba(255, 255, 255, 0.24);
 
-  /* Card color accents (DTP fork). Fixed 10-name palette, see
+  /* Card color accents (planka-bowe). Fixed 10-name palette, see
      server/api/models/Card.js#Colors / client/src/constants/Enums.js#CardColors. */
   --card-color-berry: #d946ef;
   --card-color-berry-soft: rgba(217, 70, 239, 0.14);
@@ -168,7 +168,7 @@
   --scrollbar-thumb: rgba(15, 15, 18, 0.16);
   --scrollbar-thumb-hover: rgba(15, 15, 18, 0.28);
 
-  /* Card color accents (DTP fork) — same hues, softer tint for a light surface. */
+  /* Card color accents (planka-bowe) — same hues, softer tint for a light surface. */
   --card-color-berry-soft: rgba(217, 70, 239, 0.12);
   --card-color-coral-soft: rgba(251, 113, 133, 0.12);
   --card-color-amber-soft: rgba(245, 158, 11, 0.12);

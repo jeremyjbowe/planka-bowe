@@ -42,7 +42,7 @@ const GeneralPane = React.memo(() => {
     [dispatch],
   );
 
-  // DTP fork — hierarchical projects
+  // planka-bowe — hierarchical projects
   const handleParentProjectChange = useCallback(
     (_, { value }) => {
       dispatch(

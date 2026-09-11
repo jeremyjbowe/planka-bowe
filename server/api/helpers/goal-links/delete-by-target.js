@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Removes every link pointing at a deleted card or board.
+ * planka-bowe — Goals. Removes every link pointing at a deleted card or board.
  */
 
 module.exports = {

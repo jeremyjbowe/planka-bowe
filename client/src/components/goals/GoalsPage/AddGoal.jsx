@@ -1,5 +1,5 @@
 /*!
- * DTP fork — inline "add goal" form on the Goals page.
+ * planka-bowe — inline "add goal" form on the Goals page.
  */
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';

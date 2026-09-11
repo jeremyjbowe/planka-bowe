@@ -1,5 +1,5 @@
 /*!
- * DTP fork — one subtask row inside the card modal.
+ * planka-bowe — one subtask row inside the card modal.
  */
 
 import React, { useCallback, useMemo } from 'react';

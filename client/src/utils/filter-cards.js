@@ -1,5 +1,5 @@
 /*!
- * DTP fork — board filtering.
+ * planka-bowe — board filtering.
  *
  * `Board#getFilteredCardsModelArray` and `List#getFilteredCardsModelArray`
  * both run the exact same predicate chain, so it lives here once. Everything

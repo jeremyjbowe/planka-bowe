@@ -1,5 +1,5 @@
 /*!
- * DTP fork — PriorityChip. A small colored pill for a card's priority.
+ * planka-bowe — PriorityChip. A small colored pill for a card's priority.
  */
 
 import React from 'react';

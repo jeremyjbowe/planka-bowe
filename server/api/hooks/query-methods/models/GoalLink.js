@@ -1,5 +1,5 @@
 /*!
- * DTP fork — query methods for goal links.
+ * planka-bowe — query methods for goal links.
  */
 
 const defaultFind = (criteria) => GoalLink.find(criteria).sort('id');

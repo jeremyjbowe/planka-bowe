@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved views API.
+ * planka-bowe — saved views API.
  */
 
 import socket from './socket';

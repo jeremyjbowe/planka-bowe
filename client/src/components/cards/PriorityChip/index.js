@@ -1,5 +1,5 @@
 /*!
- * DTP fork — priority chip.
+ * planka-bowe — priority chip.
  */
 
 import PriorityChip from './PriorityChip';

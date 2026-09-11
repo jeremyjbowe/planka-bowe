@@ -558,7 +558,7 @@ export default {
       shortcutGoToGoals: 'Go to goals',
       shortcutGoToBoard: 'Go to board',
       fromPlankaJson: 'PLANKA JSON (this app)',
-      // DTP fork — richer board filters and saved views
+      // planka-bowe — richer board filters and saved views
       any: 'Any',
       filter: 'Filter',
       dueDate: 'Due date',

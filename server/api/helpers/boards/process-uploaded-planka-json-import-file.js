@@ -1,12 +1,12 @@
 /*!
- * DTP fork — reads and validates a board export produced by
+ * planka-bowe — reads and validates a board export produced by
  * `GET /api/boards/:id/export`.
  */
 
 const fs = require('fs');
 const { rimraf } = require('rimraf');
 
-const FORMAT = 'planka-dtp-board';
+const FORMAT = 'planka-bowe-board';
 const VERSION = 1;
 
 const ARRAY_KEYS = [

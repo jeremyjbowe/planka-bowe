@@ -1,5 +1,5 @@
 /*!
- * DTP fork — SelectCardStep.
+ * planka-bowe — SelectCardStep.
  *
  * A popup listing the cards of the current board with a search box. Used to
  * pick a parent card and to link an existing card as a subtask. Cards in

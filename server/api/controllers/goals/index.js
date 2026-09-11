@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GET /api/goals
+ * planka-bowe — GET /api/goals
  * Every goal with its links, the link targets the user may see, and owners.
  */
 

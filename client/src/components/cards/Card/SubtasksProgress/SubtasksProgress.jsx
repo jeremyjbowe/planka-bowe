@@ -1,5 +1,5 @@
 /*!
- * DTP fork — "2/5" progress line on the face of a card that has subtasks.
+ * planka-bowe — "2/5" progress line on the face of a card that has subtasks.
  * Reads the children straight from the ORM, so it animates as soon as a
  * child card is completed anywhere.
  */

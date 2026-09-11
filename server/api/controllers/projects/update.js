@@ -266,7 +266,7 @@ module.exports = {
       delete inputs.ownerProjectManagerId; // eslint-disable-line no-param-reassign
     }
 
-    // DTP fork — hierarchical projects: the actor must manage the parent too
+    // planka-bowe — hierarchical projects: the actor must manage the parent too
     let nextParentProject;
     if (inputs.parentProjectId) {
       nextParentProject = await Project.qm.getOneById(inputs.parentProjectId);

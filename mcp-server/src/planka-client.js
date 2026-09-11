@@ -1,5 +1,5 @@
 /**
- * Thin fetch wrapper around the DTP Tasks (Planka fork) REST API.
+ * Thin fetch wrapper around the Planka Bowe (Planka fork) REST API.
  *
  * Auth modes, in order of preference:
  *   1. API key  - sent as `X-Api-Key`. Stateless, never touches the login
@@ -78,7 +78,7 @@ export class PlankaClient {
         });
       } catch (error) {
         throw new PlankaError(
-          `Cannot reach DTP Tasks at ${this.baseUrl}: ${error.message}`,
+          `Cannot reach Planka Bowe at ${this.baseUrl}: ${error.message}`,
           { path: '/api/access-tokens', method: 'POST' },
         );
       }
@@ -119,7 +119,7 @@ export class PlankaClient {
       }
 
       this.token = body.item;
-      this.log('authenticated with DTP Tasks via password login');
+      this.log('authenticated with Planka Bowe via password login');
       return this.token;
     })();
 
@@ -162,7 +162,7 @@ export class PlankaClient {
         body: body === undefined ? undefined : JSON.stringify(body),
       });
     } catch (error) {
-      throw new PlankaError(`Cannot reach DTP Tasks at ${this.baseUrl}: ${error.message}`, {
+      throw new PlankaError(`Cannot reach Planka Bowe at ${this.baseUrl}: ${error.message}`, {
         path,
         method,
       });

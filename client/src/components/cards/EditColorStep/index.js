@@ -1,5 +1,5 @@
 /*!
- * DTP fork — popup to edit a card's color accent.
+ * planka-bowe — popup to edit a card's color accent.
  */
 
 import EditColorStep from './EditColorStep';

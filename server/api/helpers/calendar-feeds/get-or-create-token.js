@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feeds. Returns the user's feed token, minting one on
+ * planka-bowe — calendar feeds. Returns the user's feed token, minting one on
  * first use (or when `regenerate` is set, which invalidates old URLs).
  */
 

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — OnboardingModal.
+ * planka-bowe — OnboardingModal.
  *
  * Thirty-second first run: a user who can create projects but has none yet
  * names a workspace, picks a list template and lands on a ready-to-use board.
@@ -57,7 +57,7 @@ const TEMPLATES = [
   },
 ];
 
-const dismissKey = (userId) => `dtp_onboardingDismissed_${userId}`;
+const dismissKey = (userId) => `bowe_onboardingDismissed_${userId}`;
 
 const readDismissed = (userId) => {
   try {

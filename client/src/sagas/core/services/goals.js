@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal sagas.
+ * planka-bowe — goal sagas.
  */
 
 import { call, put, select } from 'redux-saga/effects';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — subtasks section of the card modal.
+ * planka-bowe — subtasks section of the card modal.
  */
 
 import Subtasks from './Subtasks';

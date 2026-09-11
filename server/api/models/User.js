@@ -357,7 +357,7 @@ module.exports = {
       isIn: LANGUAGES,
       allowNull: true,
     },
-    // DTP fork — calendar feeds
+    // planka-bowe — calendar feeds
     calendarFeedToken: {
       type: 'string',
       allowNull: true,

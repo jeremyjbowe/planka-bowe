@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal actions (consumed by the ORM reducers).
+ * planka-bowe — goal actions (consumed by the ORM reducers).
  */
 
 import ActionTypes from '../constants/ActionTypes';

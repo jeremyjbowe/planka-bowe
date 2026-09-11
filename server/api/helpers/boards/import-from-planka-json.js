@@ -1,8 +1,8 @@
 /*!
- * DTP fork — recreates a board from an envelope produced by
+ * planka-bowe — recreates a board from an envelope produced by
  * `GET /api/boards/:id/export`.
  *
- * Lists, labels, cards (with the DTP fields and remapped parent links), card
+ * Lists, labels, cards (with the fork-specific fields and remapped parent links), card
  * labels, task lists, tasks and custom field groups/fields/values are
  * recreated with fresh ids; positions are kept as exported. Memberships,
  * attachments and comments are out of scope, and every imported card is

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — one goal in the tree, recursively rendering its sub-goals.
+ * planka-bowe — one goal in the tree, recursively rendering its sub-goals.
  */
 
 import React, { useCallback } from 'react';

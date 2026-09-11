@@ -1,5 +1,5 @@
 /*!
- * DTP fork — hierarchical projects.
+ * planka-bowe — hierarchical projects.
  *
  * Clears `parentProjectId` on every child of a project (used before the
  * parent is deleted) and tells everyone who can see a child about it.

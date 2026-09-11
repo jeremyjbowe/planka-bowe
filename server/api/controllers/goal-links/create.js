@@ -1,5 +1,5 @@
 /*!
- * DTP fork — POST /api/goals/:goalId/goal-links   { cardId | boardId }
+ * planka-bowe — POST /api/goals/:goalId/goal-links   { cardId | boardId }
  */
 
 const { idInput } = require('../../../utils/inputs');

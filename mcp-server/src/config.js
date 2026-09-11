@@ -1,9 +1,9 @@
 /**
- * Configuration loading for the DTP Tasks MCP server.
+ * Configuration loading for the Planka Bowe MCP server.
  *
  * Precedence: real process env wins, then the env file. The env file is
- * whatever `DTP_TASKS_MCP_ENV` points at, falling back to
- * `~/.config/dtp-tasks-mcp/.env`.
+ * whatever `PLANKA_BOWE_MCP_ENV` points at, falling back to
+ * `~/.config/planka-bowe-mcp/.env`.
  *
  * Recognised keys:
  *   PLANKA_BASE_URL  - e.g. http://localhost:3010 (required)
@@ -22,11 +22,11 @@ import dotenv from 'dotenv';
 const KEYS = ['PLANKA_BASE_URL', 'PLANKA_API_KEY', 'PLANKA_USERNAME', 'PLANKA_PASSWORD'];
 
 export function resolveEnvFilePath() {
-  if (process.env.DTP_TASKS_MCP_ENV) {
-    return process.env.DTP_TASKS_MCP_ENV;
+  if (process.env.PLANKA_BOWE_MCP_ENV) {
+    return process.env.PLANKA_BOWE_MCP_ENV;
   }
 
-  return path.join(os.homedir(), '.config', 'dtp-tasks-mcp', '.env');
+  return path.join(os.homedir(), '.config', 'planka-bowe-mcp', '.env');
 }
 
 export function loadConfig() {

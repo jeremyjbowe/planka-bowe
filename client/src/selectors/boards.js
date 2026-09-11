@@ -459,7 +459,7 @@ export const selectFilterLabelIdsForCurrentBoard = createSelector(
   },
 );
 
-// DTP fork — richer board filters (client-only, per board)
+// planka-bowe — richer board filters (client-only, per board)
 export const selectFiltersForCurrentBoard = createSelector(
   orm,
   (state) => selectPath(state).boardId,

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals.
+ * planka-bowe — Goals.
  */
 
 const POSITION_GAP = 65536;

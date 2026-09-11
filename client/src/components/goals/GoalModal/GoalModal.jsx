@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalModal.
+ * planka-bowe — GoalModal.
  *
  * Edit a goal (name, description, status, target date, parent, manual
  * progress) and manage its linked cards and boards. Editing is limited to the

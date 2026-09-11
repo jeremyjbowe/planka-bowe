@@ -1,11 +1,11 @@
 {
-  "name": "dtp-tasks-mcp",
+  "name": "planka-bowe-mcp",
   "version": "1.0.0",
-  "description": "MCP server exposing the DTP Tasks (Planka fork) REST API to Claude.",
+  "description": "MCP server exposing the Planka Bowe (Planka fork) REST API to Claude.",
   "type": "module",
   "private": true,
   "bin": {
-    "dtp-tasks-mcp": "src/index.js"
+    "planka-bowe-mcp": "src/index.js"
   },
   "main": "src/index.js",
   "scripts": {

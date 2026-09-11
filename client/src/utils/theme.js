@@ -1,5 +1,5 @@
 /*!
- * DTP fork — theme runtime.
+ * planka-bowe — theme runtime.
  *
  * A tiny external store (no Redux needed) that knows the user's preference
  * ("system" | "light" | "dark"), resolves it against `prefers-color-scheme`,
@@ -19,7 +19,7 @@ export const Themes = {
   DARK: 'dark',
 };
 
-const STORAGE_KEY = 'dtp_theme';
+const STORAGE_KEY = 'bowe_theme';
 const THEME_COLOR_BY_THEME = {
   [Themes.DARK]: '#0f0f12',
   [Themes.LIGHT]: '#f4f4f7',

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — subtasks.
+ * planka-bowe — subtasks.
  *
  * Clears `parentCardId` on every child of a card and broadcasts the change,
  * used when the parent is deleted or moved to another board.

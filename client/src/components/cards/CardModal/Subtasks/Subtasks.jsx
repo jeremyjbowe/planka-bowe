@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Subtasks section of the card modal.
+ * planka-bowe — Subtasks section of the card modal.
  *
  * Lists the child cards of the current card with a live progress bar, lets
  * editors add a child inline (a real card created in the parent's list) or

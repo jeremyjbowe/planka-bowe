@@ -1,5 +1,5 @@
 /*!
- * DTP fork — hierarchical projects.
+ * planka-bowe — hierarchical projects.
  *
  * Returns the ids of every ancestor of a project, nearest first. Bounded so a
  * corrupted cycle can never hang a request.

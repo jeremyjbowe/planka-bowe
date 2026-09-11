@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feeds. A per-user secret that authenticates read-only
+ * planka-bowe — calendar feeds. A per-user secret that authenticates read-only
  * iCalendar feed URLs (personal and per-board), so calendar apps can
  * subscribe without a session.
  */

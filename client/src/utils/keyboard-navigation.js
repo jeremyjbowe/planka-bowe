@@ -1,5 +1,5 @@
 /*!
- * DTP fork — keyboard navigation runtime.
+ * planka-bowe — keyboard navigation runtime.
  *
  * A tiny external store (the same shape as utils/theme.js: mutable module
  * state + a Set of listeners + `useSyncExternalStore` on the React side).
@@ -184,7 +184,7 @@ export const isGSequenceActive = () =>
 // ---------------------------------------------------------------------------
 
 // `boards/BoardActions/Filters` stamps this id on the board search input.
-export const BOARD_SEARCH_INPUT_ID = 'dtp-board-search';
+export const BOARD_SEARCH_INPUT_ID = 'bowe-board-search';
 
 export const focusBoardSearchInput = () => {
   const element = document.getElementById(BOARD_SEARCH_INPUT_ID);

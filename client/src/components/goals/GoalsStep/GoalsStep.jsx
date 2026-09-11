@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalsStep. Checkbox list of goals; toggling links or unlinks
+ * planka-bowe — GoalsStep. Checkbox list of goals; toggling links or unlinks
  * the given card.
  */
 

@@ -87,7 +87,7 @@ export function* fetchCore() {
     /* empty */
   }
 
-  // DTP fork — goals are global and always loaded, like projects
+  // planka-bowe — goals are global and always loaded, like projects
   const {
     items: goals,
     included: { goalLinks, cards: goalCards, boards: goalBoards, users: users5 },

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — React binding for utils/keyboard-navigation.js.
+ * planka-bowe — React binding for utils/keyboard-navigation.js.
  *
  * `useKeyboardSelection()` returns the selected card id (or null).
  * `useIsCardSelected(id)` is the per-card version: the snapshot is a boolean,

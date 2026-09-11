@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal entry actions (the only thing the UI dispatches).
+ * planka-bowe — goal entry actions (the only thing the UI dispatches).
  */
 
 import EntryActionTypes from '../constants/EntryActionTypes';

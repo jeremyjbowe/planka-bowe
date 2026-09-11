@@ -1,5 +1,5 @@
 /*!
- * DTP fork — reusable empty state.
+ * planka-bowe — reusable empty state.
  */
 
 import EmptyState from './EmptyState';

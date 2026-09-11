@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalLink model.
+ * planka-bowe — GoalLink model.
  *
  * A link to a card or a board. Besides the ids it keeps a small snapshot of
  * the target (name, completion, board totals) so progress can be computed for

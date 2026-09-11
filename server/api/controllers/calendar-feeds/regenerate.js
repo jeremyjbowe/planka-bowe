@@ -1,5 +1,5 @@
 /*!
- * DTP fork — POST /api/users/me/calendar-feed/regenerate
+ * planka-bowe — POST /api/users/me/calendar-feed/regenerate
  * Mints a new token; previously shared feed URLs stop working.
  */
 

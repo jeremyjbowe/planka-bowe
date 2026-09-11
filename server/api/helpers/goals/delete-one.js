@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Children become top-level goals; links are removed.
+ * planka-bowe — Goals. Children become top-level goals; links are removed.
  */
 
 module.exports = {

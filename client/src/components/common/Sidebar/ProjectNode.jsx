@@ -1,5 +1,5 @@
 /*!
- * DTP fork — one project row in the sidebar tree, with its boards and
+ * planka-bowe — one project row in the sidebar tree, with its boards and
  * sub-projects rendered only while it is expanded.
  */
 

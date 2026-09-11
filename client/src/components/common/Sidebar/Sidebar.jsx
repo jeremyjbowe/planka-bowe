@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Sidebar.
+ * planka-bowe — Sidebar.
  *
  * A persistent, collapsible left rail that renders the user's projects as a
  * tree (sub-projects nest under their parent; boards are the leaves). The
@@ -38,8 +38,8 @@ const COLLAPSED_WIDTH = 56;
 const MOBILE_BREAKPOINT = 768;
 const MOBILE_MEDIA_QUERY = `(max-width: ${MOBILE_BREAKPOINT - 1}px)`;
 
-const COLLAPSED_STORAGE_KEY = 'dtp_sidebarCollapsed';
-const EXPANDED_NODES_STORAGE_KEY = 'dtp_sidebarExpandedProjects';
+const COLLAPSED_STORAGE_KEY = 'bowe_sidebarCollapsed';
+const EXPANDED_NODES_STORAGE_KEY = 'bowe_sidebarExpandedProjects';
 
 // Lets the header's hamburger button (or anything else) open the mobile
 // drawer without Redux, mirroring CommandPalette's `openCommandPalette`.

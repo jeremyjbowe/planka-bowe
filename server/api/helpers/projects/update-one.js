@@ -43,7 +43,7 @@ module.exports = {
       values.backgroundImageId = values.backgroundImage.id;
     }
 
-    // DTP fork — hierarchical projects: `parentProject` arrives resolved from the controller
+    // planka-bowe — hierarchical projects: `parentProject` arrives resolved from the controller
     if (!_.isUndefined(values.parentProject)) {
       const nextParentProjectId = values.parentProject ? values.parentProject.id : null;
 

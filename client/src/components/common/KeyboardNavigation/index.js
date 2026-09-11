@@ -1,5 +1,5 @@
 /*!
- * DTP fork — keyboard-first navigation (j/k, h/l, g chords, `?` cheat sheet).
+ * planka-bowe — keyboard-first navigation (j/k, h/l, g chords, `?` cheat sheet).
  */
 
 import KeyboardNavigation from './KeyboardNavigation';

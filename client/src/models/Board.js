@@ -12,7 +12,7 @@ import ActionTypes from '../constants/ActionTypes';
 import Config from '../constants/Config';
 import { BoardContexts, BoardViews } from '../constants/Enums';
 
-// DTP fork — client-only filter state, reset every time the board is fetched
+// planka-bowe — client-only filter state, reset every time the board is fetched
 const CLEARED_FILTERS = {
   search: '',
   filterDue: null,
@@ -46,7 +46,7 @@ export default class extends BaseModel {
     context: attr(),
     view: attr(),
     search: attr(),
-    // DTP fork — richer board filters (client-only, per board)
+    // planka-bowe — richer board filters (client-only, per board)
     filterDue: attr({
       getDefault: () => null,
     }),
@@ -91,7 +91,7 @@ export default class extends BaseModel {
     filterLabels: many('Label', 'filterBoards'),
   };
 
-  // DTP fork — saved views: apply a whole preset (or clear it) at once
+  // planka-bowe — saved views: apply a whole preset (or clear it) at once
   static applyFilters(boardModel, filters) {
     const nextFilters = { ...CLEARED_FILTERS };
 
@@ -308,7 +308,7 @@ export default class extends BaseModel {
         Board.withId(payload.boardId).filterLabels.remove(payload.id);
 
         break;
-      // DTP fork — richer board filters
+      // planka-bowe — richer board filters
       case ActionTypes.BOARD_FILTERS_UPDATE:
         Board.withId(payload.id).update(payload.data);
 

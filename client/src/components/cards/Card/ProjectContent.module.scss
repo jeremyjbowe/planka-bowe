@@ -63,7 +63,7 @@
     width: calc(100% + 16px);
   }
 
-  // DTP fork — cover images: subtle bottom gradient so text placed right
+  // planka-bowe — cover images: subtle bottom gradient so text placed right
   // below the cover (name, chips) stays readable in both themes.
   .coverOverlay {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.35) 100%);
@@ -129,7 +129,7 @@
     }
   }
 
-  // DTP fork — card color accent: a soft background tint layered over the
+  // planka-bowe — card color accent: a soft background tint layered over the
   // card's normal background, plus a thin left accent bar.
   $card-colors: berry, coral, amber, lime, teal, sky, indigo, violet, slate, rose;
 

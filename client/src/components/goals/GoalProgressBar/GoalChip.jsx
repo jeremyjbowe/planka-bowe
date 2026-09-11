@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalChip. Small pill naming a goal with its progress, used in
+ * planka-bowe — GoalChip. Small pill naming a goal with its progress, used in
  * the card modal. Click opens the goal.
  */
 

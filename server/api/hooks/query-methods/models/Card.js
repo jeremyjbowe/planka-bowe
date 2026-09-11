@@ -24,7 +24,7 @@ const getByParentCardId = (parentCardId) =>
     parentCardId,
   });
 
-// DTP fork — recurring cards that closed and have not spawned their successor yet
+// planka-bowe — recurring cards that closed and have not spawned their successor yet
 const getPendingRecurrences = () =>
   defaultFind({
     recurrenceRule: {

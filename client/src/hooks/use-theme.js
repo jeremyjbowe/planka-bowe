@@ -1,5 +1,5 @@
 /*!
- * DTP fork — React binding for utils/theme.js.
+ * planka-bowe — React binding for utils/theme.js.
  */
 
 import { useSyncExternalStore } from 'react';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Resolves the cards and boards behind a set of links into
+ * planka-bowe — Goals. Resolves the cards and boards behind a set of links into
  * small summaries the client can render and compute progress from, limited
  * to boards the user may see.
  */

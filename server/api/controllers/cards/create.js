@@ -219,7 +219,7 @@ module.exports = {
       throw Errors.NOT_ENOUGH_RIGHTS;
     }
 
-    // DTP fork — subtasks
+    // planka-bowe — subtasks
     let parentCard;
     if (inputs.parentCardId) {
       parentCard = await Card.qm.getOneById(inputs.parentCardId);

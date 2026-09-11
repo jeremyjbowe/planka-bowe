@@ -1,5 +1,5 @@
 /*!
- * DTP fork — FilterStep. Due date, priority, status and "assigned to me"
+ * planka-bowe — FilterStep. Due date, priority, status and "assigned to me"
  * for the current board. All of it is client-only state on the Board model.
  */
 

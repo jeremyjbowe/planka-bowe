@@ -1,9 +1,9 @@
 services:
   planka:
-    # DTP fork: build the image from this repository instead of pulling the
+    # planka-bowe: build the image from this repository instead of pulling the
     # upstream release. `docker compose build` (or `--build`) produces it.
     build: .
-    image: planka-dtp:latest
+    image: planka-bowe:latest
     restart: on-failure
     volumes:
       - data:/app/data

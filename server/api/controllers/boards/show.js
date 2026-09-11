@@ -241,7 +241,7 @@ module.exports = {
     const customFields = await CustomField.qm.getByCustomFieldGroupIds(customFieldGroupIds);
     const customFieldValues = await CustomFieldValue.qm.getByCardIds(cardIds);
 
-    // DTP fork — saved views: shared ones plus this user's personal presets
+    // planka-bowe — saved views: shared ones plus this user's personal presets
     const savedViews = await SavedView.qm.getByBoardIdForUser(board.id, currentUser.id);
 
     const cardSubscriptions = await CardSubscription.qm.getByCardIdsAndUserId(

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — user settings → Calendar: the personal iCalendar feed.
+ * planka-bowe — user settings → Calendar: the personal iCalendar feed.
  */
 
 import React from 'react';

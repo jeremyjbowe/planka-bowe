@@ -92,7 +92,7 @@ const getOneActiveByEmailOrUsername = (emailOrUsername) => {
   });
 };
 
-// DTP fork — calendar feeds
+// planka-bowe — calendar feeds
 const getOneByCalendarFeedToken = (calendarFeedToken) =>
   User.findOne({
     calendarFeedToken,

@@ -146,7 +146,7 @@ export const selectFirstKanbanListId = createSelector(
   },
 );
 
-// DTP fork — Quick Add targets boards other than the current one
+// planka-bowe — Quick Add targets boards other than the current one
 export const selectFirstKanbanListIdByBoardId = createSelector(
   orm,
   (_, id) => id,

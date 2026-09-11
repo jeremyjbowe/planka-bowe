@@ -81,7 +81,7 @@ const KanbanContent = React.memo(() => {
     [dispatch],
   );
 
-  // DTP fork — empty board: one click creates a starter set of lists
+  // planka-bowe — empty board: one click creates a starter set of lists
   const handleUseTemplateClick = useCallback(() => {
     [
       { name: 'To do', type: ListTypes.ACTIVE },

@@ -29,7 +29,7 @@ const createCard = (listId, data, index, autoOpen = false) => ({
 });
 
 /*
- * DTP fork — Quick Add. Creates a card and then attaches members and labels
+ * planka-bowe — Quick Add. Creates a card and then attaches members and labels
  * once the server id is known. `boardId` is used when the target board's
  * lists are not loaded yet (the `~project` token); the saga fetches them.
  */

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — popup to edit a card's priority.
+ * planka-bowe — popup to edit a card's priority.
  */
 
 import EditPriorityStep from './EditPriorityStep';

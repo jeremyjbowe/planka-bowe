@@ -1,5 +1,5 @@
 /*!
- * DTP fork — goal watchers.
+ * planka-bowe — goal watchers.
  */
 
 import { all, takeEvery } from 'redux-saga/effects';

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — calendar feed links (personal or per board).
+ * planka-bowe — calendar feed links (personal or per board).
  */
 
 import CalendarFeedLinks from './CalendarFeedLinks';

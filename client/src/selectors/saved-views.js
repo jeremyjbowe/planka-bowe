@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved view selectors.
+ * planka-bowe — saved view selectors.
  */
 
 import { createSelector } from 'redux-orm';

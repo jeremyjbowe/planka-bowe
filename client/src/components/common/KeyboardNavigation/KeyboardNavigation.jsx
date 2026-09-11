@@ -1,5 +1,5 @@
 /*!
- * DTP fork — keyboard-first navigation.
+ * planka-bowe — keyboard-first navigation.
  *
  * A single `window` keydown listener (mounted once, next to the command
  * palette in components/common/Core) plus the `?` cheat sheet. The selection

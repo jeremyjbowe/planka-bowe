@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved view entry actions (the only thing the UI dispatches).
+ * planka-bowe — saved view entry actions (the only thing the UI dispatches).
  */
 
 import EntryActionTypes from '../constants/EntryActionTypes';

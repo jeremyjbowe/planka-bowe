@@ -84,7 +84,7 @@ describe('calendar-feeds/build-ics', () => {
         [
           'BEGIN:VCALENDAR',
           'VERSION:2.0',
-          'PRODID:-//DTP//PLANKA DTP//EN',
+          'PRODID:-//Bowe//PLANKA Bowe//EN',
           'CALSCALE:GREGORIAN',
           'METHOD:PUBLISH',
           'X-WR-CALNAME:My Feed',

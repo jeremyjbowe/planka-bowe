@@ -208,7 +208,7 @@ module.exports = {
           board: trelloBoard,
         };
       } else if (inputs.importType === Board.ImportTypes.PLANKA_JSON) {
-        // DTP fork — board exported by this app
+        // planka-bowe — board exported by this app
         const plankaBoard = await sails.helpers.boards
           .processUploadedPlankaJsonImportFile(file)
           .intercept('invalidFile', () => Errors.INVALID_IMPORT_FILE)

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — POST /api/goals
+ * planka-bowe — POST /api/goals
  */
 
 const { isDueDate } = require('../../../utils/validators');

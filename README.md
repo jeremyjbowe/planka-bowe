@@ -1,15 +1,28 @@
-# PLANKA — DTP edition
+# planka-bowe — a customized Planka
 
-A premium, self-hosted project & goals tracker built on top of
-[Planka](https://github.com/plankanban/planka) 2.2. Everything Planka does
-(real-time Kanban, markdown cards, checklists, time tracking, attachments,
-comments, OIDC, notifications) still works; on top of it this fork adds the
-views, structure and polish of modern tools.
+A self-hosted project and goals tracker built on top of
+[Planka](https://github.com/plankanban/planka) 2.2, customized and extended by
+Jeremy Bowe. Everything base Planka does (real-time Kanban, markdown cards,
+checklists, time tracking, attachments, comments, OIDC, notifications) still
+works. On top of it this fork adds the views, structure and polish of modern
+task tools, a dark-first design system, and an MCP server so AI assistants
+can work in your boards.
 
-> This is a downstream fork maintained by DTP. It is not intended as a pull
-> request to upstream. Upstream's license (see `LICENSE.md`) applies.
+> This is a downstream fork, not a pull request to upstream. Planka's Fair Use
+> License (see `LICENSE.md`) applies to the whole repository; upstream's
+> notices are kept intact.
 
-## What's new
+## What changed compared with base Planka
+
+In one screen: base Planka gives you Kanban boards inside flat projects.
+planka-bowe keeps that core and adds Table and Timeline views over the same
+live data, subtasks and recurring cards, nested projects, a Goals/OKR layer,
+quick-add with natural language, saved views, calendar feeds, JSON
+export/import, a keyboard-first workflow, a soft dark theme with a light mode,
+and an MCP server for Claude and other assistants. The table below lists each
+addition.
+
+## Feature-by-feature additions
 
 | Area | Feature |
 |---|---|
@@ -245,12 +258,12 @@ the REST API are unchanged; see the upstream docs at
 
 ## AI assistant access (MCP)
 
-`mcp-server/` holds **dtp-tasks-mcp**, an MCP server that lets Claude read and
+`mcp-server/` holds **planka-bowe-mcp**, an MCP server that lets Claude read and
 run this board through the REST API — listing projects, searching and creating
 cards, completing them, commenting, managing checklists and subtasks, and
 tracking goals.
 
-Credentials live outside the repository (`~/.config/dtp-tasks-mcp/.env` by
+Credentials live outside the repository (`~/.config/planka-bowe-mcp/.env` by
 default). Note that the bot account needs an **editor board membership** on each
 board it should change; admin rights alone allow reading but not writing.
 

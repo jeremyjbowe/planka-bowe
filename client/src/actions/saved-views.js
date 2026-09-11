@@ -1,5 +1,5 @@
 /*!
- * DTP fork — saved view actions (consumed by the ORM reducers).
+ * planka-bowe — saved view actions (consumed by the ORM reducers).
  */
 
 import ActionTypes from '../constants/ActionTypes';

@@ -1,4 +1,4 @@
-# Implementation plan — DTP fork of Planka
+# Implementation plan — planka-bowe (customized Planka)
 
 This document is the working plan for evolving Planka 2.2.x into a premium
 project & goals tracker. It is written for humans *and* for future AI sessions:
@@ -178,7 +178,7 @@ screen fits 375px with horizontal scroll contained to Table/Kanban, upstream
 hex leftovers in the touched screens were replaced with theme tokens, and
 `prefers-reduced-motion` is honoured globally.
 
-Docker: `docker build -t planka-dtp .` produces a 602 MB image; a fresh
+Docker: `docker build -t planka-bowe .` produces a 602 MB image; a fresh
 container against `postgres:16-alpine` applied all 29 migrations, served the
 client and reached the terms-acceptance step on the first admin login.
 
@@ -236,11 +236,11 @@ Testing notes for future sessions:
 
 - `GET /api/boards/:id/export` (`server/api/controllers/boards/export.js`,
   same permission as `boards/show`) returns
-  `{ format: 'planka-dtp-board', version: 1, exportedAt, board, lists, labels,
+  `{ format: 'planka-bowe-board', version: 1, exportedAt, board, lists, labels,
   cards, cardLabels, taskLists, tasks, customFieldGroups, customFields,
   customFieldValues }` as a `Content-Disposition: attachment` download.
   Cards cover every list of the board (archive and trash included) and carry
-  the DTP fields (`priority`, `color`, `recurrenceRule`, `parentCardId`,
+  the fork-specific fields (`priority`, `color`, `recurrenceRule`, `parentCardId`,
   `dueDate`, `isDueCompleted`, `isClosed`, `description`, `position`, `type`,
   `name`, `stopwatch`). Users, memberships, attachments and comments are out
   of scope; `creatorUserId` rides along for reference only. Custom fields are

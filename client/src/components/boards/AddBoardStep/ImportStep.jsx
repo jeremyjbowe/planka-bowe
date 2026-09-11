@@ -42,7 +42,7 @@ const ImportStep = React.memo(({ onSelect, onBack }) => {
         >
           <Button fluid content={t('common.fromTrello')} icon="trello" className={styles.button} />
         </FilePicker>
-        {/* DTP fork — a board exported by this app */}
+        {/* planka-bowe — a board exported by this app */}
         <FilePicker
           accept=".json"
           onSelect={(file) => handleFileSelect(BoardImportTypes.PLANKA_JSON, file)}

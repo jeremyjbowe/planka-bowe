@@ -1,5 +1,5 @@
 /*!
- * DTP fork — SavedView.js
+ * planka-bowe — SavedView.js
  *
  * A named preset of a board's view mode and filter state. `data` is an
  * opaque JSON blob owned by the client (see `client/src/models/SavedView.js`)

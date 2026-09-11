@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goal.js
+ * planka-bowe — Goal.js
  *
  * A global goal (OKR-style objective). Progress is derived from linked cards
  * and boards; `progress` is only used when the goal has no links.

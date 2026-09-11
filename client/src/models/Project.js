@@ -32,7 +32,7 @@ export default class extends BaseModel {
       as: 'backgroundImage',
       relatedName: 'backgroundedProject', // TODO: rename?
     }),
-    // DTP fork — hierarchical projects: `projectModel.subprojects` lists the children
+    // planka-bowe — hierarchical projects: `projectModel.subprojects` lists the children
     parentProjectId: fk({
       to: 'Project',
       as: 'parentProject',

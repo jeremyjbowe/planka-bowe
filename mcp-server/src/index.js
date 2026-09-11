@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * dtp-tasks-mcp - an MCP server that lets Claude operate DTP Tasks, the
+ * planka-bowe-mcp - an MCP server that lets Claude operate Planka Bowe, the
  * self-hosted Planka fork, through its REST API.
  *
  * Transport is stdio, so stdout belongs to the MCP protocol alone: every
@@ -19,7 +19,7 @@ import { register as registerGoals } from './tools/goals.js';
 import { register as registerOverview } from './tools/overview.js';
 
 const log = (message) => {
-  process.stderr.write(`[dtp-tasks-mcp] ${message}\n`);
+  process.stderr.write(`[planka-bowe-mcp] ${message}\n`);
 };
 
 async function main() {
@@ -34,10 +34,10 @@ async function main() {
   });
 
   const server = new McpServer(
-    { name: 'dtp-tasks', version: '1.0.0' },
+    { name: 'planka-bowe', version: '1.0.0' },
     {
       instructions:
-        'DTP Tasks is a self-hosted Planka board. Work top-down: list_projects to find a ' +
+        'Planka Bowe is a self-hosted Planka board. Work top-down: list_projects to find a ' +
         'board, get_board or find_cards to see what is on it, get_card for detail. People are ' +
         'always named by username. Ids are opaque strings. "Done" means the card is closed - ' +
         'use complete_card and reopen_card rather than moving cards by hand. delete_card is ' +

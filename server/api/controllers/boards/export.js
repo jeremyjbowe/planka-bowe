@@ -1,6 +1,6 @@
 /*!
- * DTP fork — GET /api/boards/:id/export
- * Downloads the whole board (lists, labels, cards with the DTP fields,
+ * planka-bowe — GET /api/boards/:id/export
+ * Downloads the whole board (lists, labels, cards with the fork-specific fields,
  * card labels, task lists, tasks and custom fields) as a versioned JSON
  * document that `boards/create` can import back with
  * `importType=plankaJson`. Users, memberships, attachments and comments are
@@ -9,7 +9,7 @@
 
 const { idInput } = require('../../../utils/inputs');
 
-const FORMAT = 'planka-dtp-board';
+const FORMAT = 'planka-bowe-board';
 const VERSION = 1;
 
 const BOARD_FIELDS = [

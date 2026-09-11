@@ -41,7 +41,7 @@ const isEmailOrUsername = (value) =>
 
 const isDueDate = (value) => moment(value, moment.ISO_8601, true).isValid();
 
-// DTP fork — recurring cards: the rule must parse and describe a repeating series
+// planka-bowe — recurring cards: the rule must parse and describe a repeating series
 const isRecurrenceRule = (value) => {
   try {
     const options = RRule.parseString(value);

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — card priority (low / medium / high / urgent), used by Quick Add's
+ * planka-bowe — card priority (low / medium / high / urgent), used by Quick Add's
  * `!priority` token, the Table view and the card chips.
  */
 

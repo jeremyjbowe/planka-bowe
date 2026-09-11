@@ -1,5 +1,5 @@
 /*!
- * DTP fork — name + "share with the board" form, used to save a new view
+ * planka-bowe — name + "share with the board" form, used to save a new view
  * and to rename an existing one.
  */
 

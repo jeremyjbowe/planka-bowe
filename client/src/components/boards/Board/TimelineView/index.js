@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Timeline (Gantt) view entry point.
+ * planka-bowe — Timeline (Gantt) view entry point.
  */
 
 import TimelineView from './TimelineView';

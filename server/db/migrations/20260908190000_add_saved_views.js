@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Saved views.
+ * planka-bowe — Saved views.
  *
  * A saved view is a named preset of a board's view mode plus its filter
  * state (`data`). Personal views (`is_shared = false`) are only visible to

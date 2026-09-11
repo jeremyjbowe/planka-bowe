@@ -23,7 +23,7 @@ module.exports = {
   },
 
   async fn(inputs) {
-    // DTP fork — goals
+    // planka-bowe — goals
     await sails.helpers.goalLinks.deleteByTarget.with({
       boardId: inputs.record.id,
     });

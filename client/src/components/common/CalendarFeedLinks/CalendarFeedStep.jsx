@@ -1,5 +1,5 @@
 /*!
- * DTP fork — board menu popup wrapping CalendarFeedLinks for one board.
+ * planka-bowe — board menu popup wrapping CalendarFeedLinks for one board.
  */
 
 import React from 'react';

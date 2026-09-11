@@ -1,5 +1,5 @@
 /*!
- * DTP fork — linked cards and boards of a goal, with add/remove.
+ * planka-bowe — linked cards and boards of a goal, with add/remove.
  */
 
 import React, { useCallback, useMemo } from 'react';

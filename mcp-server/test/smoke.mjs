@@ -3,11 +3,11 @@
  * End-to-end smoke test.
  *
  * Spawns the MCP server over stdio with the real SDK client, exercises the
- * whole card lifecycle against the live DTP Tasks instance, and deletes
+ * whole card lifecycle against the live Planka Bowe instance, and deletes
  * everything it created before it exits - including on failure.
  *
- * Configuration comes from the same place the server uses: DTP_TASKS_MCP_ENV
- * or ~/.config/dtp-tasks-mcp/.env. Set SMOKE_BOARD_ID to pin a board;
+ * Configuration comes from the same place the server uses: PLANKA_BOWE_MCP_ENV
+ * or ~/.config/planka-bowe-mcp/.env. Set SMOKE_BOARD_ID to pin a board;
  * otherwise the first board returned by list_projects is used.
  *
  *   node test/smoke.mjs
@@ -63,7 +63,7 @@ async function main() {
     stderr: 'inherit',
   });
 
-  const client = new Client({ name: 'dtp-tasks-smoke', version: '1.0.0' });
+  const client = new Client({ name: 'planka-bowe-smoke', version: '1.0.0' });
   await client.connect(transport);
 
   const createdCardIds = [];
@@ -146,7 +146,7 @@ async function main() {
       boardId,
       name: CARD_NAME,
       listName: activeLists[0].name,
-      description: 'Created by the dtp-tasks-mcp smoke test. Safe to delete.',
+      description: 'Created by the planka-bowe-mcp smoke test. Safe to delete.',
       dueDate: '2026-09-15',
       priority: 'high',
       color: 'sky',

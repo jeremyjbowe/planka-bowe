@@ -83,7 +83,7 @@ export const selectPath = createReduxOrmSelector(
   },
 );
 
-// DTP fork — goals page
+// planka-bowe — goals page
 export const selectIsGoalsPage = createReselectSelector(
   selectPathsMatch,
   (pathsMatch) => !!pathsMatch && pathsMatch.pattern.path === Paths.GOALS,

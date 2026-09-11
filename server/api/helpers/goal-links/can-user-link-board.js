@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. A user may link a board (or its cards) when they are an
+ * planka-bowe — Goals. A user may link a board (or its cards) when they are an
  * editor member of the board or manage its project.
  */
 

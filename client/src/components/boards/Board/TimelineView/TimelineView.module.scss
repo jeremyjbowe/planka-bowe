@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Timeline view styles. Reads design tokens from styles/theme.css
+ * planka-bowe — Timeline view styles. Reads design tokens from styles/theme.css
  * and re-skins frappe-gantt through its --g-* custom properties.
  */
 
@@ -170,16 +170,16 @@
       font-weight: 500;
     }
 
-    :global(.gantt .bar-wrapper.dtp-bar-overdue .bar) {
+    :global(.gantt .bar-wrapper.bowe-bar-overdue .bar) {
       fill: var(--danger);
     }
 
-    :global(.gantt .bar-wrapper.dtp-bar-completed .bar),
-    :global(.gantt .bar-wrapper.dtp-bar-closed .bar) {
+    :global(.gantt .bar-wrapper.bowe-bar-completed .bar),
+    :global(.gantt .bar-wrapper.bowe-bar-closed .bar) {
       fill: var(--success);
     }
 
-    :global(.gantt .bar-wrapper.dtp-bar-closed .bar-label) {
+    :global(.gantt .bar-wrapper.bowe-bar-closed .bar-label) {
       text-decoration: line-through;
     }
 
@@ -189,9 +189,9 @@
       fill: var(--accent-contrast);
     }
 
-    :global(.gantt .bar-wrapper.dtp-bar-completed .bar-label),
-    :global(.gantt .bar-wrapper.dtp-bar-closed .bar-label),
-    :global(.gantt .bar-wrapper.dtp-bar-overdue .bar-label) {
+    :global(.gantt .bar-wrapper.bowe-bar-completed .bar-label),
+    :global(.gantt .bar-wrapper.bowe-bar-closed .bar-label),
+    :global(.gantt .bar-wrapper.bowe-bar-overdue .bar-label) {
       fill: #0f0f12;
     }
 

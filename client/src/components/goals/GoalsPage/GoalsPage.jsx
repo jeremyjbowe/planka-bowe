@@ -1,5 +1,5 @@
 /*!
- * DTP fork — GoalsPage.
+ * planka-bowe — GoalsPage.
  *
  * Lists every goal as a tree grouped by status, with live progress bars.
  * Admins and project owners can add goals inline; anyone can open a goal.

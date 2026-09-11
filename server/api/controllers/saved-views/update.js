@@ -1,5 +1,5 @@
 /*!
- * DTP fork — PATCH /api/saved-views/:id
+ * planka-bowe — PATCH /api/saved-views/:id
  */
 
 const { isSavedViewData } = require('../../../utils/saved-view-data');

@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Table view.
+ * planka-bowe — Table view.
  *
  * A spreadsheet-like view of the current board built on TanStack Table v9.
  * Rows are derived from the same redux-orm store the Kanban view reads, so a
@@ -45,7 +45,7 @@ const features = tableFeatures({
 
 const EMPTY_ROWS = [];
 
-const SORTING_STORAGE_PREFIX = 'dtp_tableSorting_';
+const SORTING_STORAGE_PREFIX = 'bowe_tableSorting_';
 
 const readStoredSorting = (boardId) => {
   try {

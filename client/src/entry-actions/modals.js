@@ -61,7 +61,7 @@ const openBoardActivitiesModal = () => ({
   },
 });
 
-// DTP fork — goals
+// planka-bowe — goals
 const openGoalModal = (id) => ({
   type: EntryActionTypes.MODAL_OPEN,
   payload: {

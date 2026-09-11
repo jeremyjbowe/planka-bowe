@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goal model. Global objective, optionally nested, linked to
+ * planka-bowe — Goal model. Global objective, optionally nested, linked to
  * cards and boards through GoalLink.
  */
 

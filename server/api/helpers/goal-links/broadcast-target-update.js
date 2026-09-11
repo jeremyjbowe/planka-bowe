@@ -1,5 +1,5 @@
 /*!
- * DTP fork — Goals. Pushes fresh link summaries (card completion, board
+ * planka-bowe — Goals. Pushes fresh link summaries (card completion, board
  * totals) to the users who may see the board, so goal progress stays live
  * everywhere without leaking names to users outside the project.
  */
